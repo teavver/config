@@ -1,3 +1,9 @@
+#
+# ~/.bashrc
+#
+
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
+
 alias ls="ls --color"
 alias ll="ls --color -lh"
 alias la="ls --color -a"
