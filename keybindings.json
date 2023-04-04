@@ -32,5 +32,10 @@
     "key": "shift+alt+down",
     "command": "-editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
-  }
+  },
+  // ctrl arws work on osx
+  {"key":"ctrl+right",       "command":"cursorWordStartRight",       "when":"editorTextFocus"},
+  {"key":"ctrl+shift+right", "command":"cursorWordStartRightSelect", "when":"editorTextFocus"},
+  {"key":"ctrl+left",       "command":"cursorWordStartLeft",       "when":"editorTextFocus"},
+  {"key":"ctrl+shift+left", "command":"cursorWordStartLeftSelect", "when":"editorTextFocus"}
 ]
