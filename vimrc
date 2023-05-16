@@ -10,6 +10,7 @@ set ai
 set number
 set hlsearch
 set ruler
+set mouse=v
 
 xnoremap p pgvy
 " Dont yank last deleted in visual
