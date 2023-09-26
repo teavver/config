@@ -11,11 +11,3 @@ set number
 set hlsearch
 set ruler
 set mouse=v
-
-xnoremap p pgvy
-" Dont yank last deleted in visual
-
-" Ctrl s 2 lazy to :w
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
