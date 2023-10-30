@@ -1,0 +1,44 @@
+{
+    "editor.fontSize": 17,
+    "terminal.integrated.fontSize": 17,
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDelete": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "solidity.telemetry": false,
+    "editor.fontFamily": "Consolas, 'monospace'",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "styles"
+    ],
+    "tailwindCSS.experimental.classRegex": [],
+    "remote.SSH.remotePlatform": {
+        "ssh0.tumer.pl": "linux"
+    },
+    "git.confirmSync": false,
+    "explorer.confirmDragAndDrop": false,
+    "vim.vimrc.path": "C:\\Users\\gapka\\.vimrc",
+    "workbench.iconTheme": "material-icon-theme",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "solidity.compileUsingRemoteVersion": "v0.8.18+commit.87f61d96",
+    "workbench.tree.indent": 24,
+    "go.toolsManagement.autoUpdate": true,
+    "vim.vimrc.enable": true,
+    "vim.insertModeKeyBindings": [],
+    "vim.normalModeKeyBindings": [],
+    "workbench.settings.applyToAllProfiles": [
+        "editor.tabSize"
+    ],
+    "editor.detectIndentation": false,
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "editor.renderWhitespace": "none",
+    "window.zoomLevel": 1,
+    "cmake.configureOnOpen": true,
+    "vim.useSystemClipboard": true
+}
