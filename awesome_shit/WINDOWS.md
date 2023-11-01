@@ -11,3 +11,8 @@ https://jmeubank.github.io/tdm-gcc/
 # Make for Windows
 https://gnuwin32.sourceforge.net/packages/make.htm
 https://sourceforge.net/projects/gnuwin32/postdownload
+
+# Everything - MUCH better win search
+https://www.voidtools.com/
+And the toolbar integration in order to replace the native search:
+https://github.com/srwi/EverythingToolbar
