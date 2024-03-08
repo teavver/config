@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+=======
+*.zip filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+<file-path> !text !filter !merge !diff
+=======
+>>>>>>> 618dfd58ea7796deaa7420ff3657f5b69c7bba3f
+>>>>>>> 3715d7e8dfe5e6df581796e798d91496715a8aac
