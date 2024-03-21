@@ -1,10 +1,7 @@
-# 8.03.2024 Ventura Build Stable
+# 21.03.2024 Ventura Build (USB Mapped, stable)
 ## Ryzen 5 5600X
 ## Aegis ram+
 ## Msi b450m-vdh-pro-max
-## RX 570 4GB ITX
+## RX 570 4GB ITX MINI (https://www.techpowerup.com/gpu-specs/sapphire-pulse-rx-570-itx-mini.b4446)
 
-# usb_map.zip
-## contains newest config.plist
-## i cba updating ventura_EFI every time i change something
-## Last update: 10.03.2024 16:50
+# Last update: 21.03.2024 (16:14)
