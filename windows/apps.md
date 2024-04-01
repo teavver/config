@@ -1,3 +1,6 @@
+# Configure fresh install
+https://github.com/massgravel/Microsoft-Activation-Scripts
+https://github.com/tsgrgo/windows-update-disabler
 
 # Alt drag - i3wm binds
 https://stefansundin.github.io/altdrag/
