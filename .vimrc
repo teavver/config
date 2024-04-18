@@ -11,4 +11,4 @@ set ruler
 set mouse=v
 set background=dark
 set belloff=all
-colorscheme wildcharm
+set clipboard=unnamed
