@@ -1,0 +1,35 @@
+[user]
+    name = "teavver"
+    email = "jerzyx11@gmail.com"
+
+[core]
+    excludesfile = ~/.gitignore_global
+    preloadindex = true
+    editor = vim
+
+[color]
+    ui = auto
+
+[color.grep]
+    filename = bold green
+    match = black yellow
+
+[diff]
+	# Tells Git to detect renames. If set to "true", it will enable basic
+	# rename detection. If set to "copies", it will detect copies, as well.
+    renames = copies
+
+[push]
+    default = current
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    cm = commit -m
+    last = log -1 HEAD
+    his = log --graph
+
+    # Delete all local branches except 'master / main'.
+    prunelocal = !git branch --merged | grep -v "\*" | grep -v master | grep -v main | xargs git branch -d
