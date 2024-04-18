@@ -35,4 +35,4 @@
     go = checkout -B
 
     # Delete all local branches except 'master / main'.
-    prunelocal = !git branch --merged | grep -v "\*" | grep -v master | grep -v main | xargs git branch -d
+    prunelocal = "!git branch --merged | grep -v '\\*' | grep -v 'master' | grep -v 'main' | xargs -r git branch -d"
