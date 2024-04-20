@@ -1,8 +1,9 @@
-#
-# ~/.bashrc
-#
 
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
+if command -v tmux >/dev/null; then
+    [ -z "$TMUX" ] && (tmux attach || exec tmux new-session)
+else
+    echo "[!] tmux is not installed"
+fi
 
 alias ls="ls --color"
 alias ll="ls --color -lh"
