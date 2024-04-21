@@ -1,0 +1,2 @@
+# (bobby) Universal binding caps lock -> ctrl
+setxkbmap -option caps:ctrl_modifier
