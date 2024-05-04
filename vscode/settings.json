@@ -1,0 +1,67 @@
+{
+    "terminal.integrated.fontSize": 14,
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDelete": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.scrollBeyondLastLine": false,
+    "keyboard.touchbar.enabled": false,
+    "editor.fontFamily": "Droid Sans Mono, Consolas, monospace",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "styles"
+    ],
+    "tailwindCSS.experimental.classRegex": [],
+    "remote.SSH.remotePlatform": {
+        "ssh0.tumer.pl": "linux"
+    },
+    "git.confirmSync": false,
+    "explorer.confirmDragAndDrop": false,
+    "vim.vimrc.path": "$HOME/.vimrc",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "solidity.compileUsingRemoteVersion": "v0.8.24",
+    "workbench.tree.indent": 24,
+    "go.toolsManagement.autoUpdate": true,
+    "vim.vimrc.enable": true,
+    "vim.insertModeKeyBindings": [],
+    "vim.normalModeKeyBindings": [],
+    "workbench.settings.applyToAllProfiles": [
+        "editor.tabSize"
+    ],
+    "editor.detectIndentation": false,
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "editor.renderWhitespace": "none",
+    "cmake.configureOnOpen": true,
+    "vim.useSystemClipboard": true,
+    "files.associations": {
+        "TODO": "markdown"
+    },
+    "terminal.integrated.fontFamily": "Droid Sans Mono, Consolas, monospace",
+    "explorer.confirmPasteNative": false,
+    "git.ignoreMissingGitWarning": true,
+    "git.autofetch": true,
+    "solidity.solhintRules": {},
+    "solidity.telemetry": true,
+    "git.ignoreRebaseWarning": true,
+    "editor.fontSize": 14,
+    "application.shellEnvironmentResolutionTimeout": 1,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.mouseWheelScrollSensitivity": 3,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.list.mouseWheelScrollSensitivity": 3,
+    "editor.minimap.enabled": false,
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+}
