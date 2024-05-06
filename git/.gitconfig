@@ -22,6 +22,9 @@
 [push]
     default = current
 
+[advice]
+    detachedHead = false
+
 [alias]
     st = status
     co = checkout
