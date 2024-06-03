@@ -29,6 +29,7 @@
     st = status
     co = checkout
     br = branch
+    bra = branch -a
     ci = commit
     cm = commit -m
     last = log -1 HEAD
@@ -39,3 +40,10 @@
 
     # Delete all local branches except 'master / main'.
     prunelocal = "!git branch --merged | grep -v '\\*' | grep -v 'master' | grep -v 'main' | xargs -r git branch -d"
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
