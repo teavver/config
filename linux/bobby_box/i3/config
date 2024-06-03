@@ -15,16 +15,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 exec --no-startup-id nm-applet
 
-# Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
-
-# Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-
 # Use pactl to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -61,8 +51,14 @@ bindsym $mod+e layout default
 bindsym $mod+s split toggle
 bindsym $mod+h split h
 bindsym $mod+v split v
-
 bindsym $mod+Shift+space floating toggle
+
+# Screenshots [requirement pkgs: 'maim', 'xclip']
+# Selection
+bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+# Fullscreen
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+
 
 set $ws1 "1"
 set $ws2 "2"
