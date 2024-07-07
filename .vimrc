@@ -11,4 +11,5 @@ set ruler
 set mouse=v
 set background=dark
 set belloff=all
-set clipboard=unnamed
+set clipboard=unnamedplus
+command! W write
