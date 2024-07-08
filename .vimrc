@@ -11,5 +11,8 @@ set ruler
 set mouse=v
 set background=dark
 set belloff=all
-set clipboard=unnamedplus
+
+" Match OS clipboard (crossplatform)
+set clipboard^=unnamed,unnamedplus
+
 command! W write
