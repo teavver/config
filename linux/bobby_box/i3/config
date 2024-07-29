@@ -7,6 +7,9 @@ set $mod Mod4
 # Custom
 exec --no-startup-id xrdb -merge ~/.Xresources
 
+# Key repeat
+exec --no-startuo-id xset r rate 170 20
+
 # Caps as ctrl
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 
