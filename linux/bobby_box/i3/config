@@ -1,13 +1,19 @@
 set $mod Mod4
 
+# Bobby
+# set $mod Mod1
+# exec --no-startup-id xrandr --output eDP --off
+
 # Custom
 exec --no-startup-id xrdb -merge ~/.Xresources
+
+# Caps as ctrl
+exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 
 # Global maccel for all devices
 exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
 
 # Disable titlebars
-# font pango:monospace 8
 for_window [class="^.*"] border pixel 1
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
