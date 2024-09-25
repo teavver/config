@@ -2,3 +2,4 @@ tags
 *.sw?
 *.vimsession
 *.DS_Store
+*.bak

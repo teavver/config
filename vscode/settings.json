@@ -4,11 +4,10 @@
     "explorer.confirmDelete": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "editor.scrollBeyondLastLine": false,
-    "keyboard.touchbar.enabled": false,
-    "editor.fontFamily": "Droid Sans Mono, Consolas, monospace",
     "[python]": {
         "editor.formatOnType": true
     },
+    "prettier.printWidth": 80,
     "tailwindCSS.classAttributes": [
         "class",
         "className",
@@ -19,6 +18,7 @@
     "remote.SSH.remotePlatform": {
         "ssh0.tumer.pl": "linux"
     },
+    "editor.stopRenderingLineAfter": 500,
     "git.confirmSync": false,
     "explorer.confirmDragAndDrop": false,
     "vim.vimrc.path": "$HOME/.vimrc",
@@ -27,7 +27,6 @@
     "solidity.compileUsingRemoteVersion": "v0.8.24",
     "workbench.tree.indent": 24,
     "go.toolsManagement.autoUpdate": true,
-    "vim.vimrc.enable": true,
     "vim.insertModeKeyBindings": [],
     "vim.normalModeKeyBindings": [],
     "workbench.settings.applyToAllProfiles": [
@@ -52,16 +51,36 @@
     "editor.fontSize": 14,
     "application.shellEnvironmentResolutionTimeout": 1,
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.mouseWheelScrollSensitivity": 3,
     "[typescriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    "workbench.list.mouseWheelScrollSensitivity": 3,
     "editor.minimap.enabled": false,
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "settingsSync.ignoredExtensions": [
+        "wolfieshorizon.python-auto-venv"
+    ],
+    "vim.vimrc.enable": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "python.REPL.enableREPLSmartSend": false,
+    "interactiveWindow.executeWithShiftEnter": false,
+    "workbench.editor.enablePreview": false,
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+    "editor.fontFamily": "'Menlo', 'monospace', monospace",
+    "terminal.integrated.gpuAcceleration": "off",
+    "window.menuBarVisibility": "toggle",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }

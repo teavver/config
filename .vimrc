@@ -15,4 +15,7 @@ set belloff=all
 " Match OS clipboard (crossplatform)
 set clipboard^=unnamed,unnamedplus
 
+"
+nnoremap J j
+nnoremap K k
 command! W write

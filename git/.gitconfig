@@ -29,10 +29,12 @@
     st = status
     co = checkout
     br = branch
+    bra = branch -vv -a
     ci = commit
     cm = commit -m
     last = log -1 HEAD
     his = log --graph
+    h = log --oneline
 
     checkout = checkout -B
     go = checkout -B
