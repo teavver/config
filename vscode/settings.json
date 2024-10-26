@@ -1,86 +1,98 @@
 {
-    "terminal.integrated.fontSize": 14,
-    "security.workspace.trust.untrustedFiles": "open",
-    "explorer.confirmDelete": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "editor.scrollBeyondLastLine": false,
-    "[python]": {
-        "editor.formatOnType": true
-    },
-    "prettier.printWidth": 80,
-    "tailwindCSS.classAttributes": [
-        "class",
-        "className",
-        "ngClass",
-        "styles"
-    ],
-    "tailwindCSS.experimental.classRegex": [],
-    "remote.SSH.remotePlatform": {
-        "ssh0.tumer.pl": "linux"
-    },
-    "editor.stopRenderingLineAfter": 500,
-    "git.confirmSync": false,
-    "explorer.confirmDragAndDrop": false,
-    "vim.vimrc.path": "$HOME/.vimrc",
-    "liveServer.settings.donotShowInfoMsg": true,
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "solidity.compileUsingRemoteVersion": "v0.8.24",
-    "workbench.tree.indent": 24,
-    "go.toolsManagement.autoUpdate": true,
-    "vim.insertModeKeyBindings": [],
-    "vim.normalModeKeyBindings": [],
-    "workbench.settings.applyToAllProfiles": [
-        "editor.tabSize"
-    ],
-    "editor.detectIndentation": false,
-    "redhat.telemetry.enabled": false,
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "editor.renderWhitespace": "none",
-    "cmake.configureOnOpen": true,
-    "vim.useSystemClipboard": true,
-    "files.associations": {
-        "TODO": "markdown"
-    },
-    "terminal.integrated.fontFamily": "Droid Sans Mono, Consolas, monospace",
-    "explorer.confirmPasteNative": false,
-    "git.ignoreMissingGitWarning": true,
-    "git.autofetch": true,
-    "solidity.solhintRules": {},
-    "solidity.telemetry": true,
-    "git.ignoreRebaseWarning": true,
-    "editor.fontSize": 14,
-    "application.shellEnvironmentResolutionTimeout": 1,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "editor.minimap.enabled": false,
-    "[css]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "settingsSync.ignoredExtensions": [
-        "wolfieshorizon.python-auto-venv"
-    ],
-    "vim.vimrc.enable": true,
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "python.REPL.enableREPLSmartSend": false,
-    "interactiveWindow.executeWithShiftEnter": false,
-    "workbench.editor.enablePreview": false,
-    "[markdown]": {
-        "diffEditor.ignoreTrimWhitespace": true
-    },
-    "editor.fontFamily": "'Menlo', 'monospace', monospace",
-    "terminal.integrated.gpuAcceleration": "off",
-    "window.menuBarVisibility": "toggle",
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+  "terminal.integrated.fontSize": 14,
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDelete": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.scrollBeyondLastLine": false,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "vim.commandLineModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "W",
+        "<Enter>"
+      ],
+      "after": [
+        "w",
+        "<Enter>"
+      ]
     }
+  ],
+  "prettier.printWidth": 80,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "styles"
+  ],
+  "tailwindCSS.experimental.classRegex": [],
+  "remote.SSH.remotePlatform": {
+    "ssh0.tumer.pl": "linux"
+  },
+  "editor.stopRenderingLineAfter": 500,
+  "git.confirmSync": false,
+  "explorer.confirmDragAndDrop": false,
+  "vim.vimrc.path": "$HOME/.vimrc",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "solidity.compileUsingRemoteVersion": "v0.8.24",
+  "workbench.tree.indent": 24,
+  "go.toolsManagement.autoUpdate": true,
+  "vim.insertModeKeyBindings": [],
+  "vim.normalModeKeyBindings": [],
+  "workbench.settings.applyToAllProfiles": [
+    "editor.tabSize"
+  ],
+  "editor.detectIndentation": false,
+  "redhat.telemetry.enabled": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.renderWhitespace": "none",
+  "cmake.configureOnOpen": true,
+  "vim.useSystemClipboard": true,
+  "files.associations": {
+    "TODO": "markdown"
+  },
+  "terminal.integrated.fontFamily": "Droid Sans Mono, Consolas, monospace",
+  "explorer.confirmPasteNative": false,
+  "git.ignoreMissingGitWarning": true,
+  "git.autofetch": true,
+  "solidity.solhintRules": {},
+  "solidity.telemetry": true,
+  "git.ignoreRebaseWarning": true,
+  "editor.fontSize": 14,
+  "application.shellEnvironmentResolutionTimeout": 1,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.minimap.enabled": false,
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "settingsSync.ignoredExtensions": [
+    "wolfieshorizon.python-auto-venv"
+  ],
+  "vim.vimrc.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.REPL.enableREPLSmartSend": false,
+  "interactiveWindow.executeWithShiftEnter": false,
+  "workbench.editor.enablePreview": false,
+  "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": true
+  },
+  "editor.fontFamily": "'Menlo', 'monospace', monospace",
+  "terminal.integrated.gpuAcceleration": "off",
+  "window.menuBarVisibility": "toggle",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
