@@ -36,8 +36,8 @@ cmd-shift-space = 'layout floating tiling'
 cmd-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-period = 'layout tiles h_tiles'
-cmd-comma = 'layout accordion h_accordion'
+cmd-leftSquareBracket = 'layout tiles h_tiles'
+cmd-rightSquareBracket = 'layout accordion h_accordion'
 
 # Unbind this garbage
 cmd-m = []
@@ -80,44 +80,6 @@ cmd-shift-7 = 'move-node-to-workspace 7'
 cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-# cmd-tab = 'workspace-back-and-forth'
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-# cmd-shift-tab = 'move-workspace-to-monitor --wrap-around next'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
-# cmd-shift-semicolon = 'mode service'
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-# esc = ['reload-config', 'mode main']
-# r = ['flatten-workspace-tree', 'mode main'] # reset layout
-# f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-# backspace = ['close-all-windows-but-current', 'mode main']
-
-# sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-#s = ['layout sticky tiling', 'mode main']
-# cmd-shift-h = ['join-with left', 'mode main']
-# cmd-shift-j = ['join-with down', 'mode main']
-# cmd-shift-k = ['join-with up', 'mode main']
-# cmd-shift-l = ['join-with right', 'mode main']
-
-# always floating windows 
-[[on-window-detected]]
-# if.app-name-regex-substring = 'Electron'
-if.window-title-regex-substring = 'Electron'
-# check-further-callbacks = true
-run = ['layout floating']
-
-[[on-window-detected]]
-if.window-title-regex-substring = 'capture'
-# check-further-callbacks = true
-run = ['layout floating']
-
-[[on-window-detected]]
-if.window-title-regex-substring = 'solver'
-# check-further-callbacks = true
-run = ['layout floating']
-
+# ...
 
