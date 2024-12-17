@@ -14,7 +14,7 @@ download_file() {
 
 files=$(curl -sSL "$REPO_URL?ref=$COMMIT_HASH" | grep '"name":' | cut -d '"' -f 4 | grep '^\.')
 
-echo "branch/commit: $COMMIT_HASH"
+echo "commit: $COMMIT_HASH"
 while read -r file; do
     if [ -e "$file" ]; then
         echo "file '$file' exists, skipping"
@@ -22,5 +22,12 @@ while read -r file; do
     fi
     download_url=$(curl -sSL "$REPO_URL/$file?ref=$COMMIT_HASH" | grep '"download_url":' | cut -d '"' -f 4)
     download_file "$file" "$download_url"
+
+    if [ "$file" == "kitty.conf" ]; then
+        mkdir -p ~/.config/kitty
+        mv "$file" ~/.config/kitty/kitty.conf
+    else mv "$file" "$HOME/$file"
+    fi
+
 done <<< "$files"
 echo "done"

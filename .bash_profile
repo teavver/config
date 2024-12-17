@@ -1,5 +1,5 @@
 
-if [ -f "$HOME/.bashrc" ]; then
+if [[ $- == *i* ]]; then
     source "$HOME/.bashrc"
 fi
 

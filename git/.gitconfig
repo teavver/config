@@ -25,6 +25,11 @@
 [advice]
     detachedHead = false
 
+[http]
+	postBuffer = 524288000
+	lowSpeedLimit = 0
+  lowSpeedTime = 10000
+
 [alias]
     st = status
     co = checkout
@@ -35,6 +40,8 @@
     last = log -1 HEAD
     his = log --graph
     h = log --oneline
+    softprev = !git reset --soft HEAD~1
+    hardprev = !git reset --hard HEAD~1 
 
     checkout = checkout -B
     go = checkout -B
