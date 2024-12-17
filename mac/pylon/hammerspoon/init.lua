@@ -22,7 +22,7 @@ hs.eventtap
         [hs.keycodes.map["f"]] = "find",
       }
 
-      if mod_keys.shift and key_code == hs.keycodes.map["tab"] then
+      if mod_keys.shift and key_code == hs.keycodes.map["t"] then
         reopen_last_closed_tab()
         return true
       end
