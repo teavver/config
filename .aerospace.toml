@@ -18,14 +18,6 @@ automatically-unhide-macos-hidden-apps = true
 [key-mapping]
 preset = 'qwerty'
 
-[gaps]
-inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
-
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.main.binding]
 
@@ -97,16 +89,33 @@ cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 cmd-shift-esc = 'move-node-to-workspace esc'
 
-[mode.service.binding]
-
-# ---
 [[on-window-detected]]
-    if.window-title-regex-substring = 'Star Craft'
-    run = ['layout floating', 'move-node-to-workspace esc']
+    if.app-id = 'org.chromium.Chromium'
+    run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
-    if.window-title-regex-substring = 'Hearthstone'
-    run = ['layout floating', 'move-node-to-workspace esc']
+    if.app-id = 'com.apple.mail'
+    run = ['move-node-to-workspace 2']
 
-# ...
+[[on-window-detected]]
+    if.app-id = 'net.kovidgoyal.kitty'
+    run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.VSCode'
+    run = ['layout tiling', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'net.battle.app'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'com.blizzard.starcraft2'
+	if.app-name-regex-substring = 'SC2'
+    run = ['move-node-to-workspace esc']
+
+[[on-window-detected]]
+    if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
+	if.app-name-regex-substring = 'Hearthstone'
+    run = ['move-node-to-workspace esc']
 
