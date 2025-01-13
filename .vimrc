@@ -16,6 +16,10 @@ set belloff=all
 set clipboard^=unnamed,unnamedplus
 
 "
-nnoremap J j
-nnoremap K k
 command! W write
+
+"
+noremap J }
+noremap K {
+noremap <C-j> 4j
+noremap <C-k> 4k

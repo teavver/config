@@ -35,9 +35,6 @@ cmd-shift-space = 'layout floating tiling'
 # Term
 cmd-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
-# Dmenu
-cmd-d = 'exec-and-forget open -a /Applications/dmenu-mac.app'
-
 # Finder
 cmd-e = '''exec-and-forget osascript -e '
 tell application "Finder"
@@ -86,6 +83,7 @@ cmd-6 = 'workspace 6'
 cmd-7 = 'workspace 7'
 cmd-8 = 'workspace 8'
 cmd-9 = 'workspace 9'
+cmd-esc = 'workspace esc'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-shift-1 = 'move-node-to-workspace 1'
@@ -97,7 +95,18 @@ cmd-shift-6 = 'move-node-to-workspace 6'
 cmd-shift-7 = 'move-node-to-workspace 7'
 cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
+cmd-shift-esc = 'move-node-to-workspace esc'
 
-# [mode.service.binding]
+[mode.service.binding]
+
+# ---
+[[on-window-detected]]
+    if.window-title-regex-substring = 'Star Craft'
+    run = ['layout floating', 'move-node-to-workspace esc']
+
+[[on-window-detected]]
+    if.window-title-regex-substring = 'Hearthstone'
+    run = ['layout floating', 'move-node-to-workspace esc']
+
 # ...
 
