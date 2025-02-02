@@ -10,7 +10,7 @@ after-startup-command = []
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-accordion-padding = 40
+accordion-padding = 64
 default-root-container-layout = 'accordion'
 default-root-container-orientation = 'horizontal'
 automatically-unhide-macos-hidden-apps = true
@@ -60,6 +60,15 @@ tell application "Spotify"
     next track
 end tell'
 '''
+
+# Vol
+alt-q = '''exec-and-forget osascript -e '
+set volume output volume ((output volume of (get volume settings)) - 8)
+' '''
+
+alt-w = '''exec-and-forget osascript -e '
+set volume output volume ((output volume of (get volume settings)) + 8)
+' '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 cmd-leftSquareBracket = 'layout tiles h_tiles'
@@ -117,21 +126,39 @@ cmd-shift-esc = 'move-node-to-workspace esc'
     run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
     if.app-id = 'net.kovidgoyal.kitty'
     run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
-    run = ['layout tiling', 'move-node-to-workspace 4']
+    run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
     if.app-id = 'net.battle.app'
     run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
+    if.app-id = 'com.valvesoftware.steam'
+    if.app-name-regex-substring = 'Steam'
+    if.window-title-regex-substring = 'Steam'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'com.hnc.Discord'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
     if.app-id = 'com.blizzard.starcraft2'
 	if.app-name-regex-substring = 'SC2'
     if.window-title-regex-substring = 'StarCraft'
+    run = ['move-node-to-workspace esc']
+
+[[on-window-detected]]
+    if.app-id = 'com.factorio'
     run = ['move-node-to-workspace esc']
 
 [[on-window-detected]]
