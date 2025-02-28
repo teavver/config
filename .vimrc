@@ -1,8 +1,7 @@
 highlight Comment ctermfg=green
-:set bs=2
 syntax on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set ai
 set number
@@ -11,15 +10,17 @@ set ruler
 set mouse=v
 set background=dark
 set belloff=all
-
 " Match OS clipboard (crossplatform)
 set clipboard^=unnamed,unnamedplus
-
 "
 command! W write
-
+command! Q quit
 "
-noremap J }
-noremap K {
-noremap <C-j> 4j
-noremap <C-k> 4k
+noremap J }zz
+noremap K {zz
+noremap <C-j> 4jzz
+noremap <C-k> 4kzz
+nnoremap <C-h> 3bzz
+nnoremap <C-l> 3wzz
+xnoremap <C-h> 3bzz
+xnoremap <C-l> 3wzz

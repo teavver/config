@@ -4,10 +4,6 @@
   "explorer.confirmDelete": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.scrollBeyondLastLine": false,
-  "[python]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true
-  },
   // save
   "vim.commandLineModeKeyBindingsNonRecursive": [
     {
@@ -18,8 +14,7 @@
       "after": [
         "w",
         "<Enter>"
-      ],
-      "silent": true
+      ]
     },
     {
       "before": [
@@ -29,8 +24,7 @@
       "after": [
         "q",
         "<Enter>"
-      ],
-      "silent": true
+      ]
     },
     {
       "before": [
@@ -42,8 +36,7 @@
         "q",
         "!",
         "<Enter>"
-      ],
-      "silent": true
+      ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -68,14 +61,103 @@
       ],
       "silent": true
     },
-    // WIP
+    // ctrl groups
     {
       "before": ["1", "1"],
       "after": ["<Esc>"],
+      "silent": true,
       "commands": [
         {
-          "command": "extension.setActiveControlGroup",
+          "command": "sc2.jumpToControlGroup",
           "args": { "id": 1 }
+        }
+      ]
+    },
+    {
+      "before": ["2", "2"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 2 }
+        }
+      ]
+    },
+    {
+      "before": ["3", "3"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 3 }
+        }
+      ]
+    },
+    {
+      "before": ["4", "4"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 4 }
+        }
+      ]
+    },
+    {
+      "before": ["5", "5"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 5 }
+        }
+      ]
+    },
+    {
+      "before": ["6", "6"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 6 }
+        }
+      ]
+    },
+    {
+      "before": ["7", "7"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 7 }
+        }
+      ]
+    },
+    {
+      "before": ["8", "8"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 8 }
+        }
+      ]
+    },
+    {
+      "before": ["9", "9"],
+      "after": ["<Esc>"],
+      "silent": true,
+      "commands": [
+        {
+          "command": "sc2.jumpToControlGroup",
+          "args": { "id": 9 }
         }
       ]
     }
@@ -122,7 +204,8 @@
     "editor.tabSize": 2
   },
   "settingsSync.ignoredExtensions": [
-    "wolfieshorizon.python-auto-venv"
+    "wolfieshorizon.python-auto-venv",
+    "equinusocio.vsc-material-theme"
   ],
   "vim.vimrc.enable": true,
   "python.REPL.enableREPLSmartSend": false,
@@ -136,19 +219,13 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "github.copilot.advanced": {
-    "authProvider": "github"
-  },
   "editor.tabSize": 2,
   "vim.sneak": true,
   "vim.sneakReplacesF": true,
   "vim.targets.enable": true,
-  "makefile.configureOnOpen": true,
-  "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
-  "lldb.launch.expressions": "native",
   "cmake.showOptionsMovedNotification": false,
   "debug.onTaskErrors": "debugAnyway",
-  "editor.fontSize": 15,
+  "editor.fontSize": 16,
   "editor.mouseWheelScrollSensitivity": 0.75,
-  "editor.renderWhitespace": "all"
+  "chat.commandCenter.enabled": false
 }

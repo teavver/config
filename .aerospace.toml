@@ -61,12 +61,37 @@ tell application "Spotify"
 end tell'
 '''
 
-# Vol
+# Spotify vol
 alt-q = '''exec-and-forget osascript -e '
-set volume output volume ((output volume of (get volume settings)) - 8)
+tell application "Spotify"
+    set currentvol to get sound volume
+    -- Volume bottoms out at 0
+    if currentvol < 10 then
+        set sound volume to 0
+    else
+        set sound volume to currentvol - 10
+    end if
+end tell
 ' '''
 
 alt-w = '''exec-and-forget osascript -e '
+tell application "Spotify"
+    set currentvol to get sound volume
+    -- volume wraps at 100 to 0
+    if currentvol > 90 then
+        set sound volume to 100
+    else
+        set sound volume to currentvol + 10
+    end if
+end tell
+' '''
+
+# System vol
+alt-e = '''exec-and-forget osascript -e '
+set volume output volume ((output volume of (get volume settings)) - 8)
+' '''
+
+alt-r = '''exec-and-forget osascript -e '
 set volume output volume ((output volume of (get volume settings)) + 8)
 ' '''
 
