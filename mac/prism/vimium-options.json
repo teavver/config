@@ -1,0 +1,23 @@
+{
+  "waitForEnterForFilteredHints": false,
+  "keyMappings": "# Insert your preferred key mappings here.\nmap <C-j> scrollPageDown\nmap <C-k> scrollPageUp",
+  "regexFindMode": true,
+  "scrollStepSize": 70,
+  "smoothScroll": false,
+  "searchUrl": "https://www.google.nl/search?q=",
+  "settingsVersion": "2.1.2",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.tablesgenerator.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.tldraw.com/*"
+    }
+  ]
+}
