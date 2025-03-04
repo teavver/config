@@ -39,7 +39,79 @@
       ]
     }
   ],
+  // lines
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "J"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction",
+        "editor.action.reindentselectedlines"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction",
+        "editor.action.reindentselectedlines"
+      ]
+    }
+  ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    // prev/next + cmdpal
+    {
+      "before": [
+        "<leader>",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.navigateBack"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "<leader>",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.navigateForward"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "<Leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "<Leader>",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "<leader>",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ],
+      "silent": true
+    },
     // diag
     {
       "before": [
@@ -63,107 +135,171 @@
     },
     // ctrl groups
     {
-      "before": ["1", "1"],
-      "after": ["<Esc>"],
+      "before": [
+        "1",
+        "1"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 1 }
+          "args": {
+            "id": 1
+          }
         }
       ]
     },
     {
-      "before": ["2", "2"],
-      "after": ["<Esc>"],
+      "before": [
+        "2",
+        "2"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 2 }
+          "args": {
+            "id": 2
+          }
         }
       ]
     },
     {
-      "before": ["3", "3"],
-      "after": ["<Esc>"],
+      "before": [
+        "3",
+        "3"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 3 }
+          "args": {
+            "id": 3
+          }
         }
       ]
     },
     {
-      "before": ["4", "4"],
-      "after": ["<Esc>"],
+      "before": [
+        "4",
+        "4"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 4 }
+          "args": {
+            "id": 4
+          }
         }
       ]
     },
     {
-      "before": ["5", "5"],
-      "after": ["<Esc>"],
+      "before": [
+        "5",
+        "5"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 5 }
+          "args": {
+            "id": 5
+          }
         }
       ]
     },
     {
-      "before": ["6", "6"],
-      "after": ["<Esc>"],
+      "before": [
+        "6",
+        "6"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 6 }
+          "args": {
+            "id": 6
+          }
         }
       ]
     },
     {
-      "before": ["7", "7"],
-      "after": ["<Esc>"],
+      "before": [
+        "7",
+        "7"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 7 }
+          "args": {
+            "id": 7
+          }
         }
       ]
     },
     {
-      "before": ["8", "8"],
-      "after": ["<Esc>"],
+      "before": [
+        "8",
+        "8"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 8 }
+          "args": {
+            "id": 8
+          }
         }
       ]
     },
     {
-      "before": ["9", "9"],
-      "after": ["<Esc>"],
+      "before": [
+        "9",
+        "9"
+      ],
+      "after": [
+        "<Esc>"
+      ],
       "silent": true,
       "commands": [
         {
           "command": "sc2.jumpToControlGroup",
-          "args": { "id": 9 }
+          "args": {
+            "id": 9
+          }
         }
       ]
     }
   ],
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
+    "asvetliakov.vscode-neovim": 1
   },
   "editor.stopRenderingLineAfter": 500,
   "git.confirmSync": false,
@@ -225,7 +361,21 @@
   "vim.targets.enable": true,
   "cmake.showOptionsMovedNotification": false,
   "debug.onTaskErrors": "debugAnyway",
-  "editor.fontSize": 16,
+  "editor.fontSize": 13,
   "editor.mouseWheelScrollSensitivity": 0.75,
-  "chat.commandCenter.enabled": false
+  "chat.commandCenter.enabled": false,
+  "eventListener.commands": [
+    {
+      "event": "onDidChangeActiveTextEditor",
+      "command": "vim.escape",
+      "when": "vim.active && vim.mode != 'Normal'"
+    }
+  ],
+  "sc2.normalModeOnFileChange": true,
+  "sc2.controlGroupStealing": true,
+  "vim.leader": " ",
+  "autopep8.args": [
+    "--indent-size=2",
+    "--ignore=E121"
+  ]
 }

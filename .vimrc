@@ -15,13 +15,12 @@ set smartindent
 set wrap
 " Match OS clipboard (crossplatform)
 set clipboard^=unnamed,unnamedplus
-
-autocmd FileType * setlocal tabstop=2 shiftwidth=2 expandtab
+"
 command! W write
 command! Q quit
 cabbrev s %s
 cabbrev %s s
-
+"
 let mapleader = " "
 noremap h hzz
 noremap j jzz
@@ -35,6 +34,9 @@ nnoremap <C-h> 3bzz
 nnoremap <C-l> 3wzz
 nnoremap <leader>x :!chmod +x %<CR>
 nnoremap <leader>y gg"+yG
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap Y yy 
 xnoremap <C-h> 3bzz
 xnoremap <C-l> 3wzz
 vnoremap J :m '>+1<CR>gv=gv
