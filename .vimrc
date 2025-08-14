@@ -36,8 +36,11 @@ nnoremap <leader>x :!chmod +x %<CR>
 nnoremap <leader>y gg"+yG
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>l :bnext<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
 nnoremap Y yy 
 xnoremap <C-h> 3bzz
 xnoremap <C-l> 3wzz
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+vnoremap y ygv<Esc>
