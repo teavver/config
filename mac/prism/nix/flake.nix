@@ -50,7 +50,36 @@
         pkgs.kitty
         pkgs.vscode
         pkgs.obsidian
+        pkgs.ollama
       ];
+
+      # Homebrew apps
+      homebrew = {
+        enable = true;
+
+        # Uncomment to install cli packages from Homebrew.
+        # brews = [
+        #   "mas"
+        # ];
+
+        # Uncomment to install cask packages from Homebrew.
+        casks = [
+          "linearmouse"
+          "chromium"
+        ];
+
+        # Uncomment to install app store apps using mas-cli.
+        # masApps = {
+        #   "Session" = 1521432881;
+        # };
+
+        # Uncomment to remove any non-specified homebrew packages.
+        # onActivation.cleanUp = "zap";
+
+        # Uncomment to automatically update Homebrew and upgrade packages.
+        # onActivation.autoUpdate = true;
+        # onActivation.upgrade = true;
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -59,28 +88,72 @@
       programs.zsh.enable = true;
       # programs.fish.enable = true;
 
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 6;
-
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      system.primaryUser = "teaver";
+
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      system.stateVersion = 6;
+
+      # System
+      system.defaults = {
+        LaunchServices = {
+          LSQuarantine = false;
+        };
+
+        dock = {
+          tilesize = 32;
+          autohide  = true;
+          autohide-delay = 0.0;
+          magnification = false;
+          mineffect = "scale";
+        };
+
+        # finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled  = false;
+
+        NSGlobalDomain = {
+          AppleInterfaceStyle = "Dark";
+
+          KeyRepeat = 2;
+          InitialKeyRepeat = 15;
+
+          AppleShowAllExtensions = true;
+          ApplePressAndHoldEnabled = false;
+
+          "com.apple.mouse.tapBehavior" = 1;
+          "com.apple.sound.beep.volume" = 0.0;
+          "com.apple.sound.beep.feedback" = 0;
+        };
+
+        trackpad = {
+          # Clicking = true;
+          TrackpadThreeFingerDrag = true;
+        };
+
+      };
+
+      system.keyboard = {
+        enableKeyMapping = true;
+        remapCapsLockToControl = true;
+      };
     };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#prism
+    # sudo darwin-rebuild switch --flake /etc/nix-darwin#prism
     darwinConfigurations."prism" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
+        mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew {
           nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
             user = "teaver";
+            enable = true;
+            # enableRosetta = true;
             autoMigrate = true;
           };
         }
