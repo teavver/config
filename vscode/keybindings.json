@@ -1,4 +1,21 @@
 [
+  // ctrl + backspace
+  {
+    "key": "ctrl+backspace",
+    "command": "deleteWordLeft",
+    "when": "textInputFocus"
+  },
+  // file explorer fix
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
   // autocomplete
   {
     "key": "ctrl+j",
@@ -23,24 +40,24 @@
   },
   // editor groups
   {
-      "key": "ctrl+shift+h",
-      "command": "workbench.action.focusLeftGroup",
-      "when": "editorTextFocus"
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus"
   },
   {
-      "key": "ctrl+shift+l",
-      "command": "workbench.action.focusRightGroup",
-      "when": "editorTextFocus"
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus"
   },
   {
-      "key": "ctrl+shift+j",
-      "command": "workbench.action.focusBelowGroup",
-      "when": "editorTextFocus"
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus"
   },
   {
-      "key": "ctrl+shift+k",
-      "command": "workbench.action.focusAboveGroup",
-      "when": "editorTextFocus"
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus"
   },
   // control groups
   {
@@ -234,5 +251,79 @@
     "key": "ctrl+alt+space",
     "command": "-workbench.action.terminal.suggestToggleDetailsFocus",
     "when": "!textInputFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+    "when": "inQuickOpen && inRecentFilesPicker"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-extension.vim_ctrl+r",
+    "when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
+  },
+  {
+    "key": "escape",
+    "command": "-notifications.hideList",
+    "when": "notificationCenterVisible"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && vim.active && !editorHasSelection && !editorHoverVisible && vim.mode == 'Normal'"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "notebookEditorFocused && notebookOutputFocused"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !inlineChatFocused"
+  },
+  {
+    "key": "escape",
+    "command": "-noteMultiCursor.exit",
+    "when": "config.notebook.multiCursor.enabled && isNotebookMultiSelect && activeEditor == 'workbench.editor.notebook'"
+  },
+  {
+    "key": "escape",
+    "command": "-workbench.action.terminal.chat.close",
+    "when": "terminalChatFocus && terminalChatVisible || terminalChatVisible && terminalFocus"
+  },
+  {
+    "key": "escape",
+    "command": "-inlineChat2.stop",
+    "when": "inlineChatHasEditsAgent && inlineChatVisible"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-cursorLineEnd",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-extension.vim_ctrl+e",
+    "when": "editorTextFocus && vim.active && vim.use<C-e> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+end",
+    "command": "-extension.vim_ctrl+end",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-cursorLineEndSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+r ctrl+e",
+    "command": "-editor.action.codeAction",
+    "when": "editorTextFocus && editorLangId =~ /^(c|(cuda-)?cpp)$/ && !(config.C_Cpp.intelliSenseEngine =~ /^[dD]isabled$/)"
   }
 ]

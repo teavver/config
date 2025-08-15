@@ -1,5 +1,6 @@
 {
   description = "Example nix-darwin system flake";
+  # sudo darwin-rebuild switch --flake /etc/nix-darwin#prism
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
@@ -36,26 +37,41 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages = [
-        pkgs.vim
-        pkgs.tmux
-        pkgs.curl
-        pkgs.wget
-        pkgs.git
-        pkgs.gh
-        pkgs.aerospace
-        pkgs.stats
-        pkgs.brave
-        pkgs.spotify
-        pkgs.kitty
-        pkgs.vscode
-        pkgs.obsidian
-        pkgs.ollama
+      environment.systemPackages = with pkgs; [
+        vim
+        tmux
+        curl
+        wget
+        git
+        gh
+        xclip
+        bat
+        fzf
+
+        python313
+        uv
+        ruff
+
+        aerospace
+        stats
+        brave
+        spotify
+        kitty
+        obsidian
+        ollama
+        alt-tab-macos
+        hidden-bar
+        bitwarden-desktop
+				sioyek
       ];
 
       # Homebrew apps
       homebrew = {
+
         enable = true;
+
+        caskArgs.no_quarantine = true;
+        global.autoUpdate = false;
 
         # Uncomment to install cli packages from Homebrew.
         # brews = [
@@ -64,21 +80,19 @@
 
         # Uncomment to install cask packages from Homebrew.
         casks = [
+          "visual-studio-code"
           "linearmouse"
           "chromium"
+          "lulu"
+          "alfred"
+          "vlc"
+          "orbstack"
         ];
 
         # Uncomment to install app store apps using mas-cli.
         # masApps = {
         #   "Session" = 1521432881;
         # };
-
-        # Uncomment to remove any non-specified homebrew packages.
-        # onActivation.cleanUp = "zap";
-
-        # Uncomment to automatically update Homebrew and upgrade packages.
-        # onActivation.autoUpdate = true;
-        # onActivation.upgrade = true;
       };
 
       # Necessary for using flakes on this system.
@@ -98,38 +112,81 @@
       system.stateVersion = 6;
 
       # System
-      system.defaults = {
+      system.defaults = let
+				systemAppsDir = "/System/Applications";
+				nixAppsDir = "/Applications/Nix Apps";
+			in {
         LaunchServices = {
           LSQuarantine = false;
         };
 
         dock = {
-          tilesize = 32;
+          tilesize = 40;
           autohide  = true;
           autohide-delay = 0.0;
+          autohide-time-modifier = 0.0;
           magnification = false;
           mineffect = "scale";
+          mru-spaces = false; # Most recent rearrange
+          wvous-br-corner = 1; # Disable hot corner (bottom right)
+
+					persistent-apps = [
+						{ app = "${systemAppsDir}/Mail.app"; }
+						{ app = "${systemAppsDir}/Messages.app"; }
+						{ app = "${systemAppsDir}/System Settings.app"; }
+						{ app = "${nixAppsDir}/Brave Browser.app"; }
+						{ app = "${nixAppsDir}/kitty.app"; }
+						{ app = "/Applications/Visual Studio Code.app"; }
+						{ app = "${nixAppsDir}/Obsidian.app"; }
+						{ app = "${nixAppsDir}/Spotify.app"; }
+					];
+
         };
 
-        # finder.FXPreferredViewStyle = "clmv";
+				finder = {
+					NewWindowTarget = "Other";
+					NewWindowTargetPath = "/Users/teaver/";
+					_FXShowPosixPathInTitle = true;
+					ShowPathbar = true;
+					AppleShowAllExtensions = true;
+					ShowStatusBar	= true;
+					AppleShowAllFiles = true;
+					FXPreferredViewStyle = "Nlsv"; # List view
+					CreateDesktop = false;
+				};
+
         loginwindow.GuestEnabled  = false;
 
+        screensaver.askForPassword = true;
+        screensaver.askForPasswordDelay = 0;
+
+        controlcenter.FocusModes = true; # Show in Menu Bar
+
+        WindowManager.GloballyEnabled = false;
+        WindowManager.EnableStandardClickToShowDesktop = false;
+
         NSGlobalDomain = {
-          AppleInterfaceStyle = "Dark";
+          NSWindowResizeTime = 0.0;
+          NSWindowShouldDragOnGesture = true;
 
           KeyRepeat = 2;
           InitialKeyRepeat = 15;
 
+          AppleShowAllFiles = true;
           AppleShowAllExtensions = true;
           ApplePressAndHoldEnabled = false;
 
+          "com.apple.trackpad.scaling" = 3.0;
           "com.apple.mouse.tapBehavior" = 1;
           "com.apple.sound.beep.volume" = 0.0;
           "com.apple.sound.beep.feedback" = 0;
+          "com.apple.swipescrolldirection" = false;
+          "com.apple.trackpad.trackpadCornerClickBehavior" = 1;
         };
 
         trackpad = {
-          # Clicking = true;
+          Clicking = true;
+          ActuationStrength = 0;
           TrackpadThreeFingerDrag = true;
         };
 
@@ -142,9 +199,6 @@
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#prism
-    # sudo darwin-rebuild switch --flake /etc/nix-darwin#prism
     darwinConfigurations."prism" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration

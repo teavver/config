@@ -24,6 +24,10 @@ preset = 'qwerty'
 # Floating 
 cmd-shift-space = 'layout floating tiling'
 
+# Reload
+cmd-shift-r = 'reload-config'
+# cmd-shift-r = ['reload-config', '''exec-and-forget osascript -e 'display dialog "Test"' ''']
+
 # Term
 cmd-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
@@ -142,8 +146,30 @@ cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 cmd-shift-esc = 'move-node-to-workspace esc'
 
+# alerts
+[[on-window-detected]]
+    if.window-title-regex-substring = 'LuLu Alert'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.objective-see.lulu.appcom.objective-see.lulu.app'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.accessibility.universalAccessAuthWarn'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.UserNotificationCenter'
+    run = ['layout floating']
+
+# apps
 [[on-window-detected]]
     if.app-id = 'org.chromium.Chromium'
+    run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+    if.app-id = 'com.brave.Browser'
     run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
