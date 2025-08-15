@@ -1,7 +1,9 @@
 # docs
 
 https://search.nixos.org/packages
+
 https://nix-darwin.github.io/nix-darwin/manual/index.html
+
 https://nix-community.github.io/home-manager/
 
 # install 
