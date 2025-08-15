@@ -16,6 +16,9 @@ export TERM=screen-256color
 unset zle_bracketed_paste
 
 alias code="code ."
+alias ls='gls --color=auto'
+alias rebuild='sudo darwin-rebuild switch --flake /etc/nix-darwin#prism'
+
 bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
 
