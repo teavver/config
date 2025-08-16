@@ -56,7 +56,6 @@
             xclip
             bat
             fzf
-            coreutils
             sops
 
             # development
@@ -97,6 +96,7 @@
             brews = [
               "onkernel/tap/kernel"
               "jenkins"
+              "coreutils"
             ];
 
             casks = [
