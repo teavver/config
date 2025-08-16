@@ -222,6 +222,23 @@
             enableKeyMapping = true;
             remapCapsLockToControl = true;
           };
+
+          # Post build stuff
+          # Start jenkins
+          system.activationScripts.postActivation.text = ''
+            USERNAME="teaver"
+            echo "[post-build] postActivation: ensuring Jenkins service is up for $USERNAME..."
+
+            # Check if jenkins is running
+            if sudo -u "$USERNAME" -H /opt/homebrew/bin/brew services list 2>/dev/null | grep -q '^jenkins.*started'; then
+              echo "[post-build] Jenkins is already running."
+            else
+              echo "[post-build] Jenkins not running, starting..."
+              sudo -u "$USERNAME" -H HOMEBREW_NO_AUTO_UPDATE=1 /opt/homebrew/bin/brew services start jenkins \
+                && echo "[post-build] Jenkins service started for $USERNAME."
+            fi
+          '';
+
         };
     in
     {
