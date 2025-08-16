@@ -87,9 +87,10 @@
 
             caskArgs.no_quarantine = true;
             global.autoUpdate = false;
-
+ 
             # https://www.onkernel.com/
             taps = [
+              "sikarugir-app/sikarugir"
               "onkernel/tap"
             ];
 
@@ -108,13 +109,19 @@
               "orbstack"
               "ollama"
               "steam"
+              "battle-net"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
+              "caffeine"
             ];
 
             # Uncomment to install app store apps using mas-cli.
             # masApps = {
             #   "Session" = 1521432881;
             # };
+
+            onActivation = {
+              cleanup = "uninstall";
+            };
           };
 
           # Necessary for using flakes on this system.
@@ -222,6 +229,10 @@
             enableKeyMapping = true;
             remapCapsLockToControl = true;
           };
+
+          security.sudo.extraConfig = ''
+            teaver ALL=(ALL) NOPASSWD: ALL
+          '';
 
           # Post build stuff
           # Start jenkins
