@@ -45,6 +45,8 @@
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
+
+            # core
             vim
             tmux
             curl
@@ -57,10 +59,14 @@
             coreutils
             sops
 
+            # development
+            playwright
+            nodejs_22
             python313
             uv
             ruff
 
+            # apps
             aerospace
             stats
             brave
@@ -82,7 +88,16 @@
             caskArgs.no_quarantine = true;
             global.autoUpdate = false;
 
-            # Uncomment to install cask packages from Homebrew.
+            # https://www.onkernel.com/
+            taps = [
+              "onkernel/tap"
+            ];
+
+            brews = [
+              "onkernel/tap/kernel"
+              "jenkins"
+            ];
+
             casks = [
               "visual-studio-code"
               "linearmouse"
@@ -93,6 +108,7 @@
               "orbstack"
               "ollama"
               "steam"
+              "whisky"
             ];
 
             # Uncomment to install app store apps using mas-cli.
@@ -146,7 +162,9 @@
                   { app = "/Applications/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }
                   { app = "${nixAppsDir}/Spotify.app"; }
+                  { app = "${nixAppsDir}/Stats.app"; }
                   { app = "${systemAppsDir}/System Settings.app"; }
+                  { app = "${systemAppsDir}/Utilities/Activity Monitor.app"; }
                 ];
 
               };

@@ -22,16 +22,12 @@ cabbrev s %s
 cabbrev %s s
 "
 let mapleader = " "
-noremap h hzz
-noremap j jzz
-noremap k kzz
-noremap l lzz
-noremap J }zz
-noremap K {zz
-noremap <C-j> 4jzz
-noremap <C-k> 4kzz
-nnoremap <C-h> 3bzz
-nnoremap <C-l> 3wzz
+noremap J }
+noremap K {
+noremap <C-j> 4j
+noremap <C-k> 4k
+nnoremap <C-h> 3b
+nnoremap <C-l> 3w
 nnoremap <leader>x :!chmod +x %<CR>
 nnoremap <leader>y gg"+yG
 nnoremap <leader>h :bprevious<CR>
@@ -39,8 +35,8 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap Y yy 
-xnoremap <C-h> 3bzz
-xnoremap <C-l> 3wzz
+xnoremap <C-h> 3b
+xnoremap <C-l> 3w
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap y ygv<Esc>

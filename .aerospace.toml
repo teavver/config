@@ -100,7 +100,9 @@ set volume output volume ((output volume of (get volume settings)) + 8)
 ' '''
 
 # System audio out cycle
-alt-0 = ['exec-and-forget /run/current-system/sw/bin/SwitchAudioSource -n']
+alt-slash = ['exec-and-forget /run/current-system/sw/bin/SwitchAudioSource -n']
+
+# ---
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 cmd-leftSquareBracket = 'layout tiles h_tiles'
