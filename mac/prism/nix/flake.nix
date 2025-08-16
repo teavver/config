@@ -108,7 +108,7 @@
               "orbstack"
               "ollama"
               "steam"
-              "whisky"
+              "Sikarugir-App/sikarugir/sikarugir" # kegworks
             ];
 
             # Uncomment to install app store apps using mas-cli.
