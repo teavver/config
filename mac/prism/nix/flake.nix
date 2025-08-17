@@ -68,10 +68,10 @@
             # apps
             aerospace
             stats
-            brave
-            spotify
+            # brave
             kitty
             obsidian
+            spotify
             alt-tab-macos
             hidden-bar
             bitwarden-desktop
@@ -109,7 +109,6 @@
               "orbstack"
               "ollama"
               "steam"
-              "battle-net"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
               "caffeine"
             ];
@@ -164,7 +163,7 @@
                 persistent-apps = [
                   { app = "${systemAppsDir}/Mail.app"; }
                   { app = "${systemAppsDir}/Messages.app"; }
-                  { app = "${nixAppsDir}/Brave Browser.app"; }
+                  { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; } # TODO fix this later
                   { app = "${nixAppsDir}/kitty.app"; }
                   { app = "/Applications/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }

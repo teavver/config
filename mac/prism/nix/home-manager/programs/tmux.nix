@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   programs.tmux = {
     enable = true;
@@ -20,7 +19,7 @@
       bind-key w kill-window
       bind-key e send-prefix
 
-      # tmux
+      # tmux-fingers
       set -g @super-fingers-key f
 
       # start indexing windows from 1
