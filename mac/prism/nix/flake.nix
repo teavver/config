@@ -68,7 +68,6 @@
             # apps
             aerospace
             stats
-            # brave
             kitty
             obsidian
             spotify
@@ -107,7 +106,6 @@
               "alfred"
               "vlc"
               "orbstack"
-              "ollama"
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
               "caffeine"
@@ -163,7 +161,7 @@
                 persistent-apps = [
                   { app = "${systemAppsDir}/Mail.app"; }
                   { app = "${systemAppsDir}/Messages.app"; }
-                  { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; } # TODO fix this later
+                  { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
                   { app = "${nixAppsDir}/kitty.app"; }
                   { app = "/Applications/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }

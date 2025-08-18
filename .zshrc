@@ -7,7 +7,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats ' (%b)'
+
 setopt prompt_subst
+setopt noincappendhistory
+setopt nosharehistory
+
 PROMPT='%n@%m:%F{cyan}%~%f%F{243}${vcs_info_msg_0_}%f$ '
 
 export EDITOR='vim'

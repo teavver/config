@@ -17,6 +17,8 @@
   home.packages = with pkgs; [
     tmux
     htop
+    aerospace
+
     # vscode
     nixfmt-rfc-style
   ];
