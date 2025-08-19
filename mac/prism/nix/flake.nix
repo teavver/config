@@ -57,6 +57,7 @@
             bat
             fzf
             sops
+            fish
 
             # development
             playwright
@@ -86,17 +87,23 @@
             caskArgs.no_quarantine = true;
             global.autoUpdate = false;
  
-            # https://www.onkernel.com/
             taps = [
               "sikarugir-app/sikarugir"
-              "onkernel/tap"
+              "onkernel/tap" # https://www.onkernel.com/
             ];
 
             brews = [
               "onkernel/tap/kernel"
-              "jenkins"
               "coreutils"
+
+              {
+                name = "jenkins";
+                restart_service = "changed";
+                link = true;
+              }
             ];
+
+
 
             casks = [
               "visual-studio-code"
@@ -109,6 +116,8 @@
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
               "caffeine"
+              "ollama"
+              "ollama-app"
             ];
 
             # Uncomment to install app store apps using mas-cli.
@@ -124,9 +133,13 @@
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
 
+          users.knownUsers = [ "teaver" ];
+          users.users.teaver.uid = 501;
+          users.users.teaver.shell = pkgs.fish;
+
           # Enable alternative shell support in nix-darwin.
           programs.zsh.enable = true;
-          # programs.fish.enable = true;
+          programs.fish.enable = true;
 
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = "aarch64-darwin";
@@ -231,22 +244,6 @@
             teaver ALL=(ALL) NOPASSWD: ALL
           '';
 
-          # Post build stuff
-          # Start jenkins
-          system.activationScripts.postActivation.text = ''
-            USERNAME="teaver"
-            echo "[post-build] postActivation: ensuring Jenkins service is up for $USERNAME..."
-
-            # Check if jenkins is running
-            if sudo -u "$USERNAME" -H /opt/homebrew/bin/brew services list 2>/dev/null | grep -q '^jenkins.*started'; then
-              echo "[post-build] Jenkins is already running."
-            else
-              echo "[post-build] Jenkins not running, starting..."
-              sudo -u "$USERNAME" -H HOMEBREW_NO_AUTO_UPDATE=1 /opt/homebrew/bin/brew services start jenkins \
-                && echo "[post-build] Jenkins service started for $USERNAME."
-            fi
-          '';
-
         };
     in
     {
@@ -268,7 +265,7 @@
             nix-homebrew = {
               user = "teaver";
               enable = true;
-              # enableRosetta = true;
+              enableRosetta = true;
               autoMigrate = true;
             };
           }
