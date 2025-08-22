@@ -76,6 +76,7 @@
             hidden-bar
             bitwarden-desktop
             sioyek
+            discord
             switchaudio-osx
           ];
 
