@@ -71,12 +71,9 @@
             stats
             kitty
             obsidian
-            spotify
             alt-tab-macos
             hidden-bar
-            bitwarden-desktop
             sioyek
-            discord
             switchaudio-osx
           ];
 
@@ -151,6 +148,9 @@
 
           system.stateVersion = 6;
 
+          system.startup.chime = false;
+          system.tools.darwin-rebuild.enable = true;
+
           # System
           system.defaults =
             let
@@ -179,8 +179,6 @@
                   { app = "${nixAppsDir}/kitty.app"; }
                   { app = "/Applications/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }
-                  { app = "${nixAppsDir}/Spotify.app"; }
-                  { app = "${nixAppsDir}/Stats.app"; }
                   { app = "${systemAppsDir}/System Settings.app"; }
                   { app = "${systemAppsDir}/Utilities/Activity Monitor.app"; }
                 ];
@@ -199,15 +197,36 @@
                 CreateDesktop = false;
               };
 
+              universalaccess = {
+                reduceMotion = true;
+                reduceTransparency = true;
+              };
+
               loginwindow.GuestEnabled = false;
 
-              screensaver.askForPassword = true;
-              screensaver.askForPasswordDelay = 0;
+              screensaver = {
+                askForPassword = true;
+                askForPasswordDelay = 0;
+              };
 
-              controlcenter.FocusModes = true; # Show in Menu Bar
+              screencapture = {
+                target = "clipboard";
+                type = "png";
+              };
 
-              WindowManager.GloballyEnabled = false;
-              WindowManager.EnableStandardClickToShowDesktop = false;
+              # menu bar icons
+              controlcenter = {
+                Bluetooth = false;
+                Display = false;
+                FocusModes = true;
+                Sound = true;
+                NowPlaying = false;
+              };
+
+              WindowManager = {
+                GloballyEnabled = false;
+                EnableStandardClickToShowDesktop = false;
+              };
 
               NSGlobalDomain = {
                 NSWindowResizeTime = 0.0;
