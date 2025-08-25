@@ -1,0 +1,40 @@
+{
+  "Battery_state" = false;
+  CombinedModules = true;
+  "CombinedModules_separator" = false;
+  "CombinedModules_spacing" = "none";
+  "Disk_barChart_position" = 2;
+  "Disk_disk" = "Light";
+  "Disk_label_position" = true;
+  "Disk_memory_position" = 4;
+  "Disk_mini_position" = 7;
+  "Disk_networkChart_position" = 5;
+  "Disk_pieChart_position" = 3;
+  "Disk_speed_position" = false;
+  "Disk_state" = false;
+  "Disk_text_position" = 6;
+  "Disk_widget" = "speed";
+  LaunchAtLoginNext = true;
+  "NSStatusItem Preferred Position CombinedModules" = 282;
+  "NSToolbar Configuration eu.exelban.Stats.Settings.Toolbar" = {
+    "TB Display Mode" = true;
+    "TB Icon Size Mode" = true;
+    "TB Is Shown" = true;
+    "TB Size Mode" = true;
+  };
+  "Network_base" = "bit";
+  "Network_publicIP" = false;
+  "Network_speed_icon" = "dots";
+  "Network_speed_iconAlignment" = "left";
+  "Network_speed_iconColor" = "default";
+  "Network_speed_mode" = "twoRows";
+  "Network_speed_monochrome" = false;
+  "Network_speed_value" = true;
+  "Network_state" = false;
+  dockIcon = false;
+  runAtLoginInitialized = true;
+  setupProcess = true;
+  "support_ts" = 1756020704;
+  "updater_check_ts" = 1756026448;
+  version = "2.11.45";
+}

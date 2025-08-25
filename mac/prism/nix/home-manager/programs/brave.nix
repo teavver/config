@@ -14,6 +14,7 @@
       # { id = ""; } #
     ];
     commandLineArgs = [
+      "--disable-auto-update"
     ];
   };
 }
