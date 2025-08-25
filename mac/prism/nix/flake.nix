@@ -57,6 +57,7 @@
             bat
             fzf
             sops
+            neovim
             fish
 
             # development
@@ -229,71 +230,25 @@
               };
 
               NSGlobalDomain = {
-                AKLastIDMSEnvironment = false;
-                AKLastLocale = "en_US@rg=plzzzz";
-                AppleAntiAliasingThreshold = 4;
                 AppleInterfaceStyle = "Dark";
-                AppleLanguages = [
-                  "en-US"
-                ];
-                AppleLanguagesSchemaVersion = 5400;
-                AppleLocale = "en_US@rg=plzzzz";
-                AppleMiniaturizeOnDoubleClick = false;
                 ApplePressAndHoldEnabled = false;
                 AppleShowAllExtensions = true;
                 AppleShowAllFiles = true;
-                CGDisableCursorLocationMagnification = true;
                 InitialKeyRepeat = 15;
-                "KB_DoubleQuoteOption" = "\U201cabc\U201d";
-                "KB_SingleQuoteOption" = "\U2018abc\U2019";
-                "KB_SpellingLanguage" = {
-                  "KB_SpellingLanguageIsAutomatic" = true;
-                };
                 KeyRepeat = 2;
                 NSAutomaticCapitalizationEnabled = true;
                 NSAutomaticPeriodSubstitutionEnabled = true;
-                NSLinguisticDataAssetsRequestLastInterval = 86400;
-                NSLinguisticDataAssetsRequestTime = "2025-08-25 10:16:09 +0000";
-                NSLinguisticDataAssetsRequested = [
-                  "en"
-                  "en_US"
-                  "pl"
-                  "mul"
-                  "mul_Latn"
-                ];
-                NSLinguisticDataAssetsRequestedByChecker = [
-                  "en"
-                  "pl"
-                ];
-                NSPreferredWebServices = {
-                  NSWebServicesProviderWebSearch = {
-                    NSDefaultDisplayName = "Google";
-                    NSProviderIdentifier = "com.google.www";
-                  };
-                };
-                NSSpellCheckerDictionaryContainerTransitionComplete = true;
-                NSUserQuotesArray = [
-                  "\U201c"
-                  "\U201d"
-                  "\U2018"
-                  "\U2019"
-                ];
-                NSWindowResizeTime = false;
+                NSWindowResizeTime = 0.0;
                 NSWindowShouldDragOnGesture = true;
-                "com.apple.finder.SyncExtensions" = {
-                  collaborationMap = {};
-                  dirMap = {};
-                };
-                "com.apple.mouse.tapBehavior" = true;
-                "com.apple.sound.beep.feedback" = false;
-                "com.apple.sound.beep.flash" = false;
-                "com.apple.sound.beep.volume" = false;
+                "com.apple.mouse.tapBehavior" = 1;
+                "com.apple.sound.beep.feedback" = 0;
+                "com.apple.sound.beep.volume" = 0.0;
                 "com.apple.springing.delay" = 0.5;
                 "com.apple.springing.enabled" = true;
                 "com.apple.swipescrolldirection" = false;
                 "com.apple.trackpad.forceClick" = true;
-                "com.apple.trackpad.scaling" = 3;
-                "com.apple.trackpad.trackpadCornerClickBehavior" = true;
+                "com.apple.trackpad.scaling" = 3.0;
+                "com.apple.trackpad.trackpadCornerClickBehavior" = 1;
               };
 
               trackpad = {
