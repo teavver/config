@@ -61,11 +61,13 @@
             fish
 
             # development
+            vscode
             playwright
             nodejs_22
             python313
             uv
             ruff
+            vsce
 
             # apps
             aerospace
@@ -105,7 +107,6 @@
 
 
             casks = [
-              "visual-studio-code"
               "linearmouse"
               "chromium"
               "lulu"
