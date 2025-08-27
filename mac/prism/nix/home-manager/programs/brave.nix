@@ -11,7 +11,9 @@
       { id = "bcjindcccaagfpapjjmafapmmgkkhgoa"; } # JSON Formatter
       { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+      { id = "jkmpbdjckkgdaopigpfkahgomgcojlpg"; } # Clear cache and cookies
       # { id = ""; } #
+      
     ];
     commandLineArgs = [
       "--disable-auto-update"
