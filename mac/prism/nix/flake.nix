@@ -59,7 +59,7 @@
             sops
             neovim
             fish
-
+            
             # development
             vscode
             playwright
@@ -74,7 +74,6 @@
             stats
             kitty
             obsidian
-            alt-tab-macos
             hidden-bar
             sioyek
             switchaudio-osx
@@ -108,6 +107,7 @@
 
             casks = [
               "linearmouse"
+              "alt-tab"
               "chromium"
               "lulu"
               "alfred"
@@ -179,7 +179,7 @@
                   { app = "${systemAppsDir}/Messages.app"; }
                   { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
                   { app = "${nixAppsDir}/kitty.app"; }
-                  { app = "/Applications/Visual Studio Code.app"; }
+                  { app = "${nixAppsDir}/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }
                   { app = "${systemAppsDir}/System Settings.app"; }
                   { app = "${systemAppsDir}/Utilities/Activity Monitor.app"; }

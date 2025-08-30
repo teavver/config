@@ -14,7 +14,7 @@
       "after": [
         "w",
         "<Enter>"
-      ]
+      ],
     },
     {
       "before": [
@@ -24,7 +24,7 @@
       "after": [
         "q",
         "<Enter>"
-      ]
+      ],
     },
     {
       "before": [
@@ -36,8 +36,8 @@
         "q",
         "!",
         "<Enter>"
-      ]
-    }
+      ],
+    },
   ],
   // lines
   "vim.visualModeKeyBindings": [
@@ -70,7 +70,7 @@
       "commands": [
         {
           "command": "workbench.action.focusActiveEditorGroup"
-        }
+        },
       ]
     },
     // prev/next + cmdpal
@@ -396,7 +396,6 @@
   "[python]": {
     "diffEditor.ignoreTrimWhitespace": true
   },
-  "sc2.normalModeOnFileChange": false,
   "editor.defaultFormatter": "charliermarsh.ruff",
   "editor.rulers": [
     140
@@ -405,10 +404,26 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "editor.renderWhitespace": "all",
-  "sc2.updateMarkBeforeJump": true,
-  // ty
-  "python.languageServer": "None",
-  //
   "workbench.colorTheme": "Dark Modern One",
-  "workbench.editor.empty.hint": "hidden"
+  "workbench.editor.empty.hint": "hidden",
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "chat.agent.enabled": false,
+  "telemetry.feedback.enabled": false,
+  "chat.notifyWindowOnConfirmation": false,
+  "settingsSync.ignoredSettings": [
+    "-window.zoomLevel",
+  ],
+  "docker.extension.enableComposeLanguageServer": false,
+  "python.analysis.indexing": true,
+  "python.analysis.autoImportCompletions": true,
+  // ty is broken for now... https://github.com/astral-sh/ty/issues/1081
+  "python.languageServer": "Default",
+  "python.analysis.typeCheckingMode": "standard",
+  "python.analysis.diagnosticsSource": "Pyright",
+  "sc2.updateMarkBeforeJump": true,
+  "update.mode": "none", // stop this disgusting update popup
+  "window.zoomLevel": 0.76,
 }
