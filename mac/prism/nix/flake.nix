@@ -1,4 +1,6 @@
 {
+  # sudo nix run nix-darwin -- switch --flake .
+  # sudo nix run nix-darwin/master#darwin-rebuild -- switch
   # sudo darwin-rebuild switch --flake /etc/nix-darwin#prism
 
   inputs = {
@@ -59,19 +61,20 @@
             sops
             neovim
             fish
+            ffmpeg
             
             # development
             vscode
             playwright
             nodejs_22
             python313
+            docker
             uv
             ruff
             vsce
 
             # apps
             aerospace
-            stats
             kitty
             obsidian
             hidden-bar
@@ -84,8 +87,13 @@
 
             enable = true;
 
+            onActivation = {
+              cleanup = "uninstall";
+              autoUpdate = false;
+              upgrade = false;
+            };
+
             caskArgs.no_quarantine = true;
-            global.autoUpdate = false;
  
             taps = [
               "sikarugir-app/sikarugir"
@@ -94,7 +102,7 @@
 
             brews = [
               "onkernel/tap/kernel"
-              "coreutils"
+              "rabbitmq"
 
               {
                 name = "jenkins";
@@ -103,31 +111,26 @@
               }
             ];
 
-
-
             casks = [
               "linearmouse"
-              "alt-tab"
               "chromium"
               "lulu"
               "alfred"
               "vlc"
-              "orbstack"
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
-              "caffeine"
               "ollama"
               "ollama-app"
+              "stats"
+              "docker"
+              "parallels"
+              "utm"
             ];
 
             # Uncomment to install app store apps using mas-cli.
             # masApps = {
             #   "Session" = 1521432881;
             # };
-
-            onActivation = {
-              cleanup = "uninstall";
-            };
           };
 
           # Necessary for using flakes on this system.

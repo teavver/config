@@ -28,6 +28,7 @@ noremap <C-j> 4j
 noremap <C-k> 4k
 nnoremap <C-h> 3b
 nnoremap <C-l> 3w
+nnoremap <leader>t :e /tmp/t.py<CR>
 nnoremap <leader>x :!chmod +x %<CR>
 nnoremap <leader>y gg"+yG
 nnoremap <leader>h :bprevious<CR>

@@ -6,17 +6,16 @@ if status is-interactive
         end
     end
 
-    # ---
     function code
         command code .
     end
     function ls
-        command gls --color=auto $argv
+        command ls -G $argv
     end
+
     function rebuild
         command sudo darwin-rebuild switch --flake /etc/nix-darwin#prism $argv
     end
-    # ---
 
     # Keybindings
     bind \t accept-autosuggestion
