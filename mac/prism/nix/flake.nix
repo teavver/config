@@ -47,7 +47,6 @@
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
-
             # core
             vim
             tmux
@@ -59,16 +58,14 @@
             bat
             fzf
             sops
-            neovim
             fish
             ffmpeg
-            
+
             # development
             vscode
             playwright
             nodejs_22
             python313
-            docker
             uv
             ruff
             vsce
@@ -80,6 +77,9 @@
             hidden-bar
             sioyek
             switchaudio-osx
+            
+            # social
+            zoom-us
           ];
 
           # Homebrew apps
@@ -122,9 +122,9 @@
               "ollama"
               "ollama-app"
               "stats"
-              "docker"
-              "parallels"
               "utm"
+              "keepingyouawake"
+              "docker"
             ];
 
             # Uncomment to install app store apps using mas-cli.
