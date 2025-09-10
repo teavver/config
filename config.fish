@@ -17,8 +17,13 @@ if status is-interactive
         command sudo darwin-rebuild switch --flake /etc/nix-darwin#prism $argv
     end
 
+    function accept_suggestion
+        commandline -f accept-autosuggestion
+    end
+
     # Keybindings
-    bind \t accept-autosuggestion
+    bind \t complete
+    bind \cE accept_suggestion
     bind \ck up-or-search
     bind \cj down-or-search
 
