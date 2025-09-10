@@ -69,6 +69,8 @@
             uv
             ruff
             vsce
+            podman
+            podman-desktop
 
             # apps
             aerospace
@@ -119,12 +121,11 @@
               "vlc"
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
-              "ollama"
-              "ollama-app"
               "stats"
               "utm"
               "keepingyouawake"
-              "docker"
+              "github"
+              "gpt4all" # installer only: 'open /opt/homebrew/Caskroom/gpt4all/3.10.0/gpt4all-installer-darwin.app'
             ];
 
             # Uncomment to install app store apps using mas-cli.
