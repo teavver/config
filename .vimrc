@@ -35,9 +35,12 @@ nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap du d^
 nnoremap Y yy 
 xnoremap <C-h> 3b
 xnoremap <C-l> 3w
+" Don't overwrite yank buffer when pasting in visual mode
+xnoremap p "_dP
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap y ygv<Esc>

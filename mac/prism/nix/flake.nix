@@ -116,6 +116,7 @@
             casks = [
               "linearmouse"
               "chromium"
+              "google-chrome"
               "lulu"
               "alfred"
               "vlc"
