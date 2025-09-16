@@ -1,5 +1,8 @@
 
 if status is-interactive
+
+    cd $HOME
+
     if type -q tmux
         if not set -q TMUX
             tmux new-session -A -s 1
@@ -21,10 +24,15 @@ if status is-interactive
         commandline -f accept-autosuggestion
     end
 
+    #alias
+    alias podman docker
+
     # Keybindings
     bind \t complete
     bind \cE accept_suggestion
     bind \ck up-or-search
     bind \cj down-or-search
+
+    podman completion fish | source
 
 end

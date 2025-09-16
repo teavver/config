@@ -168,6 +168,10 @@ cmd-shift-esc = 'move-node-to-workspace esc'
     if.app-id = 'com.apple.UserNotificationCenter'
     run = ['layout floating']
 
+[[on-window-detected]]
+    if.app-id = 'com.apple.ActivityMonitor'
+    run = ['layout floating']
+
 # apps
 [[on-window-detected]]
     if.app-id = 'org.chromium.Chromium'
@@ -179,6 +183,10 @@ cmd-shift-esc = 'move-node-to-workspace esc'
 
 [[on-window-detected]]
     if.app-id = 'com.apple.mail'
+    run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+    if.app-id = 'com.mailspring.mailspring'
     run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
