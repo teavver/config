@@ -69,6 +69,7 @@
             uv
             ruff
             vsce
+            docker
             podman
             podman-desktop
 
@@ -81,6 +82,7 @@
             switchaudio-osx
             
             # social
+            mailspring
             zoom-us
           ];
 
@@ -180,7 +182,7 @@
                 wvous-br-corner = 1; # Disable hot corner (bottom right)
 
                 persistent-apps = [
-                  { app = "${systemAppsDir}/Mail.app"; }
+                  { app = "${nixAppsDir}/Mailspring.app"; }
                   { app = "${systemAppsDir}/Messages.app"; }
                   { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
                   { app = "${nixAppsDir}/kitty.app"; }
@@ -204,10 +206,10 @@
                 CreateDesktop = false;
               };
 
-              universalaccess = {
-                reduceMotion = true;
-                reduceTransparency = true;
-              };
+              # universalaccess = {
+              #   reduceMotion = true;
+              #   reduceTransparency = true;
+              # };
 
               loginwindow.GuestEnabled = false;
 
