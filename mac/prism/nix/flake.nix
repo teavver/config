@@ -69,9 +69,11 @@
             uv
             ruff
             vsce
-            docker
             podman
             podman-desktop
+            watchexec
+            git-filter-repo
+            tree
 
             # apps
             aerospace
@@ -107,6 +109,7 @@
             brews = [
               "onkernel/tap/kernel"
               "rabbitmq"
+              "btop"
 
               {
                 name = "jenkins";
@@ -129,6 +132,7 @@
               "keepingyouawake"
               "github"
               "gpt4all" # installer only: 'open /opt/homebrew/Caskroom/gpt4all/3.10.0/gpt4all-installer-darwin.app'
+              "zen@twilight" # 'open /opt/homebrew/Caskroom/zen@twilight/1.16t,20250906110549/Twilight.app'
             ];
 
             # Uncomment to install app store apps using mas-cli.
@@ -184,7 +188,8 @@
                 persistent-apps = [
                   { app = "${nixAppsDir}/Mailspring.app"; }
                   { app = "${systemAppsDir}/Messages.app"; }
-                  { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
+                  { app = "/Applications/Twilight.app"; }
+                  # { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
                   { app = "${nixAppsDir}/kitty.app"; }
                   { app = "${nixAppsDir}/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }
