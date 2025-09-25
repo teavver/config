@@ -174,12 +174,12 @@ cmd-shift-esc = 'move-node-to-workspace esc'
 
 # apps
 [[on-window-detected]]
-    if.app-id = 'org.chromium.Chromium'
+    if.app-id = 'app.zen-browser.zen'
     run = ['move-node-to-workspace 1']
 
-[[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
-    run = ['move-node-to-workspace 1']
+# [[on-window-detected]]
+#     if.app-id = 'com.brave.Browser'
+#     run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
     if.app-id = 'com.apple.mail'
@@ -188,6 +188,10 @@ cmd-shift-esc = 'move-node-to-workspace esc'
 [[on-window-detected]]
     if.app-id = 'com.mailspring.mailspring'
     run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.MobileSMS'
+    run = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'md.obsidian'

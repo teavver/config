@@ -35,6 +35,7 @@ nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>c :
 nnoremap du d^
 nnoremap Y yy 
 xnoremap <C-h> 3b
@@ -43,4 +44,8 @@ xnoremap <C-l> 3w
 xnoremap p "_dP
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+vnoremap <leader>c :
 vnoremap y ygv<Esc>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+

@@ -24,9 +24,6 @@ if status is-interactive
         commandline -f accept-autosuggestion
     end
 
-    #alias
-    alias podman docker
-
     # Keybindings
     bind \t complete
     bind \cE accept_suggestion
