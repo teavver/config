@@ -30,6 +30,4 @@ if status is-interactive
     bind \ck up-or-search
     bind \cj down-or-search
 
-    podman completion fish | source
-
 end
