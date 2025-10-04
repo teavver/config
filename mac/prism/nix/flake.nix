@@ -69,8 +69,6 @@
             uv
             ruff
             vsce
-            podman
-            podman-desktop
             watchexec
             git-filter-repo
             tree
@@ -82,7 +80,8 @@
             hidden-bar
             sioyek
             switchaudio-osx
-            
+            keka
+
             # social
             mailspring
             zoom-us
@@ -100,7 +99,7 @@
             };
 
             caskArgs.no_quarantine = true;
- 
+
             taps = [
               "sikarugir-app/sikarugir"
               "onkernel/tap" # https://www.onkernel.com/
@@ -109,8 +108,7 @@
             brews = [
               "onkernel/tap/kernel"
               "rabbitmq"
-              "btop"
-
+              "awscli"
               {
                 name = "jenkins";
                 restart_service = "changed";
@@ -119,6 +117,7 @@
             ];
 
             casks = [
+              "docker-desktop"
               "linearmouse"
               "chromium"
               "google-chrome"
