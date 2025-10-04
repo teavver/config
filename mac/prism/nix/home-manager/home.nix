@@ -3,8 +3,8 @@
 {
 
   imports = [
-    ./programs/tmux.nix
-    ./programs/brave.nix
+    # TODO migrate brave zen?
+    # ./programs/brave.nix
   ];
 
   home.username = "teaver";
