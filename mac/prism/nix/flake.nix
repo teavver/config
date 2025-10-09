@@ -65,6 +65,7 @@
             vscode
             playwright
             nodejs_22
+            typescript
             python313
             uv
             ruff
@@ -81,7 +82,7 @@
             sioyek
             switchaudio-osx
             keka
-
+            
             # social
             mailspring
             zoom-us
@@ -99,7 +100,7 @@
             };
 
             caskArgs.no_quarantine = true;
-
+ 
             taps = [
               "sikarugir-app/sikarugir"
               "onkernel/tap" # https://www.onkernel.com/
@@ -109,6 +110,7 @@
               "onkernel/tap/kernel"
               "rabbitmq"
               "awscli"
+              "tailscale"
               {
                 name = "jenkins";
                 restart_service = "changed";
@@ -130,8 +132,11 @@
               "utm"
               "keepingyouawake"
               "github"
+              "tailscale-app"
+              # installers
               "gpt4all" # installer only: 'open /opt/homebrew/Caskroom/gpt4all/3.10.0/gpt4all-installer-darwin.app'
               "zen@twilight" # 'open /opt/homebrew/Caskroom/zen@twilight/1.16t,20250906110549/Twilight.app'
+              "battle-net" # 'open /opt/homebrew/Caskroom/battle-net/1.18.12.3160/Battle.net-Setup.app/'
             ];
 
             # Uncomment to install app store apps using mas-cli.
