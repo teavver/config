@@ -24,6 +24,9 @@ preset = 'qwerty'
 # Floating 
 cmd-shift-space = 'layout floating tiling'
 
+# Quit
+cmd-shift-e = 'enable toggle'
+
 # Reload
 cmd-shift-r = 'reload-config'
 # cmd-shift-r = ['reload-config', '''exec-and-forget osascript -e 'display dialog "Test"' ''']
@@ -177,10 +180,6 @@ cmd-shift-esc = 'move-node-to-workspace esc'
     if.app-id = 'app.zen-browser.zen'
     run = ['move-node-to-workspace 1']
 
-# [[on-window-detected]]
-#     if.app-id = 'com.brave.Browser'
-#     run = ['move-node-to-workspace 1']
-
 [[on-window-detected]]
     if.app-id = 'com.apple.mail'
     run = ['move-node-to-workspace 2']
@@ -191,7 +190,7 @@ cmd-shift-esc = 'move-node-to-workspace esc'
 
 [[on-window-detected]]
     if.app-id = 'com.apple.MobileSMS'
-    run = ['layout floating', 'move-node-to-workspace 2']
+    run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'md.obsidian'

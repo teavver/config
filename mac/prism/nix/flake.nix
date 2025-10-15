@@ -71,8 +71,10 @@
             ruff
             vsce
             watchexec
-            git-filter-repo
             tree
+            just
+            jq
+            ripgrep
 
             # apps
             aerospace
@@ -80,12 +82,9 @@
             obsidian
             hidden-bar
             sioyek
-            switchaudio-osx
-            keka
             
             # social
             mailspring
-            zoom-us
           ];
 
           # Homebrew apps
@@ -111,6 +110,7 @@
               "rabbitmq"
               "awscli"
               "tailscale"
+              "zoxide"
               {
                 name = "jenkins";
                 restart_service = "changed";
@@ -121,17 +121,13 @@
             casks = [
               "docker-desktop"
               "linearmouse"
-              "chromium"
               "google-chrome"
               "lulu"
               "alfred"
-              "vlc"
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
               "stats"
-              "utm"
               "keepingyouawake"
-              "github"
               "tailscale-app"
               # installers
               "gpt4all" # installer only: 'open /opt/homebrew/Caskroom/gpt4all/3.10.0/gpt4all-installer-darwin.app'
