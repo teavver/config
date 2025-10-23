@@ -36,6 +36,7 @@
       ...
     }:
     let
+      primaryUser = "teaver";
       configuration =
         { pkgs, ... }:
         {
@@ -74,7 +75,10 @@
             tree
             just
             jq
+            zoxide
             ripgrep
+            zed-editor
+            act
 
             # apps
             aerospace
@@ -82,6 +86,8 @@
             obsidian
             hidden-bar
             sioyek
+            tailscale
+            stats
             
             # social
             mailspring
@@ -108,9 +114,6 @@
             brews = [
               "onkernel/tap/kernel"
               "rabbitmq"
-              "awscli"
-              "tailscale"
-              "zoxide"
               {
                 name = "jenkins";
                 restart_service = "changed";
@@ -126,11 +129,11 @@
               "alfred"
               "steam"
               "Sikarugir-App/sikarugir/sikarugir" # kegworks
-              "stats"
               "keepingyouawake"
               "tailscale-app"
+              "desktoppr"
+              "mochi"
               # installers
-              "gpt4all" # installer only: 'open /opt/homebrew/Caskroom/gpt4all/3.10.0/gpt4all-installer-darwin.app'
               "zen@twilight" # 'open /opt/homebrew/Caskroom/zen@twilight/1.16t,20250906110549/Twilight.app'
               "battle-net" # 'open /opt/homebrew/Caskroom/battle-net/1.18.12.3160/Battle.net-Setup.app/'
             ];
@@ -155,7 +158,7 @@
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = "aarch64-darwin";
 
-          system.primaryUser = "teaver";
+          system.primaryUser = primaryUser;
 
           system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -176,7 +179,7 @@
               };
 
               dock = {
-                tilesize = 28;
+                tilesize = 24;
                 autohide = true;
                 autohide-delay = 0.0;
                 autohide-time-modifier = 0.0;
@@ -189,7 +192,6 @@
                   { app = "${nixAppsDir}/Mailspring.app"; }
                   { app = "${systemAppsDir}/Messages.app"; }
                   { app = "/Applications/Twilight.app"; }
-                  # { app = "/Users/teaver/Applications/Home Manager Apps/Brave Browser.app"; }
                   { app = "${nixAppsDir}/kitty.app"; }
                   { app = "${nixAppsDir}/Visual Studio Code.app"; }
                   { app = "${nixAppsDir}/Obsidian.app"; }
@@ -211,11 +213,6 @@
                 CreateDesktop = false;
               };
 
-              # universalaccess = {
-              #   reduceMotion = true;
-              #   reduceTransparency = true;
-              # };
-
               loginwindow.GuestEnabled = false;
 
               screensaver = {
@@ -232,8 +229,8 @@
               controlcenter = {
                 Bluetooth = false;
                 Display = false;
-                FocusModes = true;
-                Sound = true;
+                FocusModes = false;
+                Sound = false;
                 NowPlaying = false;
               };
 
@@ -276,6 +273,19 @@
             enableKeyMapping = true;
             remapCapsLockToControl = true;
           };
+
+          system.activationScripts.postActivation.text = ''
+            # wallpaper
+            su -l ${primaryUser} -c '/usr/local/bin/desktoppr /System/Library/Desktop\ Pictures/Solid\ Colors/Black.png'
+
+            # tomatobar
+            if [ ! -d "/Applications/TomatoBar.app" ]; then
+              echo "installing tomatobar"
+              curl -L "https://github.com/ivoronin/TomatoBar/releases/download/prerelease/TomatoBar-v3.5.0-12-g7444935.zip" -o /tmp/TomatoBar.zip
+              unzip -qo /tmp/TomatoBar.zip -d /Applications
+              rm -f /tmp/TomatoBar.zip
+            fi
+          '';
 
           security.sudo.extraConfig = ''
             teaver ALL=(ALL) NOPASSWD: ALL
