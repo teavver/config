@@ -1,0 +1,85 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "languages": {
+    "Python": {
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true,
+        "source.fixAll.ruff": true
+      },
+      "inlay_hints": {
+        "enabled": true
+      },
+      "language_servers": [
+        "ruff"
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      }
+    }
+  },
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "configuration": "ruff.toml"
+        }
+      }
+    },
+    "pyright": {
+      "settings": {
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    }
+  },
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "model_parameters": [],
+    "single_file_review": false
+  },
+  "icon_theme": "Material Icon Theme",
+  "base_keymap": "VSCode",
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "show_whitespaces": "all",
+  "whitespace_map": {
+    // Which characters to show when `show_whitespaces` enabled
+    "space": "•",
+    "tab": "⟶" // use "→", for a shorter arrow
+  },
+  "buffer_font_features": {
+    "calt": false // Disable ligatures
+  },
+  "minimap": {
+    "show": "auto"
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Fleet Dark"
+  },
+  "format_on_save": "off"
+}

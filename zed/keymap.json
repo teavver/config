@@ -1,0 +1,118 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "space e": "file_finder::Toggle",
+      "space w": "workspace::Save",
+      "space f": "editor::Format",
+      "space q": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "space e": "file_finder::Toggle",
+      "space w": "workspace::Save",
+      "space f": "editor::Format",
+      "ctrl-backspace": "editor::DeleteToPreviousWordStart"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-h": [
+        "workspace::SendKeystrokes",
+        "3 b"
+      ],
+      "ctrl-j": [
+        "workspace::SendKeystrokes",
+        "4 j"
+      ],
+      "ctrl-k": [
+        "workspace::SendKeystrokes",
+        "4 k"
+      ],
+      "ctrl-l": [
+        "workspace::SendKeystrokes",
+        "3 w"
+      ],
+      "shift-j": [
+        "workspace::SendKeystrokes",
+        "}"
+      ],
+      "shift-k": [
+        "workspace::SendKeystrokes",
+        "{"
+      ],
+      "space y": [
+        "workspace::SendKeystrokes",
+        "g g \" + y G"
+      ],
+      "space h": "pane::ActivatePreviousItem",
+      "space l": "pane::ActivateNextItem",
+      "space c": [
+        "workspace::SendKeystrokes",
+        ":"
+      ],
+      "space p": [
+        "workspace::SendKeystrokes",
+        ":"
+      ]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "d u": [
+        "workspace::SendKeystrokes",
+        "d ^"
+      ],
+      "g e": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      "g e": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "Editor && VimControl && menu",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "space": "editor::ConfirmCodeAction",
+      "ctrl": "editor::ConfirmCodeAction"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl": "menu::Confirm",
+      "ctrl-g": "git_panel::ToggleFocus",
+      "ctrl-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-r": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-backspace": "editor::DeleteToPreviousWordStart"
+    }
+  }
+]
