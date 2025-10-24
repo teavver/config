@@ -77,7 +77,6 @@
             jq
             zoxide
             ripgrep
-            zed-editor
             act
 
             # apps
@@ -134,6 +133,7 @@
               "desktoppr"
               "mochi"
               # installers
+              "zed" # 'open /opt/homebrew//Caskroom/zed/0.208.6/Zed.app/'
               "zen@twilight" # 'open /opt/homebrew/Caskroom/zen@twilight/1.16t,20250906110549/Twilight.app'
               "battle-net" # 'open /opt/homebrew/Caskroom/battle-net/1.18.12.3160/Battle.net-Setup.app/'
             ];
