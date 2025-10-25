@@ -9,6 +9,38 @@ if status is-interactive
         end
     end
 
+    # disk mount
+    function dmount
+        if test (count $argv) -eq 0
+            echo "Usage: dmount <disk_name>"
+            return 1
+        end
+
+        set disk_name $argv[1]
+
+        set matching_disk (diskutil list | grep -i "APFS Volume.*$disk_name" | head -n 1 | awk '{print $NF}')
+
+        if test -z "$matching_disk"
+            echo "Error: No disk found matching '$disk_name'"
+            return 1
+        end
+
+        set disk_id $matching_disk
+
+        echo "Found disk: $disk_id"
+        echo "Mounting..."
+
+        # Mount the disk
+        diskutil mount $disk_id
+
+        if test $status -eq 0
+            echo "Successfully mounted $disk_id"
+        else
+            echo "Failed to mount $disk_id"
+            return 1
+        end
+    end
+
     # alias
     function code
         command code .
