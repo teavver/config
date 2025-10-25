@@ -1,429 +1,345 @@
-{
-  "terminal.integrated.fontSize": 14,
-  "security.workspace.trust.untrustedFiles": "open",
-  "explorer.confirmDelete": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "editor.scrollBeyondLastLine": false,
-  // save
-  "vim.commandLineModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "W",
-        "<Enter>"
-      ],
-      "after": [
-        "w",
-        "<Enter>"
-      ],
-    },
-    {
-      "before": [
-        "Q",
-        "<Enter>"
-      ],
-      "after": [
-        "q",
-        "<Enter>"
-      ],
-    },
-    {
-      "before": [
-        "Q",
-        "!",
-        "<Enter>"
-      ],
-      "after": [
-        "q",
-        "!",
-        "<Enter>"
-      ],
-    },
-  ],
-  // lines
-  "vim.visualModeKeyBindings": [
-    {
-      "before": [
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction",
-        "editor.action.reindentselectedlines"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction",
-        "editor.action.reindentselectedlines"
-      ]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // focus
-    {
-      "before": [
-        "<C-r>"
-      ],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.action.focusActiveEditorGroup"
-        },
-      ]
-    },
-    // prev/next + cmdpal
-    {
-      "before": [
-        "<leader>",
-        "h"
-      ],
-      "commands": [
-        "workbench.action.navigateBack"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "<leader>",
-        "l"
-      ],
-      "commands": [
-        "workbench.action.navigateForward"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "<Leader>",
-        "e"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "<Leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ],
-      "silent": true
-    },
-    // diag
-    {
-      "before": [
-        "]",
-        "d"
-      ],
-      "commands": [
-        "editor.action.marker.nextInFiles"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "[",
-        "d"
-      ],
-      "commands": [
-        "editor.action.marker.prevInFiles"
-      ],
-      "silent": true
-    },
-    // ctrl groups
-    {
-      "before": [
-        "1",
-        "1"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 1
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "2",
-        "2"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 2
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "3",
-        "3"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 3
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "4",
-        "4"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 4
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "5",
-        "5"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 5
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "6",
-        "6"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 6
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "7",
-        "7"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 7
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "8",
-        "8"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 8
-          }
-        }
-      ]
-    },
-    {
-      "before": [
-        "9",
-        "9"
-      ],
-      "after": [
-        "<Esc>"
-      ],
-      "silent": true,
-      "commands": [
-        {
-          "command": "sc2.jumpToControlGroup",
-          "args": {
-            "id": 9
-          }
-        }
-      ]
-    }
-  ],
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "asvetliakov.vscode-neovim": 1
+[
+  // ctrl + backspace
+  {
+    "key": "ctrl+backspace",
+    "command": "deleteWordLeft",
+    "when": "textInputFocus"
   },
-  "editor.stopRenderingLineAfter": 500,
-  "git.confirmSync": false,
-  "explorer.confirmDragAndDrop": false,
-  "vim.vimrc.path": "$HOME/.vimrc",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.tree.indent": 16,
-  "go.toolsManagement.autoUpdate": true,
-  "workbench.settings.applyToAllProfiles": [
-    "editor.tabSize"
-  ],
-  "redhat.telemetry.enabled": false,
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "vim.useSystemClipboard": true,
-  "files.associations": {
-    "TODO": "markdown"
+  // file explorer fix
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus"
   },
-  "terminal.integrated.fontFamily": "Droid Sans Mono, Consolas, monospace",
-  "explorer.confirmPasteNative": false,
-  "git.ignoreMissingGitWarning": true,
-  "git.autofetch": true,
-  "git.ignoreRebaseWarning": true,
-  "application.shellEnvironmentResolutionTimeout": 1,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "explorerViewletVisible && activeViewlet == 'workbench.view.explorer'"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.tabSize": 2
+  // source control
+  {
+    "key": "ctrl+g",
+    "command": "workbench.view.scm",
+    "when": "editorFocus"
   },
-  "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
+  {
+    "key": "ctrl+g",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "scmViewletVisible && activeViewlet == 'workbench.view.scm'"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.tabSize": 2
+  // focus
+  {
+    "key": "ctrl+r",
+    "command": "workbench.action.focusActiveEditorGroup"
   },
-  "settingsSync.ignoredExtensions": [
-    "wolfieshorizon.python-auto-venv",
-    "equinusocio.vsc-material-theme"
-  ],
-  "vim.vimrc.enable": true,
-  "python.REPL.enableREPLSmartSend": false,
-  "interactiveWindow.executeWithShiftEnter": false,
-  "workbench.editor.enablePreview": false,
-  "[markdown]": {
-    "diffEditor.ignoreTrimWhitespace": true
+  // autocomplete
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetVisible"
   },
-  "terminal.integrated.gpuAcceleration": "off",
-  "window.menuBarVisibility": "compact",
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetVisible"
   },
-  "editor.tabSize": 2,
-  "vim.sneak": true,
-  "vim.sneakReplacesF": true,
-  "vim.targets.enable": true,
-  "debug.onTaskErrors": "debugAnyway",
-  "editor.fontSize": 14,
-  "editor.mouseWheelScrollSensitivity": 0.75,
-  "chat.commandCenter.enabled": false,
-  "sc2.controlGroupStealing": true,
-  "vim.leader": " ",
-  "autopep8.args": [
-    "--indent-size=2",
-    "--ignore=E121"
-  ],
-  "editor.cursorSurroundingLines": 12,
-  "jupyter.askForKernelRestart": true,
-  "files.watcherExclude": {
-    "**/node_modules/**": true,
-    "dist/**": true
+  // cmd palette
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenNavigateNext",
+    "when": "inQuickOpen"
   },
-  "search.exclude": {
-    "__pycache__": true,
-    "**/.venv": true,
-    "**/dist": true,
-    "**/out": true,
-    "**/venv": true
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenNavigatePrevious",
+    "when": "inQuickOpen"
   },
-  "[python]": {
-    "diffEditor.ignoreTrimWhitespace": true
+  // editor groups
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus"
   },
-  "editor.defaultFormatter": "charliermarsh.ruff",
-  "editor.rulers": [
-    140
-  ],
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus"
   },
-  "editor.renderWhitespace": "all",
-  "workbench.colorTheme": "Dark Modern One",
-  "workbench.editor.empty.hint": "hidden",
-  "[nix]": {
-    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus"
   },
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "chat.agent.enabled": false,
-  "telemetry.feedback.enabled": false,
-  "chat.notifyWindowOnConfirmation": false,
-  "settingsSync.ignoredSettings": [
-    "-window.zoomLevel",
-  ],
-  "docker.extension.enableComposeLanguageServer": false,
-  "python.analysis.indexing": true,
-  "python.analysis.autoImportCompletions": true,
-  // ty is broken for now... https://github.com/astral-sh/ty/issues/1081
-  "python.languageServer": "Default",
-  "python.analysis.typeCheckingMode": "standard",
-  "python.analysis.diagnosticsSource": "Pyright",
-  "sc2.updateMarkBeforeJump": true,
-  "update.mode": "none", // stop this disgusting update popup
-  "window.zoomLevel": 0.76,
-}
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus"
+  },
+  // control groups
+  {
+    "key": "shift+enter",
+    "command": "-interactive.execute",
+    "when": "config.interactiveWindow.executeWithShiftEnter && isCompositeNotebook && activeEditor == 'workbench.editor.interactive'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-workbench.action.terminal.sendSequence",
+    "when": "terminalFocus && terminalShellIntegrationEnabled && !accessibilityModeEnabled && terminalShellType == 'pwsh'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-repl.execute",
+    "when": "config.interactiveWindow.executeWithShiftEnter && isCompositeNotebook && activeEditor == 'workbench.editor.repl'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-python.execInREPL",
+    "when": "config.python.REPL.sendToNativeREPL && editorTextFocus && !isCompositeNotebook && !jupyter.ownsSelection && !notebookEditorFocused && editorLangId == 'python'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-python.execSelectionInTerminal",
+    "when": "editorTextFocus && !findInputFocussed && !isCompositeNotebook && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "ctrl+shift+enter",
+    "command": "-jupyter.runAndDebugCell",
+    "when": "isWorkspaceTrusted && jupyter.ispythonnotebook && !notebookKernel && notebookCellType == 'code' || isWorkspaceTrusted && jupyter.ispythonnotebook && notebookCellType == 'code' && notebookKernel =~ /^ms-toolsai.jupyter\\// && resource not in 'jupyter.notebookeditor.debugDocuments'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-jupyter.runcurrentcelladvance",
+    "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !editorHasSelection && !isCompositeNotebook && !notebookEditorFocused"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-notebook.cell.executeAndSelectBelow",
+    "when": "notebookCellListFocused && !inlineChatFocused && notebookCellType == 'markup' || notebookCellListFocused && notebookMissingKernelExtension && !inlineChatFocused && !notebookCellExecuting && notebookCellType == 'code' || notebookCellListFocused && !inlineChatFocused && !notebookCellExecuting && notebookCellType == 'code' && notebookKernelCount > 0 || notebookCellListFocused && !inlineChatFocused && !notebookCellExecuting && notebookCellType == 'code' && notebookKernelSourceCount > 0"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-jupyter.execSelectionInteractive",
+    "when": "editorTextFocus && isWorkspaceTrusted && jupyter.ownsSelection && !findInputFocussed && !isCompositeNotebook && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-notebook.cell.executeAndSelectBelow",
+    "when": "notebookCellListFocused && !interactiveEditorFocused && notebookCellType == 'code' || editorTextFocus && inputFocus && notebookEditorFocused && !interactiveEditorFocused"
+  },
+  {
+    "key": "ctrl+6",
+    "command": "-workbench.action.openEditorAtIndex6"
+  },
+  {
+    "key": "ctrl+shift+6",
+    "command": "-workbench.action.terminal.sendSequence",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+5",
+    "command": "-workbench.action.terminal.split",
+    "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+5",
+    "command": "-workbench.action.openEditorAtIndex5"
+  },
+  {
+    "key": "ctrl+shift+5",
+    "command": "-workbench.action.terminal.splitActiveTab",
+    "when": "terminalProcessSupported && terminalTabsFocus"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "-workbench.action.openEditorAtIndex4"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "-workbench.action.openEditorAtIndex3"
+  },
+  {
+    "key": "ctrl+shift+2",
+    "command": "-extension.vim_ctrl+shift+2",
+    "when": "editorTextFocus && vim.active && vim.use<C-shift+2>"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "-workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "ctrl+shift+2",
+    "command": "-workbench.action.terminal.sendSequence",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+1",
+    "command": "-workbench.action.openEditorAtIndex1"
+  },
+  {
+    "key": "ctrl+6",
+    "command": "-extension.vim_ctrl+6",
+    "when": "editorTextFocus && vim.active && vim.use<C-6> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+7",
+    "command": "-workbench.action.openEditorAtIndex7"
+  },
+  {
+    "key": "ctrl+8",
+    "command": "-workbench.action.openEditorAtIndex8"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFolderViaWorkspace",
+    "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFile",
+    "when": "false"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openLocalFileFolder",
+    "when": "remoteFileDialogVisible"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-extension.vim_ctrl+space",
+    "when": "editorTextFocus && vim.active && vim.use<C-space> && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-workbench.action.terminal.requestCompletions",
+    "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && !terminalSuggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+backspace",
+    "command": "-deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+alt+backspace",
+    "command": "-deleteWordPartLeft",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+backspace",
+    "command": "-extension.vim_ctrl+backspace",
+    "when": "editorTextFocus && vim.active && vim.use<C-BS> && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-focusSuggestion",
+    "when": "suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-toggleSuggestionDetails",
+    "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+alt+space",
+    "command": "-toggleSuggestionFocus",
+    "when": "suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-workbench.action.terminal.sendSequence",
+    "when": "terminalFocus && terminalShellIntegrationEnabled && !accessibilityModeEnabled && terminalShellType == 'pwsh'"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-workbench.action.terminal.suggestToggleDetails",
+    "when": "simpleSuggestWidgetHasFocusedSuggestion && terminalFocus && terminalHasBeenCreated && terminalIsOpen && terminalSuggestWidgetVisible || simpleSuggestWidgetHasFocusedSuggestion && terminalFocus && terminalIsOpen && terminalProcessSupported && terminalSuggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+alt+space",
+    "command": "-workbench.action.terminal.suggestToggleDetailsFocus",
+    "when": "!textInputFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+    "when": "inQuickOpen && inRecentFilesPicker"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-extension.vim_ctrl+r",
+    "when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
+  },
+  {
+    "key": "escape",
+    "command": "-notifications.hideList",
+    "when": "notificationCenterVisible"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && vim.active && !editorHasSelection && !editorHoverVisible && vim.mode == 'Normal'"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "notebookEditorFocused && notebookOutputFocused"
+  },
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !inlineChatFocused"
+  },
+  {
+    "key": "escape",
+    "command": "-noteMultiCursor.exit",
+    "when": "config.notebook.multiCursor.enabled && isNotebookMultiSelect && activeEditor == 'workbench.editor.notebook'"
+  },
+  {
+    "key": "escape",
+    "command": "-workbench.action.terminal.chat.close",
+    "when": "terminalChatFocus && terminalChatVisible || terminalChatVisible && terminalFocus"
+  },
+  {
+    "key": "escape",
+    "command": "-inlineChat2.stop",
+    "when": "inlineChatHasEditsAgent && inlineChatVisible"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-cursorLineEnd",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-extension.vim_ctrl+e",
+    "when": "editorTextFocus && vim.active && vim.use<C-e> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+end",
+    "command": "-extension.vim_ctrl+end",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-cursorLineEndSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+r ctrl+e",
+    "command": "-editor.action.codeAction",
+    "when": "editorTextFocus && editorLangId =~ /^(c|(cuda-)?cpp)$/ && !(config.C_Cpp.intelliSenseEngine =~ /^[dD]isabled$/)"
+  }
+]

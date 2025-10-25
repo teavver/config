@@ -8,13 +8,18 @@
   // file explorer fix
   {
     "key": "ctrl+e",
-    "command": "workbench.view.explorer",
+    "command": "workbench.action.focusSideBar",
     "when": "editorFocus"
   },
   {
     "key": "ctrl+e",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "explorerViewletVisible && filesExplorerFocus"
+    "when": "sideBarFocus"
+  },
+  // focus
+  {
+    "key": "ctrl+r",
+    "command": "workbench.action.focusActiveEditorGroup"
   },
   // autocomplete
   {

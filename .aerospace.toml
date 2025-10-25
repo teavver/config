@@ -205,6 +205,10 @@ cmd-shift-esc = 'move-node-to-workspace esc'
     run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
+    if.app-id = 'dev.zed.Zed'
+    run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
     if.app-id = 'net.battle.app'
     run = ['move-node-to-workspace 5']
 
