@@ -1,6 +1,6 @@
 general {
   colors = true
-  interval = 20
+  interval = 10
 }
 
 do_not_disturb {
@@ -22,7 +22,7 @@ sysdata {
 }
 
 volume_status {
-  format = '🔊{percentage}'
+  format = '{percentage}%'
   format_muted = 'muted'
 }
 
@@ -33,11 +33,6 @@ pomodoro {
   format_break_stopped = 'B#{breakno}({format})'
 }
 
-networkmanager {
-  format_device = "[\?if=general_connection [\?soft ][\?color=ap_signal {ap_ssid},{ap_signal}%]]"
-}
-
-order += 'networkmanager'
 order += 'sysdata'
 order += 'nvidia_smi'
 order += 'do_not_disturb'
