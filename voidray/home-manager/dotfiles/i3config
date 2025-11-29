@@ -1,6 +1,6 @@
 set $mod Mod4
 
-# sleep screen
+# wallpaper
 exec --no-startup-id xsetroot -solid "#000"
 
 # wifi applet
@@ -21,7 +21,7 @@ exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 
 
 # Disable titlebars
 for_window [class="^.*"] border pixel 1
-font pango:DejaVu Sans Mono 11
+font pango:DejaVu Sans Mono 12
 
 # Sleep screen
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 161618 --nofork
@@ -38,6 +38,7 @@ assign [class="zen"] 1
 assign [class="obsidian"] 2
 assign [class="kitty"] 3
 assign [class="Code"] 4
+assign [class="Zed"] 4
 assign [class="nvim"] 4
 for_window [urgent=latest] focus
 
@@ -109,8 +110,12 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shortcut. Do you really want to suspend your PC?' -B 'Yes, suspend' 'killall i3-nagbar && systemctl suspend'"
 
-bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shortcut. Do you really want to suspend your PC?' -B 'Yes, suspend' 'systemctl suspend'"
+# music
+bindsym $mod+minus exec playerctl previous
+bindsym $mod+equal exec playerctl next
+bindsym $mod+p exec playerctl play-pause
 
 mode "resize" {
   bindsym j resize shrink width 10 px or 10 ppt

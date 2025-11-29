@@ -8,16 +8,16 @@ do_not_disturb {
 }
 
 clock {
-  format_time = "%a %d.%m.%Y ~ %H:%M"
+  format_time = "%a,%d %H:%M"
 }
 
 nvidia_smi {
-  format_gpu = "g [\?color=temperature.gpu {temperature.gpu}°C] [\?color=memory.used_percent {memory.used_percent}%]"
+  format_gpu = "g[\?color=temperature.gpu {temperature.gpu}°C] [\?color=memory.used_percent {memory.used_percent}%]"
 }
 
 sysdata {
   cpus = ['cpu']
-  format = "c [\?color=cpu_temp {cpu_temp}°{cpu_temp_unit}] [\?color=cpu_used_percent {format_cpu}] r {mem_used}/{mem_total}"
+  format = "c[\?color=cpu_temp {cpu_temp}°{cpu_temp_unit}] [\?color=cpu_used_percent {format_cpu}] r{mem_used}/{mem_total}"
   format_cpu = "{used_percent}%"
 }
 

@@ -6,13 +6,24 @@ set shiftwidth=2
 set expandtab
 set ai
 set number
-set hlsearch
 set ruler
-set mouse=v
+set mouse=a
 set background=dark
 set belloff=all
 set smartindent
-set wrap
+set nowrap
+set relativenumber
+set scrolloff=10
+" search
+set gdefault
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set shiftround
+" line length
+set colorcolumn=80,120
+
 " Match OS clipboard (crossplatform)
 set clipboard^=unnamed,unnamedplus
 "
@@ -22,10 +33,10 @@ cabbrev s %s
 cabbrev %s s
 "
 let mapleader = " "
-noremap J }
-noremap K {
 noremap <C-j> 4j
 noremap <C-k> 4k
+nnoremap J }
+nnoremap K {
 nnoremap <C-h> 3b
 nnoremap <C-l> 3w
 nnoremap <leader>t :e /tmp/t.py<CR>
@@ -36,15 +47,26 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>c :
+vnoremap <leader>c :
+
+nnoremap <leader>r :%s/<C-r><C-w>//g<Left><Left>
+nnoremap <leader>R :%s/<C-r><C-w>//gc<Left><Left><Left>
+" paste
+nnoremap <C-v> "+p
+inoremap <C-v> <C-r><C-p>+
+
 nnoremap du d^
 nnoremap Y yy 
 xnoremap <C-h> 3b
 xnoremap <C-l> 3w
 " Don't overwrite yank buffer when pasting in visual mode
 xnoremap p "_dP
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-vnoremap <leader>c :
+" old visual line move
+"vnoremap J :m '>+1<CR>gv=gv
+"vnoremap K :m '<-2<CR>gv=gv
 vnoremap y ygv<Esc>
+" commands nav
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
+" ctrl bksp del word
+inoremap <C-H> <C-w>

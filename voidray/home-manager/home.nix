@@ -10,7 +10,11 @@
 # sudo ln -s /var/lib/flatpak/exports/bin/app.zen_browser.zen /usr/bin/zen
 
 # external:
-# zen , jenkins ,
+# zen , jenkins,
+# lua-language-server (https://luals.github.io/#install)
+
+# external (dnf):
+# docker: https://docs.docker.com/engine/install/fedora/#install-docker-engine
 
 { config, pkgs, ... }:
 
@@ -25,17 +29,19 @@
 
   home.packages = [
     pkgs.firefox
-    # pkgs.chromium
+    pkgs.chromium
     pkgs.obsidian
     pkgs.sioyek
     pkgs.vlc
     pkgs.pavucontrol
     pkgs.vscode
     pkgs.flatpak
+    pkgs.playwright
 
     pkgs.fuse3
     pkgs.lxappearance
     pkgs.xclip
+    pkgs.xorg.xrandr
     pkgs.xorg.xinput
     pkgs.xorg.xsetroot
     pkgs.lm_sensors
@@ -44,28 +50,34 @@
     pkgs.xfce.thunar
     pkgs.python313Packages.py3status
     pkgs.networkmanagerapplet
+    pkgs.playerctl
 
     pkgs.gh
     pkgs.git
     pkgs.htop
     pkgs.curl
     pkgs.wget
+    pkgs.fd
     pkgs.jq
-    pkgs.tmux
     pkgs.vim
-    pkgs.neovim
-    pkgs.fish
     pkgs.fzf
     pkgs.zoxide
+    pkgs.bat
     pkgs.just
     pkgs.uv
-    pkgs.ruff
     pkgs.nodejs-slim_24
-    pkgs.docker
-    pkgs.docker-compose
-
-    pkgs.nixfmt-rfc-style
+    pkgs.pre-commit
+    pkgs.act
+    pkgs.rustup
+    pkgs.luajitPackages.luarocks
+    # lsp stuff
     pkgs.nil
+    pkgs.pyright
+    pkgs.ruff
+    pkgs.marksman
+    pkgs.yaml-language-server
+    pkgs.vtsls # ts
+    pkgs.taplo # toml
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -83,12 +95,10 @@
 
   home.file = {
     ".vimrc".source = dotfiles/vimrc;
-    ".tmux.conf".source = dotfiles/tmux.conf;
-    # ".gitconfig".source = dotfiles/gitconfig;
     ".config/i3/config".source = dotfiles/i3config;
     ".config/i3status/config".source = dotfiles/i3status;
     ".config/kitty/kitty.conf".source = dotfiles/kitty.conf;
-    ".config/nvim/init.vim".source = dotfiles/nvim/init.vim;
+    ".config/nvim/init.lua".source = dotfiles/nvim.lua;
   };
 
   programs.fish = {
@@ -126,17 +136,16 @@
 
     shellAliases = {
       vim = "nvim";
+      python = "python3";
       home = "nvim $HOME/.config/home-manager/home.nix";
+      sw = "home-manager switch -b backup";
     };
 
     functions = {
       code = "test (count $argv) -eq 0; and command code .; or command code $argv[1]";
+      zed = "test (count $argv) -eq 0; and command zed .; or command zed $argv[1]";
       rmq = "command docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management";
     };
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
   };
 
   programs.git = {
@@ -161,6 +170,53 @@
     gitCredentialHelper = {
       enable = true;
     };
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+
+  programs.tmux = {
+    enable = true;
+    prefix = "`";
+    baseIndex = 1;
+    mouse = true;
+    keyMode = "vi";
+    escapeTime = 0;
+    historyLimit = 10000;
+    plugins = with pkgs.tmuxPlugins; [ resurrect continuum ];
+    extraConfig = ''
+      set-option -g pane-base-index 1
+      set-option -g renumber-windows on
+      set -g status-position bottom
+      set -g status-bg colour238
+      set -g status-fg colour102
+      set -g status-left "[#{session_name}] "
+      set -g status-right ""
+      set -g bell-action none
+      unbind C-b
+      unbind C-t
+      unbind C-r
+      bind-key ` last-window
+      bind-key w kill-window
+      bind-key e send-prefix
+      bind -n C-WheelUpPane run-shell "/bin/sh -c 'kitty @ --to=unix:$(ls -1t /tmp/kitty-main-* | head -n1) set-font-size -- +2'"
+      bind -n C-WheelDownPane run-shell "/bin/sh -c 'kitty @ --to=unix:$(ls -1t /tmp/kitty-main-* | head -n1) set-font-size -- -2'"
+      bind-key l swap-window -t -1\; select-window -t -1
+      bind-key r swap-window -t +1\; select-window -t +1
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection -x
+      bind-key -T copy-mode-vi MouseDrag2Pane send-keys -X begin-selection
+      bind-key -T copy-mode-vi MouseDragEnd2Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+      unbind-key -T root MouseDown2Pane
+      bind-key -T copy-mode-vi C-c send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+
+      # start continuum on boot
+      set -g @continuum-boot 'on'
+    '';
   };
 
   programs.home-manager.enable = true;
