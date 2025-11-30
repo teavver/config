@@ -69,7 +69,9 @@
     pkgs.pre-commit
     pkgs.act
     pkgs.rustup
+    pkgs.lua
     pkgs.luajitPackages.luarocks
+
     # lsp stuff
     pkgs.nil
     pkgs.pyright
@@ -135,9 +137,9 @@
     };
 
     shellAliases = {
-      vim = "nvim";
       python = "python3";
       home = "nvim $HOME/.config/home-manager/home.nix";
+      nv = "nvim $HOME/.config/home-manager/dotfiles/nvim.lua";
       sw = "home-manager switch -b backup";
     };
 
@@ -193,11 +195,12 @@
       set-option -g pane-base-index 1
       set-option -g renumber-windows on
       set -g status-position bottom
-      set -g status-bg colour238
-      set -g status-fg colour102
+      set -g status-bg colour234
+      set -g status-fg colour66
       set -g status-left "[#{session_name}] "
       set -g status-right ""
       set -g bell-action none
+      set -g mode-style "fg=colour250,bg=colour236"
       unbind C-b
       unbind C-t
       unbind C-r

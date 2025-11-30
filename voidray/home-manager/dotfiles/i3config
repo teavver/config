@@ -42,6 +42,9 @@ assign [class="Zed"] 4
 assign [class="nvim"] 4
 for_window [urgent=latest] focus
 
+# make floating windows follow workspaces
+for_window [class="^.*" floating] sticky enable
+
 # startup workspaces on login
 exec --no-startup-id zen
 exec --no-startup-id kitty

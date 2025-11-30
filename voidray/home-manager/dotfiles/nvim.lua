@@ -20,18 +20,18 @@ vim.opt.rtp:prepend(lazypath)
 -- vim.g.loaded_netrwPlugin = 1
 
 -- do not touch
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Setup lazy.nvim
+-- pkgs
 require("lazy").setup({
   spec = {
     -- lsp
+    { 'nvim-lua/plenary.nvim' },
     {
       'neovim/nvim-lspconfig'
     },
     -- inline diag
-    { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+    -- { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+    -- harpoon
+    { 'ThePrimeagen/harpoon' },
     -- nvim tree
     {
       "nvim-tree/nvim-tree.lua",
@@ -50,15 +50,15 @@ require("lazy").setup({
       end,
     },
     -- mini stuff
-    { 'nvim-mini/mini.base16',                       version = '*' }, -- theme
-    { 'nvim-mini/mini.ai',                           version = '*' }, -- surround objects
-    { 'nvim-mini/mini.pairs',                        version = '*' }, -- auto pair matching
-    { 'nvim-mini/mini.completion',                   version = '*' }, -- completion
-    { 'nvim-mini/mini.tabline',                      version = '*' }, -- files in tabline
-    { 'nvim-mini/mini.surround',                     version = '*' }, -- surround
-    { 'nvim-mini/mini.sessions',                     version = '*' }, -- state sessions
-    { 'nvim-mini/mini.splitjoin',                    version = '*' }, -- args format
-    { 'nvim-mini/mini.move',                         version = '*' }, -- move sel
+    { 'nvim-mini/mini.base16',     version = '*' },                   -- theme
+    { 'nvim-mini/mini.ai',         version = '*' },                   -- surround objects
+    { 'nvim-mini/mini.pairs',      version = '*' },                   -- auto pair matching
+    { 'nvim-mini/mini.completion', version = '*' },                   -- completion
+    { 'nvim-mini/mini.tabline',    version = '*' },                   -- files in tabline
+    { 'nvim-mini/mini.surround',   version = '*' },                   -- surround
+    { 'nvim-mini/mini.sessions',   version = '*' },                   -- state sessions
+    { 'nvim-mini/mini.splitjoin',  version = '*' },                   -- args format
+    { 'nvim-mini/mini.move',       version = '*' },                   -- move sel
   },
   install = {},
   checker = { enabled = true },
@@ -71,15 +71,20 @@ if not ok then
 end
 
 -- inline diag disable (lsp_lines handles that)
-vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = true
-})
+-- vim.diagnostic.config({
+--   virtual_text = true,
+-- })
 
 -- render whitespace,tab
 vim.opt.listchars = { space = '·', tab = '→ ' }; vim.opt.list = true
 vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#3a3a3a' })
 vim.api.nvim_set_hl(0, 'NonText', { fg = '#3a3a3a' })
+-- diag setup
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true
+  }
+})
 
 -- mini stuff setup
 require('mini.ai').setup()
@@ -112,17 +117,19 @@ require('mini.move').setup({
 })
 
 -- >>>> keybinds
--- diag
-vim.keymap.set(
-  "",
-  "<Leader>d",
-  require("lsp_lines").toggle,
-  { desc = "Toggle lsp_lines" }
-)
--- nvim-tree toggle
+-- harpoon
+-- ...
+-- toggle fe
 vim.keymap.set('n', '<C-t>', ':NvimTreeToggle<CR>', { silent = true })
 -- Format with LSP
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Format buffer' })
+
+-- completion kbinds
+vim.api.nvim_set_keymap('i', '<Tab>', [[pumvisible() ? "\<C-n>\<C-y>" : "\<Tab>"]], { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? "\<C-n>\<C-y>" : "\<CR>"]], { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', '<C-j>', [[pumvisible() ? "\<C-n>" : "\<C-j>"]], { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', '<C-k>', [[pumvisible() ? "\<C-p>" : "\<C-k>"]], { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', '<C-e>', [[pumvisible() ? "\<C-e>" : "\<C-e>"]], { expr = true, noremap = true })
 
 -- lsp
 vim.lsp.enable('lua_ls')               -- lua
@@ -133,5 +140,16 @@ vim.lsp.enable('marksman')             -- md
 vim.lsp.enable('yaml-language-server') -- yml
 vim.lsp.enable('vtsls')                -- .ts
 vim.lsp.enable('taplo')                -- .toml
+
+-- TODO
+-- harpoon docs, setup -> ctrl groups + per-project persistent save
+-- fuzzy find (telescope?) on leader+e,
+-- leader + g = some trivial git menu ?
+-- lsp for JS and zig?
+-- read terminal mode, custom per-project executables would be niceeee e.g.
+--      leader+t<1..9> to execute, leader+T<1..9> to set cmd like :uv run main.py
+-- breakpoints?
+-- last read about mini.nvim addons cooler surround text objects etc
+--
 
 vim.cmd("source ~/.vimrc")
