@@ -45,6 +45,9 @@ for_window [urgent=latest] focus
 # make floating windows follow workspaces
 for_window [class="^.*" floating] sticky enable
 
+# Toggle sticky on floating windows only
+bindsym $mod+s exec --no-startup-id "i3-msg '[con_id=__focused__ floating] sticky toggle'"
+
 # startup workspaces on login
 exec --no-startup-id zen
 exec --no-startup-id kitty
@@ -54,7 +57,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec thunar
-bindsym Ctrl+space exec dmenu_run
+# bindsym Ctrl+space exec dmenu_run
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -116,8 +119,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shortcut. Do you really want to suspend your PC?' -B 'Yes, suspend' 'killall i3-nagbar && systemctl suspend'"
 
 # music
-bindsym $mod+minus exec playerctl previous
-bindsym $mod+equal exec playerctl next
+bindsym $mod+bracketleft exec playerctl previous
+bindsym $mod+bracketright exec playerctl next
+bindsym $mod+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+p exec playerctl play-pause
 
 mode "resize" {
