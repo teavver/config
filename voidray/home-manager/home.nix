@@ -194,7 +194,20 @@
     keyMode = "vi";
     escapeTime = 0;
     historyLimit = 10000;
-    plugins = with pkgs.tmuxPlugins; [ resurrect continuum ];
+    plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = resurrect;
+        extraConfig = ''
+          set -g @resurrect-restore 'R'
+        '';
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-boot 'on'
+        '';
+      }
+    ];
     extraConfig = ''
       set-option -g pane-base-index 1
       set-option -g renumber-windows on
@@ -222,11 +235,8 @@
       bind-key -T copy-mode-vi MouseDragEnd2Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
       unbind-key -T root MouseDown2Pane
       bind-key -T copy-mode-vi C-c send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
-      # start continuum on boot
-      set -g @continuum-boot 'on'
     '';
   };
 
   programs.home-manager.enable = true;
 }
-
