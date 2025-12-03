@@ -123,8 +123,8 @@ require("telescope").setup{
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>e', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>E', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>Fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>Fb', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- mini stuff setup
 require('mini.ai').setup()
@@ -157,6 +157,14 @@ require('mini.move').setup({
 })
 
 -- >>>> keybinds
+-- term
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+-- lsp utils
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Go to references' })
 -- vimrc fixes
 vim.keymap.set('n', '<leader>Q', ':qa<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>q', function()
@@ -186,6 +194,7 @@ vim.lsp.enable('pyright')              -- py
 vim.lsp.enable('ruff')                 -- py
 vim.lsp.enable('nil_ls')               -- nix
 vim.lsp.enable('marksman')             -- md
+vim.lsp.enable('zls')                  -- zig
 vim.lsp.enable('vtsls')                -- .ts
 vim.lsp.enable('taplo')                -- .toml
 

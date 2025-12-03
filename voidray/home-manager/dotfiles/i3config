@@ -35,11 +35,13 @@ floating_modifier $mod
 
 # workspace bound windows
 assign [class="zen"] 1
+assign [class="vlc"] 2
 assign [class="obsidian"] 2
 assign [class="kitty"] 3
 assign [class="Code"] 4
 assign [class="Zed"] 4
 assign [class="nvim"] 4
+assign [class="Discord"] 5
 for_window [urgent=latest] focus
 
 # make floating windows follow workspaces

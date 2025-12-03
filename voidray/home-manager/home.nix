@@ -74,6 +74,7 @@
     pkgs.act
     pkgs.rustup
     pkgs.lua
+    pkgs.zig
     pkgs.luajitPackages.luarocks
 
     # lsp stuff
@@ -84,6 +85,7 @@
     pkgs.yaml-language-server
     pkgs.vtsls # ts
     pkgs.taplo # toml
+    pkgs.zls   # zig
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -194,20 +196,6 @@
     keyMode = "vi";
     escapeTime = 0;
     historyLimit = 10000;
-    plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          set -g @resurrect-restore 'R'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-boot 'on'
-        '';
-      }
-    ];
     extraConfig = ''
       set-option -g pane-base-index 1
       set-option -g renumber-windows on
