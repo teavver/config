@@ -15,13 +15,14 @@
 
 # external (dnf):
 # docker: https://docs.docker.com/engine/install/fedora/#install-docker-engine
+# PIP: sudo dnf install python3-pip
 
 { config, pkgs, ... }:
 
 {
   home.username = "teaver";
   home.homeDirectory = "/home/teaver";
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -42,6 +43,7 @@
 
     pkgs.xev
     pkgs.fuse3
+    pkgs.gimp2
     pkgs.lxappearance
     pkgs.xclip
     pkgs.xorg.xrandr
@@ -79,7 +81,10 @@
 
     # lsp stuff
     pkgs.nil
+    pkgs.typescript-language-server
     pkgs.pyright
+    pkgs.virtualenv
+    pkgs.basedpyright
     pkgs.ruff
     pkgs.marksman
     pkgs.yaml-language-server
@@ -106,7 +111,7 @@
     ".config/i3/config".source = dotfiles/i3config;
     ".config/i3status/config".source = dotfiles/i3status;
     ".config/kitty/kitty.conf".source = dotfiles/kitty.conf;
-    ".config/nvim/init.lua".source = dotfiles/nvim.lua;
+    # .config/nvim/init.lua".source = dotfiles/nvim.lua;
   };
 
   programs.fish = {
