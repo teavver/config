@@ -1,0 +1,66 @@
+syntax on
+filetype plugin indent on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set ai
+set number
+set ruler
+set mouse=a
+set background=dark
+set belloff=all
+set smartindent
+set nowrap
+set relativenumber
+set scrolloff=10
+" search
+set gdefault
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set shiftround
+" line length
+set colorcolumn=80,120
+" Match OS clipboard (crossplatform)
+set clipboard^=unnamed,unnamedplus
+"
+let mapleader = " "
+command! W write
+command! Q quit
+cabbrev s %s
+cabbrev %s s
+noremap <C-j> 4j
+noremap <C-k> 4k
+nnoremap J }
+nnoremap K {
+nnoremap <C-h> 3b
+nnoremap <C-l> 3w
+nnoremap <leader>T :e /tmp/t.py<CR>
+nnoremap <leader>x :!chmod +x %<CR>
+nnoremap <leader>y gg"+yG
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>c :
+vnoremap <leader>c :
+nnoremap <leader>r :%s/<C-r><C-w>//g<Left><Left>
+nnoremap <leader>R :%s/<C-r><C-w>//gc<Left><Left><Left>
+" paste
+inoremap <C-v> <Esc>"+gp`]a
+nnoremap du d^
+nnoremap Y yy 
+xnoremap <C-h> 3b
+xnoremap <C-l> 3w
+" Don't overwrite yank buffer when pasting in visual mode
+xnoremap p "_dP
+" old visual line move
+"vnoremap J :m '>+1<CR>gv=gv
+"vnoremap K :m '<-2<CR>gv=gv
+vnoremap y ygv<Esc>
+" commands nav
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+" ctrl bksp del word
+inoremap <C-H> <C-w>
