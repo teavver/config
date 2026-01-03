@@ -5,20 +5,29 @@ exec --no-startup-id xsetroot -solid "#000"
 
 # applets
 exec --no-startup-id nm-applet
-exec --no-startup-id volumeicon &
+exec --no-startup-id volumeicon
+exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:1500
+
+# notif
+exec --no-startup-id dunst
 
 # Bobby
 # set $mod Mod1
 # exec --no-startup-id xrandr --output eDP --off
 
+# HOME
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 144
+
 # WLAD dell
-exec --no-startup-id xrandr --output HDMI-0 --mode 2560x1440 --rate 120
+# exec --no-startup-id xrandr --output HDMI-0 --mode 2560x1440 --rate 120
 
 # Caps as ctrl
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 
 # Global maccel for all devices
 exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
+# disable fast drag lag
+exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Middle Emulation Enabled' 0; done
 
 # No drag
 tiling_drag off
@@ -47,7 +56,7 @@ floating_modifier $mod
 assign [class="zen"] 1
 assign [class="vlc"] 2
 assign [class="obsidian"] 2
-assign [class="kitty"] 3
+assign [class="ghostty"] 3
 assign [class="Code"] 4
 assign [class="Zed"] 4
 assign [class="nvim"] 4
@@ -62,14 +71,14 @@ bindsym $mod+s exec --no-startup-id "i3-msg '[con_id=__focused__ floating] stick
 
 # startup workspaces on login
 exec --no-startup-id app.zen_browser.zen
-exec --no-startup-id kitty
+exec --no-startup-id ghostty
+exec --no-startup-id vlc
 
 # aerospace-like
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec ghostty
 bindsym $mod+q kill
 bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec thunar
-# bindsym Ctrl+space exec dmenu_run
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

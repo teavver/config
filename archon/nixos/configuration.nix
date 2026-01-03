@@ -22,6 +22,13 @@ in
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # ssd1
+  fileSystems."/mnt/SU800" = {
+    device = "/dev/disk/by-uuid/1EAC-3AF4";
+    fsType = "exfat";
+    options = [ "defaults" "nofail" "uid=1000" "gid=100" "umask=0022" ];
+  };
+
   networking.hostName = "archon";
   networking.networkmanager.enable = true;
 
@@ -65,6 +72,10 @@ in
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*"; # flatpak req
+  };
+
+  xdg.mime.defaultApplications = {
+    "inode/directory" = "thunar.desktop";
   };
 
   services.libinput.enable = true;
@@ -111,12 +122,14 @@ in
   };
 
   programs.fish.enable = true;
+  programs.zsh.enable = true;
+  programs.xfconf.enable = true; # save thunar prefs
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  # };
 
   security.sudo.wheelNeedsPassword = false;
   users.users.teaver = {
@@ -124,8 +137,10 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video"
+      "input"
     ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   home-manager.backupFileExtension = "bak";
@@ -136,9 +151,93 @@ in
       home.stateVersion = "25.11";
       home.file = {
         ".vimrc".source = dotfiles/vimrc;
-        ".config/nvim/init.lua".source = dotfiles/nvimrc;
         ".config/i3/config".source = dotfiles/i3config;
-        ".config/kitty/kitty.conf".source = dotfiles/kitty;
+        ".config/nvim/init.lua".source = dotfiles/nvimrc;
+        ".config/ghostty/config".source = dotfiles/ghostty;
+      };
+
+     programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+        
+        oh-my-zsh = {
+          enable = true;
+          plugins = [ "git" "sudo" "docker" "kubectl" ];
+          # theme = "robbyrussell";
+        };
+
+        shellAliases = {
+          sudoe = "sudo -E -s";
+          python = "python3";
+          conf = "sudo -E nvim /etc/nixos/configuration.nix";
+          sw = "sudo nixos-rebuild switch";
+        };
+
+        history = {
+          size = 10000;
+          save = 10000;
+          share = true;
+          ignoreDups = true;
+          ignoreSpace = true;
+        };
+
+        initContent = ''
+          if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+            source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          fi
+
+          if command -v tmux &> /dev/null; then
+            if [ -z "$TMUX" ]; then
+              cd $HOME
+              tmux new-session -A -s 1
+            fi
+          fi
+
+          cd $HOME
+
+          x-paste() {
+            local clip
+            clip=$(xsel --clipboard --output 2>/dev/null || echo -n "")
+            LBUFFER="$LBUFFER$clip"
+          }
+          zle -N x-paste
+          bindkey '^V' x-paste
+
+          bindkey '^H' backward-kill-word
+          bindkey '^[[A' history-beginning-search-backward
+          bindkey '^K' history-beginning-search-backward
+          bindkey '^[[B' history-beginning-search-forward
+          bindkey '^J' history-beginning-search-forward
+
+          if command -v zoxide &> /dev/null; then
+            eval "$(zoxide init zsh)"
+            alias cd='z'
+          fi
+
+          code() {
+            if [ $# -eq 0 ]; then
+              command code .
+            else
+              command code "$1"
+            fi
+          }
+
+          zed() {
+            if [ $# -eq 0 ]; then
+              command zed .
+            else
+              command zed "$1"
+            fi
+          }
+
+          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+          zstyle ':completion:*' list-colors ""
+
+          unsetopt BEEP
+          PROMPT='%F{cyan}%3~%f $(git_prompt_info)%(?:%F{green}➜ :%F{red}➜ )%f'
+        '';
       };
 
       programs.fish = {
@@ -262,6 +361,7 @@ in
   nixpkgs.config.cudaSupport = true;
 
   # $ nix search pkg
+  # ppkgs
   environment.systemPackages = with pkgs; [
     cudaPackages.cuda_cudart
     cudaPackages.libcublas
@@ -273,12 +373,17 @@ in
     cudaPackages.cudnn
 
     git
+    zsh
     curl
     wget
     firefox
-    chromium
+    # chromium
+    ghostty
     vim
+    thunderbird
     killall
+    xsel
+    gnumake
     tree
     neovim
     discord
@@ -292,6 +397,7 @@ in
     tmux
     htop
     zoxide
+    unzip
     fzf
     ripgrep
     vscode
@@ -301,25 +407,39 @@ in
     zig
     obs-studio
     tailscale
-    bolt-launcher
     porsmo
-    steam
-    steam-unwrapped
+    claude-code
+    opencode
+    ollama-cuda
 
-    libnotify
-    protonup-qt
-    mangohud
+    # steam
+    # steam-unwrapped
+    # protonup-qt
+    # mangohud
+    # prismlauncher
+
+    gammastep
+    pyright
+    nil
+    efibootmgr
+    playerctl
     i3-volume
+    dunst
+    libnotify
     xautolock
     xclip
     xss-lock
     xsecurelock
+    xdg-utils
     pulseaudio
     gimp2
+    ffmpeg
     lm_sensors
     maim
     zlib
     xfce.thunar
+    xfce.tumbler
+    gvfs
     pavucontrol
     unclutter
     volumeicon
@@ -347,3 +467,4 @@ in
   system.stateVersion = "25.11";
 
 }
+
