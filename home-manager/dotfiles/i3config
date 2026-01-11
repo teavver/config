@@ -3,28 +3,47 @@ set $mod Mod4
 # wallpaper
 exec --no-startup-id xsetroot -solid "#000"
 
-# wifi applet
+# applets / notifications
 exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
+exec --no-startup-id dunst
+exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:2000
+
+# vsync
+exec --no-startup-id nvidia-settings -a SyncToVBlank=0
 
 # Bobby
 # set $mod Mod1
 # exec --no-startup-id xrandr --output eDP --off
 
+# HOME
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 144
+
 # WLAD dell
-exec --no-startup-id xrandr --output HDMI-0 --mode 2560x1440 --rate 120
+# exec --no-startup-id xrandr --output HDMI-0 --mode 2560x1440 --rate 120
 
 # Caps as ctrl
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 
 # Global maccel for all devices
 exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
+# disable fast drag lag
+exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Middle Emulation Enabled' 0; done
+
+# No drag
+tiling_drag off
+
+bindsym $mod+n exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# Sleep screen
+# exec --no-startup-id xset s 600 # 5min screenlock
+# exec --no-startup-id xss-lock -l -- i3lock -c 202020
+# exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep # 10m sleep
 
 # Disable titlebars
 for_window [class="^.*"] border pixel 1
-font pango:DejaVu Sans Mono 12
-
-# Sleep screen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 161618 --nofork
+font pango:monospace 9
 
 # Clipboard Screenshots
 bindsym $mod+y exec --no-startup-id maim | tee ~/Pictures/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
@@ -32,34 +51,33 @@ bindsym $mod+u exec --no-startup-id maim --select | tee ~/Pictures/screenshot_$(
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+tiling_drag modifier titlebar
 
 # workspace bound windows
 assign [class="zen"] 1
 assign [class="vlc"] 2
 assign [class="obsidian"] 2
-assign [class="kitty"] 3
+assign [class="ghostty"] 3
 assign [class="Code"] 4
-assign [class="Zed"] 4
 assign [class="nvim"] 4
-assign [class="Discord"] 5
 for_window [urgent=latest] focus
 
 # make floating windows follow workspaces
-for_window [class="^.*" floating] sticky enable
+# for_window [class="^.*" floating] sticky enable
 
 # Toggle sticky on floating windows only
 bindsym $mod+s exec --no-startup-id "i3-msg '[con_id=__focused__ floating] sticky toggle'"
 
 # startup workspaces on login
-exec --no-startup-id zen
-exec --no-startup-id kitty
+exec --no-startup-id app.zen_browser.zen
+exec --no-startup-id ghostty
+exec --no-startup-id vlc
 
 # aerospace-like
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec ghostty
 bindsym $mod+q kill
 bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec thunar
-# bindsym Ctrl+space exec dmenu_run
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -76,10 +94,9 @@ bindsym $mod+Shift+l move right
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout default
+bindsym $mod+e layout toggle split
 
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space floating toggle
 
 set $ws1 "1"
 set $ws2 "2"
@@ -123,15 +140,19 @@ bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shor
 # music
 bindsym $mod+bracketleft exec playerctl previous
 bindsym $mod+bracketright exec playerctl next
-bindsym $mod+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+p exec playerctl play-pause
+# old
+# bindsym $mod+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym $mod+p exec playerctl play-pause
+bindsym $mod+m exec i3-volume mute -n
+bindsym $mod+minus exec i3-volume down 5 -n
+bindsym $mod+equal exec i3-volume up 5 -n
 
 mode "resize" {
-  bindsym j resize shrink width 10 px or 10 ppt
-  bindsym k resize grow height 10 px or 10 ppt
-  bindsym l resize shrink height 10 px or 10 ppt
-  bindsym semicolon resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
@@ -147,7 +168,5 @@ bindsym $mod+r mode "resize"
 
 bar {
   position top
-  status_command py3status -c ~/.config/i3status/config
-  # OLD
-  # status_command i3status
+  status_command i3status
 }
