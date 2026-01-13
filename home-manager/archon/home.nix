@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 # external:
-# flatpak: zen
-# pkgmanager: obs-studio, docker
+# flatpak: zen, zed
+# pkgmanager: flatpak, obs-studio, docker, pasystray
 
 let
   systemPackages = import ./base-pkgs.nix { inherit pkgs; };
@@ -44,37 +44,39 @@ in
   home.packages =
     systemPackages
     ++ (with pkgs; [
+      chromium
       uv
       ruff
       sioyek
       vscode
       vlc
       obsidian
-      python314
       nil
       zig
-      thunderbird
       claude-code
       spotify
       discord
       zrok
+      chatterino2
 
       i3-volume
       playerctl
+      tail-tray
+      mictray
       dunst
       xclip
       xsel
       xss-lock
+      xsetroot
       xsecurelock
       xautolock
       xorg.xinput
       libnotify
       xdg-utils
+      seahorse
       gimp2
       maim
       lm_sensors
-      thunar
-      tumbler
       pavucontrol
       themechanger
       fluent-gtk-theme
@@ -102,6 +104,12 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    git = true;
   };
 
   home.sessionVariables = {

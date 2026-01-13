@@ -6,8 +6,13 @@ exec --no-startup-id xsetroot -solid "#000"
 # applets / notifications
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
+exec --no-startup-id tail-tray
+exec --no-startup-id mictray
 exec --no-startup-id dunst
-exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:2000
+# exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:2000
+
+# polkit
+exec --no-startup-id lxqt-policykit-agent
 
 # vsync
 exec --no-startup-id nvidia-settings -a SyncToVBlank=0
@@ -37,9 +42,12 @@ bindsym $mod+n exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # Sleep screen
-# exec --no-startup-id xset s 600 # 5min screenlock
-# exec --no-startup-id xss-lock -l -- i3lock -c 202020
-# exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep # 10m sleep
+exec --no-startup-id xset s 600 # 5min screenlock
+exec --no-startup-id xss-lock -l -- i3lock -c 202020
+exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep # 10m sleep
+
+# lock
+bindsym $mod+Shift+y exec --no-startup-id i3lock -c 202020
 
 # Disable titlebars
 for_window [class="^.*"] border pixel 1
@@ -140,19 +148,23 @@ bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shor
 # music
 bindsym $mod+bracketleft exec playerctl previous
 bindsym $mod+bracketright exec playerctl next
-# old
-# bindsym $mod+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-# bindsym $mod+equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-# bindsym $mod+p exec playerctl play-pause
+bindsym $mod+p exec playerctl play-pause
 bindsym $mod+m exec i3-volume mute -n
 bindsym $mod+minus exec i3-volume down 5 -n
 bindsym $mod+equal exec i3-volume up 5 -n
+bindsym --whole-window $mod+button9 exec playerctl next
+bindsym --whole-window $mod+button8 exec playerctl previous
 
 mode "resize" {
   bindsym h resize shrink width 10 px or 10 ppt
   bindsym j resize grow height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
   bindsym l resize grow width 10 px or 10 ppt
+
+  bindsym a resize shrink width 10 px or 10 ppt
+  bindsym w resize grow height 10 px or 10 ppt
+  bindsym s resize shrink height 10 px or 10 ppt
+  bindsym d resize grow width 10 px or 10 ppt
 
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt

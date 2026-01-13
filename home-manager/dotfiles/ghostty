@@ -1,8 +1,23 @@
-font-size=19.25
+font-size=16.5
 shell-integration=zsh
-theme=Spacegray
+theme=Nvim Dark
+clipboard-trim-trailing-spaces=true
+font-feature=-calt,-liga,-dlig
+bell-features=no-audio,no-system
 mouse-hide-while-typing=true
 window-decoration=server
 window-vsync=false
 window-save-state=always
+window-padding-balance=true
+window-padding-color=extend
+
 keybind = ctrl+shift+r=reload_config
+keybind = ctrl+1=text:`1
+keybind = ctrl+2=text:`2
+keybind = ctrl+3=text:`3
+keybind = ctrl+4=text:`4
+keybind = ctrl+5=text:`5
+keybind = ctrl+6=text:`6
+keybind = ctrl+7=text:`7
+keybind = ctrl+8=text:`8
+keybind = ctrl+9=text:`9

@@ -2,6 +2,8 @@
 
 with pkgs;
 [
+  zsh
+  oh-my-zsh
   alacritty
   vim
   curl
@@ -13,8 +15,12 @@ with pkgs;
   git
   ripgrep
   lm_sensors
-  tailscale
+  _7zz
+  unar
+  eza
   zoxide
+  dust
   fzf
-  oh-my-zsh
+  age
+  sops
 ]
