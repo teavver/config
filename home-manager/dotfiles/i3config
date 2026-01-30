@@ -9,10 +9,8 @@ exec --no-startup-id pasystray
 exec --no-startup-id tail-tray
 exec --no-startup-id mictray
 exec --no-startup-id dunst
+exec --no-startup-id caffeine start --activate --pulseaudio --fullscreen # prevent sleep
 # exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:2000
-
-# polkit
-exec --no-startup-id lxqt-policykit-agent
 
 # vsync
 exec --no-startup-id nvidia-settings -a SyncToVBlank=0
@@ -38,9 +36,6 @@ exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 
 # No drag
 tiling_drag off
 
-bindsym $mod+n exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
-bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
-
 # Sleep screen
 exec --no-startup-id xset s 600 # 5min screenlock
 exec --no-startup-id xss-lock -l -- i3lock -c 202020
@@ -51,11 +46,12 @@ bindsym $mod+Shift+y exec --no-startup-id i3lock -c 202020
 
 # Disable titlebars
 for_window [class="^.*"] border pixel 1
-font pango:monospace 9
+hide_edge_borders smart
 
-# Clipboard Screenshots
-bindsym $mod+y exec --no-startup-id maim | tee ~/Pictures/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
-bindsym $mod+u exec --no-startup-id maim --select | tee ~/Pictures/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
+# screenshots
+set $ss_path ~/Pictures/Screenshots
+bindsym $mod+y exec --no-startup-id maim | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
+bindsym $mod+u exec --no-startup-id maim --select | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -63,29 +59,32 @@ tiling_drag modifier titlebar
 
 # workspace bound windows
 assign [class="zen"] 1
+assign [class="twilight"] 1
 assign [class="vlc"] 2
 assign [class="obsidian"] 2
 assign [class="ghostty"] 3
 assign [class="Code"] 4
 assign [class="nvim"] 4
+assign [class="discord"] 5
+assign [class="steam_app_0"] 6 # sc2
 for_window [urgent=latest] focus
-
-# make floating windows follow workspaces
-# for_window [class="^.*" floating] sticky enable
 
 # Toggle sticky on floating windows only
 bindsym $mod+s exec --no-startup-id "i3-msg '[con_id=__focused__ floating] sticky toggle'"
 
 # startup workspaces on login
-exec --no-startup-id app.zen_browser.zen
+exec --no-startup-id zen-twilight
 exec --no-startup-id ghostty
 exec --no-startup-id vlc
+exec --no-startup-id discord
 
 # aerospace-like
 bindsym $mod+Return exec ghostty
 bindsym $mod+q kill
-bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec thunar
+
+bindsym $mod+Shift+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -combi-modi drun#ssh -theme solarized -show combi
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -149,7 +148,8 @@ bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shor
 bindsym $mod+bracketleft exec playerctl previous
 bindsym $mod+bracketright exec playerctl next
 bindsym $mod+p exec playerctl play-pause
-bindsym $mod+m exec i3-volume mute -n
+bindsym $mod+m exec i3-volume mute -n # system
+bindsym $mod+Shift+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle # mic
 bindsym $mod+minus exec i3-volume down 5 -n
 bindsym $mod+equal exec i3-volume up 5 -n
 bindsym --whole-window $mod+button9 exec playerctl next

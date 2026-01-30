@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 # external:
-# flatpak: zen, zed
 # pkgmanager: flatpak, obs-studio, docker, pasystray
 
 let
@@ -19,46 +18,33 @@ in
   home.enableNixpkgsReleaseCheck = false;
   home.stateVersion = "25.11";
 
-  # cursor fix
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 16;
-    };
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
-  };
-  home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    x11.enable = true;
-    size = 16;
-  };
+  # home.file.".icons/default/index.theme".force = true;
+  # home.pointerCursor = {
+  #   name = "Vanilla-DMZ-AA";
+  #   package = pkgs.vanilla-dmz;
+  #   # gtk.enable = true;
+  #   # x11.enable = true;
+  #   size = 16;
+  # };
 
   home.packages =
     systemPackages
     ++ (with pkgs; [
-      chromium
-      uv
       ruff
       sioyek
+      pyright
       vscode
       vlc
       obsidian
       nil
       zig
-      claude-code
       spotify
       discord
       zrok
-      chatterino2
+      s-tui
 
+      snapper
+      rofi
       i3-volume
       playerctl
       tail-tray
@@ -77,11 +63,14 @@ in
       gimp2
       maim
       lm_sensors
+      thunar
+      tumbler
+      thunar-volman
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      kdePackages.ark
       pavucontrol
-      themechanger
-      fluent-gtk-theme
       networkmanagerapplet
-      nerd-fonts.adwaita-mono
       nerd-fonts.jetbrains-mono
     ]);
   # ppkgs
@@ -96,6 +85,7 @@ in
     ".config/i3/config".source = dotfiles/i3config;
     ".config/ghostty/config".source = dotfiles/ghostty;
     ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
+    "obsidian/.obsidian.vimrc".source = dotfiles/obsidian;
   };
 
   programs.neovim = {
@@ -110,10 +100,6 @@ in
     enable = true;
     enableZshIntegration = true;
     git = true;
-  };
-
-  home.sessionVariables = {
-    XCURSOR_SIZE = "16";
   };
 
   nixpkgs.config.allowUnfree = true;

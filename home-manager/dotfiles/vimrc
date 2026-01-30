@@ -47,6 +47,8 @@ nnoremap <leader>c :
 vnoremap <leader>c :
 nnoremap <leader>r :%s/<C-r><C-w>//g<Left><Left>
 nnoremap <leader>R :%s/<C-r><C-w>//gc<Left><Left><Left>
+nnoremap <leader>s /
+vnoremap <leader>s /
 " paste
 inoremap <C-v> <Esc>"+gp`]a
 nnoremap du d^

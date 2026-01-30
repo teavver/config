@@ -12,6 +12,7 @@ window-padding-balance=true
 window-padding-color=extend
 
 keybind = ctrl+shift+r=reload_config
+keybind = ctrl+enter=unbind
 keybind = ctrl+1=text:`1
 keybind = ctrl+2=text:`2
 keybind = ctrl+3=text:`3
