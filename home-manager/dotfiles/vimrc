@@ -12,7 +12,9 @@ set belloff=all
 set smartindent
 set nowrap
 set relativenumber
-set scrolloff=10
+set scrolloff=12
+set undofile
+" set undodir=~/.cache/vim/undo
 " search
 set gdefault
 set ignorecase
@@ -30,8 +32,8 @@ command! W write
 command! Q quit
 cabbrev s %s
 cabbrev %s s
-noremap <C-j> 4j
-noremap <C-k> 4k
+noremap <C-j> 3j
+noremap <C-k> 3k
 nnoremap J }
 nnoremap K {
 nnoremap <C-h> 3b
@@ -49,6 +51,8 @@ nnoremap <leader>r :%s/<C-r><C-w>//g<Left><Left>
 nnoremap <leader>R :%s/<C-r><C-w>//gc<Left><Left><Left>
 nnoremap <leader>s /
 vnoremap <leader>s /
+nnoremap <leader>j <<_
+nnoremap <leader>k >>_
 " paste
 inoremap <C-v> <Esc>"+gp`]a
 nnoremap du d^
@@ -58,8 +62,8 @@ xnoremap <C-l> 3w
 " Don't overwrite yank buffer when pasting in visual mode
 xnoremap p "_dP
 " old visual line move
-"vnoremap J :m '>+1<CR>gv=gv
-"vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 vnoremap y ygv<Esc>
 " commands nav
 cnoremap <C-j> <Down>

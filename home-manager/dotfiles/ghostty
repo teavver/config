@@ -1,9 +1,9 @@
-font-size=16.5
+font-size=14.5
 shell-integration=zsh
 theme=Nvim Dark
 clipboard-trim-trailing-spaces=true
 font-feature=-calt,-liga,-dlig
-bell-features=no-audio,no-system
+bell-features=no-audio
 mouse-hide-while-typing=true
 window-decoration=server
 window-vsync=false
@@ -13,6 +13,8 @@ window-padding-color=extend
 
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+enter=unbind
+keybind = ctrl+x=text:`w
+keybind = ctrl+y=text:`c
 keybind = ctrl+1=text:`1
 keybind = ctrl+2=text:`2
 keybind = ctrl+3=text:`3

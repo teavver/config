@@ -4,23 +4,24 @@ with pkgs;
 [
   zsh
   oh-my-zsh
-  alacritty
   vim
   curl
   wget
   tree
+  rsync
   htop
+  btop
   bat
   jq
   git
   ripgrep
-  lm_sensors
   _7zz
-  unar
+  rar
   eza
   zoxide
   dust
   fzf
   age
-  sops
+  avahi
+  tldr
 ]

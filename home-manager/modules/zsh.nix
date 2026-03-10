@@ -19,9 +19,11 @@
 
     shellAliases = {
       t = "thunar";
-      python = "python3";
       s = "home-manager switch -b backup";
       sw = "s";
+      u = "paru -Syu --noconfirm --skipreview && sudo pacman -Syu --noconfirm";
+      clip = "xclip -selection clipboard";
+      python = "python3";
       conf = "vim ~/.config/home-manager/home.nix";
     };
 
@@ -48,11 +50,16 @@
         source <(fzf --zsh)
       fi
 
+      if command -v brew &> /dev/null; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+      fi
+
       x-paste() {
         local clip
         clip=$(xsel --clipboard --output 2>/dev/null || echo -n "")
         LBUFFER="$LBUFFER$clip"
       }
+
       zle -N x-paste
       bindkey '^V' x-paste
       bindkey '^Z' undo
@@ -76,9 +83,6 @@
           command code "$1"
         fi
       }
-
-      # uv
-      source $HOME/.local/bin/env
 
       zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
       zstyle ':completion:*' list-colors ""

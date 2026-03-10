@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
-# external:
-# pkgmanager: flatpak, obs-studio, docker, pasystray
+# pkgmanager: zed*, opensnitch*, obs-studio, docker, sioyek*
+# paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
   systemPackages = import ./base-pkgs.nix { inherit pkgs; };
@@ -15,77 +15,186 @@ in
 
   home.username = "teaver";
   home.homeDirectory = "/home/teaver";
+
   home.enableNixpkgsReleaseCheck = false;
   home.stateVersion = "25.11";
 
-  # home.file.".icons/default/index.theme".force = true;
-  # home.pointerCursor = {
-  #   name = "Vanilla-DMZ-AA";
-  #   package = pkgs.vanilla-dmz;
-  #   # gtk.enable = true;
-  #   # x11.enable = true;
-  #   size = 16;
-  # };
+  programs.i3status = {
+    enable = true;
+    general.interval = 2;
+    modules = {
+      "ipv6".enable = false;
+      "battery all".enable = false;
+      "ethernet _first_".enable = false;
+      "volume master" = {
+        position = 10;
+        settings = {
+          format = "(%volume)";
+          format_muted = "(m)";
+          device = "pulse";
+        };
+      };
+      "disk /" = {
+        position = -10;
+        settings.format = "/ %avail";
+      };
+      "disk /mnt/sn5000" = {
+        position = -9;
+        settings.format = "sn5000 %avail";
+      };
+      "disk /mnt/su800" = {
+        position = -8;
+        settings.format = "su800 %avail";
+      };
+    };
+  };
 
+  xsession.windowManager.i3.config.bars = [{
+    position = "top";
+    modifier = "Mod4";
+    statusCommand = ''
+      sh -c 'i3status | while read -r line; do
+        GPU=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null | tr -d " ")
+        echo "$line | GPU: $GPU%"
+      done'
+    '';
+  }];
+
+  # ppkgs
   home.packages =
     systemPackages
     ++ (with pkgs; [
+      just
+      uv
       ruff
-      sioyek
       pyright
       vscode
-      vlc
-      obsidian
       nil
       zig
-      spotify
-      discord
-      zrok
-      s-tui
-
-      snapper
-      rofi
+      nodejs_24
+      # xorg
+      xrandr
+      xclip
+      xsel
+      xauth
+      xdotool
+      xss-lock
+      xsetroot
+      xsecurelock
+      xautolock
+      xset
+      xclock
+      xinput
+      xdpyinfo
+      xwininfo
+      xdg-utils
+      xkb-switch-i3
+      # i3 
       i3-volume
       playerctl
       tail-tray
       mictray
       dunst
-      xclip
-      xsel
-      xss-lock
-      xsetroot
-      xsecurelock
-      xautolock
-      xorg.xinput
       libnotify
-      xdg-utils
-      seahorse
-      gimp2
       maim
-      lm_sensors
-      thunar
-      tumbler
-      thunar-volman
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-      kdePackages.ark
-      pavucontrol
+      gnome-themes-extra
       networkmanagerapplet
-      nerd-fonts.jetbrains-mono
+      gxkb #kb applet
+      caffeine-ng # sleep
+      pasystray # audio
+      # gui
+      discord
+      element-desktop
+      virt-manager
+      zed-editor-fhs
+      chromium
+      ghostty
+      alacritty
+      obsidian
+      transmission_4-qt
+      vlc
+      thunar
+      engrampa
+      pavucontrol
+      lxappearance
+      gimp2
+      snapper-gui
+      ulauncher
+      # cli
+      opencode
+      claude-code
+      claude-monitor
+      s-tui # stresstest
+      # misc
+      voxinput
+      ydotool
+      bore-cli # tunnel
+      jetbrains-mono
+      steamtinkerlaunch
+      yad # steamtinkerlaunch
+      heroic-unwrapped
     ]);
-  # ppkgs
 
   home.file = {
-    ".vimrc".source = dotfiles/vimrc;
     ".xprofile".text = ''
-      export vblank_mode=0
-      export __GL_SYNC_TO_VBLANK=0
-      export __GL_MaxFramesAllowed=1
+      xset r rate 200 35
     '';
+    ".config/sioyek/prefs_user.config".text = ''
+      default_dark_mode 1
+      check_for_updates_on_startup 0
+      case_sensitive_search 0
+    '';
+    ".config/ulauncher/settings.json".text = builtins.toJSON {
+      hotkey-show-app = "<Primary><Alt><Shift>bracketright";
+    };
+    ".vimrc".source = dotfiles/vimrc;
     ".config/i3/config".source = dotfiles/i3config;
     ".config/ghostty/config".source = dotfiles/ghostty;
     ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
-    "obsidian/.obsidian.vimrc".source = dotfiles/obsidian;
+    ".obsidian.vimrc".source = dotfiles/obsidian;
+  };
+
+  home.activation.obsidianVaultLink = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
+      ~/.obsidian.vimrc \
+      /mnt/sn5000/obsidian/remote/.obsidian.vimrc
+  '';
+
+  home.activation.steamPermFix = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    # /etc/sudoers.d/10-steam-perm-fix
+    # teaver ALL=(root) NOPASSWD: /usr/bin/chown -R teaver\:teaver /mnt/su800/win/steam
+    /usr/bin/sudo /usr/bin/chown -R teaver:teaver /mnt/su800/win/steam
+  '';
+
+  home.sessionVariables = {
+    BROWSER="zen-twilight"; # ulauncher
+    DXVK_FRAME_RATE = "144";
+    __GL_GSYNC_ALLOWED = "1";
+    __GL_VRR_ALLOWED   = "1";
+    __GL_SYNC_TO_VBLANK = "0";
+  };
+
+  xdg = {
+    terminal-exec = {
+      enable = true;
+      settings.default = [ "com.mitchellh.ghostty.desktop" ];
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "zen-twilight.desktop";
+        "x-scheme-handler/http"   = "zen-twilight.desktop";
+        "x-scheme-handler/https"  = "zen-twilight.desktop";
+        "x-scheme-handler/about"  = "zen-twilight.desktop";
+        "x-scheme-handler/unknown" = "zen-twilight.desktop";
+        "inode/directory" = "thunar.desktop";
+        "text/*" = "nvim.desktop";
+        "application/json" = "nvim.desktop";
+        "application/pdf" = "sioyek.desktop";
+        "audio/*" = "vlc.desktop";
+        "video/*" = "vlc.desktop";
+      };
+    };
   };
 
   programs.neovim = {
@@ -102,7 +211,17 @@ in
     git = true;
   };
 
+  targets.genericLinux = {
+    enable = true;
+    gpu.nvidia = {
+      enable = true;
+      version = "590.48.01";
+      sha256 = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   programs.home-manager.enable = true;
 }

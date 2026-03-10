@@ -1,19 +1,36 @@
 set $mod Mod4
 
+font pango:DejaVu Sans Mono 11px
+
+# claude
+bindsym $mod+apostrophe exec voxtype record toggle && notify-send -t 2000 "STT toggle"
+
+default_orientation horizontal
+workspace_layout tabbed
+show_marks yes
+
+floating_minimum_size 60 x 30
+force_display_urgency_hint 100 ms
+popup_during_fullscreen all
+
 # wallpaper
 exec --no-startup-id xsetroot -solid "#000"
+ 
+# kb
+exec_always --no-startup-id setxkbmap -layout us,pl
+bindsym $mod+Shift+grave exec "xkb-switch -n && notify-send -t 3000 \\"kb layout: $(xkb-switch -p)\\""
 
 # applets / notifications
+exec --no-startup-id dunst
+exec --no-startup-id mictray
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
-exec --no-startup-id tail-tray
-exec --no-startup-id mictray
-exec --no-startup-id dunst
+exec --no-startup-id gxkb
+# exec --no-startup-id tail-tray
+exec --no-startup-id ulauncher --hide-window
+exec --no-startup-id opensnitch-ui --background
+exec --no-startup-id thunar --daemon
 exec --no-startup-id caffeine start --activate --pulseaudio --fullscreen # prevent sleep
-# exec --no-startup-id gammastep-indicator -m randr -l 52.23:21.01 -t 3000:2000
-
-# vsync
-exec --no-startup-id nvidia-settings -a SyncToVBlank=0
 
 # Bobby
 # set $mod Mod1
@@ -45,46 +62,76 @@ exec --no-startup-id xautolock -time 10 -locker "systemctl suspend" -detectsleep
 bindsym $mod+Shift+y exec --no-startup-id i3lock -c 202020
 
 # Disable titlebars
-for_window [class="^.*"] border pixel 1
+# for_window [class=".*"] border pixel 1
+for_window [all] border pixel 1
+for_window [all] title_window_icon on
 hide_edge_borders smart
 
 # screenshots
 set $ss_path ~/Pictures/Screenshots
 bindsym $mod+y exec --no-startup-id maim | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
 bindsym $mod+u exec --no-startup-id maim --select | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
+# bindsym $mod+i exec --no-startup-id maim --window $(xdotool selectwindow) | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 tiling_drag modifier titlebar
 
+# defaults
+set $term ghostty
+set $browser zen-twilight
+set $music_app vlc
+set $notes_app obsidian
+
 # workspace bound windows
 assign [class="zen"] 1
+assign [class="firefox"] 1
 assign [class="twilight"] 1
+assign [class="chromium"] 1
+
 assign [class="vlc"] 2
 assign [class="obsidian"] 2
+
 assign [class="ghostty"] 3
+
 assign [class="Code"] 4
+assign [class="dev.zed.Zed"] 4
 assign [class="nvim"] 4
-assign [class="discord"] 5
-assign [class="steam_app_0"] 6 # sc2
-for_window [urgent=latest] focus
+
+assign [class="sioyek"] 5 # pdf
+assign [class="element"] 5 # matrix
+assign [class="steam"] 5
+assign [class="steamwebhelper"] 5
+assign [class="sioyek"] 5
+assign [class="heroic"] 5
+assign [class="sc2_x64.exe"] 6
+
+# focus
+focus_on_window_activation smart
 
 # Toggle sticky on floating windows only
 bindsym $mod+s exec --no-startup-id "i3-msg '[con_id=__focused__ floating] sticky toggle'"
 
 # startup workspaces on login
+exec --no-startup-id $music_app
+exec --no-startup-id $notes_app
+exec --no-startup-id $term
 exec --no-startup-id zen-twilight
-exec --no-startup-id ghostty
-exec --no-startup-id vlc
-exec --no-startup-id discord
+
+# per class prefs
+for_window [title="Picture-in-Picture"] floating enable, resize set 140pt 80pt
+for_window [title="Picture-in-Picture"] sticky enable
+
+# per workspace layout prefs
+for_window [class="steam_app_646570"] floating disable, layout tabbed # slay the spire
 
 # aerospace-like
-bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec $term
+bindsym $mod+n exec $browser
 bindsym $mod+q kill
 bindsym $mod+t exec thunar
-
+bindsym $mod+d exec ulauncher
 bindsym $mod+Shift+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -combi-modi drun#ssh -theme solarized -show combi
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -96,13 +143,12 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# bindsym $mod+z split h
-# bindsym $mod+x split v
+bindsym $mod+z split h
+bindsym $mod+x split v
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
 bindsym $mod+space floating toggle
 
 set $ws1 "1"
@@ -127,22 +173,22 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2, workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3, workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4, workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5, workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6, workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7, workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8, workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9, workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10, workspace $ws10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'You pressed the suspend shortcut. Do you really want to suspend your PC?' -B 'Yes, suspend' 'killall i3-nagbar && systemctl suspend'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'suspend?' -B 'Yes, suspend' 'killall i3-nagbar && i3lock -c 202020 && systemctl suspend'"
 
 # music
 bindsym $mod+bracketleft exec playerctl previous
@@ -155,16 +201,26 @@ bindsym $mod+equal exec i3-volume up 5 -n
 bindsym --whole-window $mod+button9 exec playerctl next
 bindsym --whole-window $mod+button8 exec playerctl previous
 
+bindsym $mod+o mode "launcher"
+mode "launcher" {
+    bindsym q exec $browser
+    bindsym w exec $notes_app
+    bindsym t exec steam
+    bindsym y exec heroic
+
+    # l ctrl
+    bindcode 37 mode "default"
+    bindsym space mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+r mode "resize"
 mode "resize" {
   bindsym h resize shrink width 10 px or 10 ppt
   bindsym j resize grow height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
   bindsym l resize grow width 10 px or 10 ppt
-
-  bindsym a resize shrink width 10 px or 10 ppt
-  bindsym w resize grow height 10 px or 10 ppt
-  bindsym s resize shrink height 10 px or 10 ppt
-  bindsym d resize grow width 10 px or 10 ppt
 
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
@@ -176,9 +232,8 @@ mode "resize" {
   bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
 bar {
   position top
+  modifier $mod
   status_command i3status
 }
