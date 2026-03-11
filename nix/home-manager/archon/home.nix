@@ -49,17 +49,6 @@ in
     };
   };
 
-  xsession.windowManager.i3.config.bars = [{
-    position = "top";
-    modifier = "Mod4";
-    statusCommand = ''
-      sh -c 'i3status | while read -r line; do
-        GPU=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null | tr -d " ")
-        echo "$line | GPU: $GPU%"
-      done'
-    '';
-  }];
-
   # ppkgs
   home.packages =
     systemPackages

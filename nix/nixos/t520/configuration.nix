@@ -1,8 +1,12 @@
 { config, pkgs, lib, ... }:
 
+let
+  systemPackages = import ./config/nix/home-manager/base-pkgs.nix { inherit pkgs; };
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      <home-manager/nixos>
       ./hardware-configuration.nix
     ];
 
@@ -13,9 +17,22 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  home-manager.backupFileExtension = "bak";
+  home-manager.users.t520 = { pkgs, ... }:
+  let
+    hm = ./config/nix/home-manager;
+  in
+  {
+    imports = [
+      "${hm}/modules/git.nix"
+      "${hm}/modules/zsh.nix"
+    ];
+    home.file = {
+      ".vimrc".source = "${hm}/dotfiles/vimrc";
+      ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
+    };
+    home.stateVersion = "25.11";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -32,19 +49,26 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.t520 = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "t520";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
 
-  # shell
+  security.sudo.extraRules = [
+    {
+      users = [ "t520" ];
+      commands = [
+        { command = "ALL"; options = [ "NOPASSWD" ]; }
+      ];
+    }
+  ];
+
   environment.interactiveShellInit = ''
-    alias conf='sudo vim /etc/nixos/configuration.nix'
-    alias s='sudo nixos-rebuild switch'
-    alias sw='s'
+    alias osconf='sudo vim /etc/nixos/configuration.nix'
+    alias osw='sudo nixos-rebuild switch'
   '';
 
   # Allow unfree packages
@@ -52,30 +76,42 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
+  programs.zsh.enable = true;
+
+  environment.systemPackages = systemPackages ++ (with pkgs; [
     neovim
-    wget
-    curl
-    avahi
-    gh
-    git
     python314
     uv
     ruff
     just
+    gh
     tmux
-    btop
-  ];
+  ]);
 
   # zram
   swapDevices = lib.mkForce [ ];
   zramSwap.enable = true;
 
   # services
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "yes";
   services.tailscale.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
+  };
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+  users.users.t520.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPtILK3rfBotZpjD+VRw4bxdkT+Rt5G6QmINN1LvrJ7N t520@nixos"
+  ];
 
   # disable sleep
   systemd.targets.sleep.enable = false;
@@ -96,5 +132,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
