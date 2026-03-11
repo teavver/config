@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
+
 {
   programs.tmux = {
     enable = true;
@@ -8,29 +9,6 @@
     keyMode = "vi";
     escapeTime = 0;
     historyLimit = 10000;
-    plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          # set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-strategy-nvim 'session'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '5'
-        '';
-      }
-      {
-        plugin = fzf-tmux-url;
-        extraConfig = ''
-          set -g @fzf-url-bind 't'
-          set -g @fzf-url-history-limit '2000'
-        '';
-      }
-    ];
     extraConfig = ''
       set-option -g pane-base-index 1
       set-option -g renumber-windows on
@@ -41,8 +19,7 @@
       set -g status-fg colour66
       set -g status-left "[#{session_name}] "
       set -g status-right ""
-      # set -g bell-action none
-      set -g bell-action any
+      set -g bell-action none
       set -g mode-style "fg=colour250,bg=colour236"
       unbind C-b
       unbind C-t

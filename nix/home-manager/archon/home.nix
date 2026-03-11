@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: zed*, opensnitch*, obs-studio, docker, sioyek*
+# pkgmanager: opensnitch*, obs-studio, tailscale, docker, sioyek*
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -71,6 +71,7 @@ in
       vscode
       nil
       zig
+      deno
       nodejs_24
       # xorg
       xrandr
@@ -187,10 +188,10 @@ in
         "x-scheme-handler/https"  = "zen-twilight.desktop";
         "x-scheme-handler/about"  = "zen-twilight.desktop";
         "x-scheme-handler/unknown" = "zen-twilight.desktop";
+        "application/pdf" = "zen-twilight.desktop";
         "inode/directory" = "thunar.desktop";
         "text/*" = "nvim.desktop";
         "application/json" = "nvim.desktop";
-        "application/pdf" = "sioyek.desktop";
         "audio/*" = "vlc.desktop";
         "video/*" = "vlc.desktop";
       };

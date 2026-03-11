@@ -137,6 +137,7 @@ sof-firmware
 sudo
 swtpm
 sysfsutils
+tailscale
 tcpdump
 texinfo
 thunar

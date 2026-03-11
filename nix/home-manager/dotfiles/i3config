@@ -26,11 +26,14 @@ exec --no-startup-id mictray
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id gxkb
-# exec --no-startup-id tail-tray
 exec --no-startup-id ulauncher --hide-window
-exec --no-startup-id opensnitch-ui --background
 exec --no-startup-id thunar --daemon
 exec --no-startup-id caffeine start --activate --pulseaudio --fullscreen # prevent sleep
+exec --no-startup-id opensnitch-ui --background
+# low prio
+exec --no-startup-id tail-tray
+exec --no-startup-id element-desktop
+
 
 # Bobby
 # set $mod Mod1
@@ -98,8 +101,8 @@ assign [class="Code"] 4
 assign [class="dev.zed.Zed"] 4
 assign [class="nvim"] 4
 
-assign [class="sioyek"] 5 # pdf
-assign [class="element"] 5 # matrix
+assign [class="sioyek"] 5
+assign [class="element"] 5
 assign [class="steam"] 5
 assign [class="steamwebhelper"] 5
 assign [class="sioyek"] 5
