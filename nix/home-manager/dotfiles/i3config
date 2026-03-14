@@ -1,18 +1,5 @@
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 11px
-
-# claude
-bindsym $mod+apostrophe exec voxtype record toggle && notify-send -t 2000 "STT toggle"
-
-default_orientation horizontal
-workspace_layout tabbed
-show_marks yes
-
-floating_minimum_size 60 x 30
-force_display_urgency_hint 100 ms
-popup_during_fullscreen all
-
 # wallpaper
 exec --no-startup-id xsetroot -solid "#000"
  
@@ -30,10 +17,7 @@ exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id thunar --daemon
 exec --no-startup-id caffeine start --activate --pulseaudio --fullscreen # prevent sleep
 exec --no-startup-id opensnitch-ui --background
-# low prio
-exec --no-startup-id tail-tray
 exec --no-startup-id element-desktop
-
 
 # Bobby
 # set $mod Mod1
@@ -76,9 +60,18 @@ bindsym $mod+y exec --no-startup-id maim | tee $ss_path/screenshot_$(date +%Y%m%
 bindsym $mod+u exec --no-startup-id maim --select | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
 # bindsym $mod+i exec --no-startup-id maim --window $(xdotool selectwindow) | tee $ss_path/screenshot_$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# general
+font pango:DejaVu Sans Mono 11px
+default_orientation horizontal
+workspace_layout tabbed
+show_marks yes
+
 floating_modifier $mod
 tiling_drag modifier titlebar
+
+floating_minimum_size 60 x 30
+force_display_urgency_hint 100 ms
+popup_during_fullscreen all
 
 # defaults
 set $term ghostty
@@ -102,7 +95,7 @@ assign [class="dev.zed.Zed"] 4
 assign [class="nvim"] 4
 
 assign [class="sioyek"] 5
-assign [class="element"] 5
+assign [class="Element"] 5
 assign [class="steam"] 5
 assign [class="steamwebhelper"] 5
 assign [class="sioyek"] 5
@@ -192,6 +185,9 @@ bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'suspend?' -B 'Yes, suspend' 'killall i3-nagbar && i3lock -c 202020 && systemctl suspend'"
+
+# claude
+bindsym $mod+apostrophe exec voxtype record toggle && notify-send -t 2000 "STT toggle"
 
 # music
 bindsym $mod+bracketleft exec playerctl previous

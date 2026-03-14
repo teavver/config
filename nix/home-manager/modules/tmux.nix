@@ -10,23 +10,9 @@
     historyLimit = 10000;
     plugins = with pkgs.tmuxPlugins; [
       {
-        plugin = resurrect;
-        extraConfig = ''
-          set -g @resurrect-strategy-nvim 'session'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '5'
-        '';
-      }
-      {
         plugin = fzf-tmux-url;
         extraConfig = ''
           set -g @fzf-url-bind 't'
-          set -g @fzf-url-history-limit '2000'
         '';
       }
     ];
@@ -36,16 +22,25 @@
       set-option -g focus-events on
       set-option -g default-terminal "screen-256color"
       set -g status-position top
-      set -g status-bg colour234
-      set -g status-fg colour66
       set -g status-left "[#{session_name}] "
       set -g status-right ""
-      # set -g bell-action none
       set -g bell-action any
+      set -g pane-border-lines heavy
+      set -g status-fg colour12
+      set -g window-status-current-style "bold"
+      set -g status-style bg=default
       set -g mode-style "fg=colour250,bg=colour236"
+      # splits
+      bind -n C-M-h split-window -hb
+      bind -n C-M-l split-window -h
+      bind -n C-M-k split-window -vb
+      bind -n C-M-j split-window -v
+      bind -n M-h select-pane -L
+      bind -n M-l select-pane -R
+      bind -n M-k select-pane -U
+      bind -n M-j select-pane -D
       unbind C-b
       unbind C-t
-      unbind C-r
       bind-key ` last-window
       bind-key w kill-window
       bind-key e send-prefix

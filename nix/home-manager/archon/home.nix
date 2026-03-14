@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: opensnitch*, obs-studio, tailscale, docker, sioyek*
+# pkgmanager: thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -82,7 +82,6 @@ in
       # i3 
       i3-volume
       playerctl
-      tail-tray
       mictray
       dunst
       libnotify
@@ -103,7 +102,6 @@ in
       obsidian
       transmission_4-qt
       vlc
-      thunar
       engrampa
       pavucontrol
       lxappearance
@@ -118,6 +116,7 @@ in
       # misc
       voxinput
       ydotool
+      gnome.gvfs # samba
       bore-cli # tunnel
       jetbrains-mono
       steamtinkerlaunch

@@ -38,20 +38,13 @@
     initContent = ''
       if command -v tmux &> /dev/null; then
         if [ -z "$TMUX" ]; then
-          cd $HOME
           tmux new-session -A -s 1
         fi
       fi
 
-      cd $HOME
-
       # fzf key bindings for Ctrl-R history search
       if command -v fzf &> /dev/null; then
         source <(fzf --zsh)
-      fi
-
-      if command -v brew &> /dev/null; then
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
       fi
 
       x-paste() {
