@@ -1,0 +1,26 @@
+# Push local NixOS config to a remote NixOS machine's /etc/nixos/
+# Usage: just push <folder> <user@host>
+# Example: just push t520 t520@nixos.local
+
+push target host:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    rsync -avz \
+        --exclude='.*' \
+        --rsync-path='sudo rsync' \
+        ./{{ target }}/ {{ host }}:/etc/nixos/
+
+# Pull /etc/nixos/ from a remote NixOS machine for first-time setup
+# Usage: just pull <folder> <user@host>
+# Example: just pull t520 t520@nixos.local
+
+pull target host:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p ./{{ target }}
+    excludes=$(ssh {{ host }} "find /etc/nixos -name .git -type d -printf '--exclude=%h/\n'" | sed 's|/etc/nixos/||')
+    rsync -avz \
+        --exclude='*.un~' \
+        --exclude='.*.un~' \
+        $excludes \
+        {{ host }}:/etc/nixos/ ./{{ target }}/

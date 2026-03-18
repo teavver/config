@@ -1,40 +1,47 @@
-{ config, pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   systemPackages = import ./config/nix/home-manager/base-pkgs.nix { inherit pkgs; };
 in
 {
-  imports =
-    [
-      <home-manager/nixos>
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    (import ./config/nix/nixos/base-server.nix { user = "t520"; })
+    <home-manager/nixos>
+    ./gitea.nix
+    ./microbin.nix
+    ./vaultwarden.nix
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  boot.kernelParams = [ "systemd.swap=0" ];
 
   home-manager.backupFileExtension = "bak";
-  home-manager.users.t520 = { pkgs, ... }:
-  let
-    hm = ./config/nix/home-manager;
-  in
-  {
-    imports = [
-      "${hm}/modules/git.nix"
-      "${hm}/modules/zsh.nix"
-    ];
-    home.file = {
-      ".vimrc".source = "${hm}/dotfiles/vimrc";
-      ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
+  home-manager.users.t520 =
+    { pkgs, ... }:
+    let
+      hm = ./config/nix/home-manager;
+    in
+    {
+      imports = [
+        "${hm}/modules/git.nix"
+        "${hm}/modules/zsh.nix"
+      ];
+      home.file = {
+        ".vimrc".source = "${hm}/dotfiles/vimrc";
+        ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
+      };
+      home.stateVersion = "25.11";
     };
-    home.stateVersion = "25.11";
-  };
 
   # Enable networking
+  networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -53,71 +60,45 @@ in
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "t520";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
   };
 
-  security.sudo.extraRules = [
-    {
-      users = [ "t520" ];
-      commands = [
-        { command = "ALL"; options = [ "NOPASSWD" ]; }
-      ];
-    }
-  ];
+  environment.systemPackages =
+    systemPackages
+    ++ (with pkgs; [
+      neovim
+      gh
+      tmux
 
-  environment.interactiveShellInit = ''
-    alias osconf='sudo vim /etc/nixos/configuration.nix'
-    alias osw='sudo nixos-rebuild switch'
-  '';
+      python314
+      uv
+      ruff
+      just
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  programs.zsh.enable = true;
-
-  environment.systemPackages = systemPackages ++ (with pkgs; [
-    neovim
-    python314
-    uv
-    ruff
-    just
-    gh
-    tmux
-  ]);
+      toybox
+      openssl
+      vaultwarden
+      parted
+      btrfs-progs
+    ]);
 
   # zram
   swapDevices = lib.mkForce [ ];
   zramSwap.enable = true;
 
   # services
-  services.tailscale.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-    };
-  };
-  services.openssh = {
+  # uptime
+  services.uptime-kuma = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
+      HOST = "0.0.0.0";
+      PORT = "3001";
     };
   };
-  users.users.t520.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPtILK3rfBotZpjD+VRw4bxdkT+Rt5G6QmINN1LvrJ7N t520@nixos"
-  ];
-
-  # disable sleep
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
