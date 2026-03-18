@@ -10,7 +10,7 @@
   ];
 
   environment.interactiveShellInit = ''
-    alias osconf='sudo vim /etc/nixos/configuration.nix'
+    alias osconf='sudo -E vim /etc/nixos/configuration.nix'
     alias osw='sudo nixos-rebuild switch'
   '';
 

@@ -10,10 +10,10 @@ with pkgs;
   tree
   rsync
   htop
-  btop
   bat
   jq
   git
+  gh
   ripgrep
   _7zz
   rar

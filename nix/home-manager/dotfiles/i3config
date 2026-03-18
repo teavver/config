@@ -184,7 +184,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'suspend?' -B 'Yes, suspend' 'killall i3-nagbar && i3lock -c 202020 && systemctl suspend'"
+bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'suspend?' -B 'Yes, suspend' 'killall i3-nagbar && systemctl suspend'"
 
 # claude
 bindsym $mod+apostrophe exec voxtype record toggle && notify-send -t 2000 "STT toggle"

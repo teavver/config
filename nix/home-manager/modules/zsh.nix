@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  programs.zsh = with config; {
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -46,6 +46,25 @@
       if command -v fzf &> /dev/null; then
         source <(fzf --zsh)
       fi
+
+      # gitea setup
+      gitea-setup() {
+        local repo_name=$(basename $(git remote get-url origin) .git)
+        local user=$(git remote get-url origin | sed -n 's|.*github.com[:/]\([^/]*\)/.*|\1|p')
+        local gitea_url="ssh://gitea@t520-nixos:2222/''${user}/''${repo_name}.git"
+        local origin_url=$(git remote get-url origin)
+
+        if ! git remote | grep -qx gitea; then
+          git remote add gitea "$gitea_url"
+        else
+          git remote set-url gitea "$gitea_url"
+        fi
+
+        git remote set-url --push origin "$origin_url"
+        git remote set-url --add --push origin "$gitea_url"
+
+        echo "gitea enabled for ''${repo_name}"
+      }
 
       x-paste() {
         local clip

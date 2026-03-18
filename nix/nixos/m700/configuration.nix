@@ -1,29 +1,29 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ pkgs, ... }:
 
 let
   systemPackages = import ./config/nix/home-manager/base-pkgs.nix { inherit pkgs; };
 in
 {
   imports = [
-    (import ./config/nix/nixos/base-server.nix { user = "t520"; })
+    (import ./config/nix/nixos/base-server.nix { user = "m700"; })
     <home-manager/nixos>
-    ./gitea.nix
-    ./microbin.nix
-    ./vaultwarden.nix
+    ./filesync.nix
     ./hardware-configuration.nix
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "systemd.swap=0" ];
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   home-manager.backupFileExtension = "bak";
-  home-manager.users.t520 =
+  home-manager.users.m700 =
     { pkgs, ... }:
     let
       hm = ./config/nix/home-manager;
@@ -41,13 +41,11 @@ in
     };
 
   # Enable networking
-  networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.hostName = "nixos"; # Define your hostname.
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure keymap in X11
@@ -56,10 +54,10 @@ in
     variant = "";
   };
 
-  users.users.t520 = {
-    shell = pkgs.zsh;
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.m700 = {
     isNormalUser = true;
-    description = "t520";
+    description = "m700";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -67,36 +65,16 @@ in
     packages = [ ];
   };
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
   environment.systemPackages =
     systemPackages
     ++ (with pkgs; [
-      btop
       neovim
-
-      python314
-      uv
-      ruff
-      just
-
-      toybox
-      openssl
-      vaultwarden
+      btop
     ]);
 
-  # zram
-  swapDevices = lib.mkForce [ ];
-  zramSwap.enable = true;
-
   # services
-  # uptime
-  services.uptime-kuma = {
-    enable = true;
-    settings = {
-      HOST = "0.0.0.0";
-      PORT = "3001";
-    };
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -110,4 +88,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
+
 }

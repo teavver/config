@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*
+# pkgmanager: i3lock, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -62,6 +62,7 @@ in
       zig
       deno
       nodejs_24
+      basedpyright
       # xorg
       xrandr
       xclip
@@ -98,11 +99,10 @@ in
       zed-editor-fhs
       chromium
       ghostty
-      alacritty
       obsidian
       transmission_4-qt
       vlc
-      engrampa
+      engrampa # archiver
       pavucontrol
       lxappearance
       gimp2
@@ -121,7 +121,7 @@ in
       jetbrains-mono
       steamtinkerlaunch
       yad # steamtinkerlaunch
-      heroic-unwrapped
+      # heroic-unwrapped
     ]);
 
   home.file = {
@@ -157,7 +157,7 @@ in
 
   home.sessionVariables = {
     BROWSER="zen-twilight"; # ulauncher
-    DXVK_FRAME_RATE = "144";
+    # DXVK_FRAME_RATE = "144";
     __GL_GSYNC_ALLOWED = "1";
     __GL_VRR_ALLOWED   = "1";
     __GL_SYNC_TO_VBLANK = "0";
@@ -204,8 +204,8 @@ in
     enable = true;
     gpu.nvidia = {
       enable = true;
-      version = "590.48.01";
-      sha256 = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
+      version = "595.45.04";
+      sha256 = "sha256-zUllSSRsuio7dSkcbBTuxF+dN12d6jEPE0WgGvVOj14=";
     };
   };
 

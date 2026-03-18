@@ -46,9 +46,12 @@ efibootmgr
 efitools
 egl-wayland
 ethtool
+ex-vi-compat
 exfatprogs
 f2fs-tools
+firefox
 flite
+garcon
 git
 github-cli
 gnome-disk-utility
@@ -61,6 +64,7 @@ hdparm
 hwdetect
 hyprwhspr
 i3-wm
+i3lock
 i3status
 inetutils
 iptables-nft
@@ -166,7 +170,16 @@ wine-cachyos
 wireless-regdb
 wireplumber
 wpa_supplicant
+xfce4-appfinder
+xfce4-panel
+xfce4-power-manager
+xfce4-session
+xfce4-settings
+xfce4-terminal
+xfdesktop
 xfsprogs
+xfwm4
+xfwm4-themes
 xl2tpd
 xorg-server
 xorg-server-xvfb
