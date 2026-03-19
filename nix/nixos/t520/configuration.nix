@@ -12,7 +12,7 @@ in
     (import ./config/nix/nixos/base-server.nix { user = "t520"; })
     <home-manager/nixos>
     ./gitea.nix
-    ./microbin.nix
+    ./privatebin.nix
     ./vaultwarden.nix
     ./hardware-configuration.nix
   ];
