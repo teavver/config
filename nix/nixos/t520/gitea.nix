@@ -9,8 +9,9 @@
         ROOT_URL = "http://t520-nixos:3000/";
         HTTP_ADDR = "0.0.0.0";
         HTTP_PORT = 3000;
-        START_SSH_SERVER = true;
-        SSH_PORT = 2222;
+        DISABLE_SSH = false;
+        START_SSH_SERVER = false;
+        SSH_PORT = 22;
       };
       service = {
         DISABLE_REGISTRATION = true;
