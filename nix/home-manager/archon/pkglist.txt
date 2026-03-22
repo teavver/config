@@ -3,6 +3,7 @@ alsa-plugins
 alsa-utils
 amd-ucode
 arch-install-scripts
+ayatana-ido
 base
 base-devel
 bind
@@ -26,6 +27,8 @@ cachyos-rate-mirrors
 cachyos-snapper-support
 cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
+ccid
+chrpath
 chwd
 cpupower
 cryptsetup
@@ -51,6 +54,7 @@ exfatprogs
 f2fs-tools
 firefox
 flite
+fvm
 garcon
 git
 github-cli
@@ -61,6 +65,7 @@ gst-plugins-ugly
 gvfs
 gvfs-smb
 hdparm
+heroic-games-launcher-bin
 hwdetect
 hyprwhspr
 i3-wm
@@ -74,6 +79,9 @@ less
 lib32-nvidia-utils
 lib32-opencl-nvidia
 lib32-vulkan-icd-loader
+libayatana-appindicator
+libayatana-indicator
+libfido2
 libva-nvidia-driver
 lightdm
 lightdm-gtk-greeter
@@ -129,6 +137,19 @@ plymouth
 power-profiles-daemon
 protonup-qt
 python
+python-click
+python-fastjsonschema
+python-fido2
+python-jaraco.classes
+python-jeepney
+python-keyring
+python-lark-parser
+python-mss
+python-poetry-core
+python-pskc
+python-pyscard
+python-secretstorage
+python-zxing-cpp
 qemu-full
 rebuild-detector
 reflector
@@ -185,5 +206,6 @@ xorg-server
 xorg-server-xvfb
 xorg-xinit
 xorg-xrandr
+yubikey-manager
 zen-twilight-bin
 zsh

@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: i3lock, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*
+# pkgmanager: i3lock, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic, libfido2
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -26,14 +26,6 @@ in
       "ipv6".enable = false;
       "battery all".enable = false;
       "ethernet _first_".enable = false;
-      "volume master" = {
-        position = 10;
-        settings = {
-          format = "(%volume)";
-          format_muted = "(m)";
-          device = "pulse";
-        };
-      };
       "disk /" = {
         position = -10;
         settings.format = "/ %avail";
@@ -46,8 +38,14 @@ in
         position = -8;
         settings.format = "su800 %avail";
       };
+      "cpu_usage" = {
+        position = 5;
+        settings.format = "%usage";
+      };
     };
   };
+
+  services.syncthing.enable = true;
 
   # ppkgs
   home.packages =
@@ -62,7 +60,9 @@ in
       zig
       deno
       nodejs_24
+      bun
       basedpyright
+      duckdb
       # xorg
       xrandr
       xclip
@@ -93,7 +93,7 @@ in
       caffeine-ng # sleep
       pasystray # audio
       # gui
-      discord
+      # discord
       element-desktop
       virt-manager
       zed-editor-fhs
@@ -106,22 +106,23 @@ in
       pavucontrol
       lxappearance
       gimp2
-      snapper-gui
       ulauncher
       # cli
       opencode
       claude-code
-      claude-monitor
       s-tui # stresstest
       # misc
-      voxinput
-      ydotool
+      yubioath-flutter
+      # pam_u2f # yubikey
+      # yubico-pam # yubikey
+      voxinput # claude
+      ydotool # voxinput
       gnome.gvfs # samba
       bore-cli # tunnel
       jetbrains-mono
       steamtinkerlaunch
       yad # steamtinkerlaunch
-      # heroic-unwrapped
+      # heroic # 3-17 broken
     ]);
 
   home.file = {
@@ -136,6 +137,7 @@ in
     ".config/ulauncher/settings.json".text = builtins.toJSON {
       hotkey-show-app = "<Primary><Alt><Shift>bracketright";
     };
+    ".ssh/config".source = dotfiles/ssh;
     ".vimrc".source = dotfiles/vimrc;
     ".config/i3/config".source = dotfiles/i3config;
     ".config/ghostty/config".source = dotfiles/ghostty;
@@ -157,10 +159,7 @@ in
 
   home.sessionVariables = {
     BROWSER="zen-twilight"; # ulauncher
-    # DXVK_FRAME_RATE = "144";
-    __GL_GSYNC_ALLOWED = "1";
-    __GL_VRR_ALLOWED   = "1";
-    __GL_SYNC_TO_VBLANK = "0";
+    DXVK_FRAME_RATE = "150";
   };
 
   xdg = {

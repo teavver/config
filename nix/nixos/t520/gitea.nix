@@ -10,8 +10,8 @@
         HTTP_ADDR = "0.0.0.0";
         HTTP_PORT = 3000;
         DISABLE_SSH = false;
-        START_SSH_SERVER = false;
-        SSH_PORT = 22;
+        START_SSH_SERVER = true;
+        SSH_PORT = 2222;
       };
       service = {
         DISABLE_REGISTRATION = true;

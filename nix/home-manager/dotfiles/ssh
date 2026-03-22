@@ -1,0 +1,13 @@
+Host t520
+    HostName nixos.local
+    User t520
+    IdentityFile ~/.ssh/id_ed25519_sk
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
+Host m700
+    HostName nixos-2.local
+    User m700
+    IdentityFile ~/.ssh/id_ed25519_sk
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes

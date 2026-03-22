@@ -53,6 +53,8 @@ nnoremap <leader>s /
 vnoremap <leader>s /
 nnoremap <leader>j <<_
 nnoremap <leader>k >>_
+vnoremap <leader>j <gv
+vnoremap <leader>k >gv
 " paste
 inoremap <C-v> <Esc>"+gp`]a
 nnoremap du d^
