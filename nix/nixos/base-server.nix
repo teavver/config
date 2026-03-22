@@ -46,6 +46,7 @@
   };
   users.users.${user}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPtILK3rfBotZpjD+VRw4bxdkT+Rt5G6QmINN1LvrJ7N teaver@archon"
+    "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIP+N/p/puqhu+GST70cD+bTU4LZmYwFDRPIbBSdPgUZdAAAABHNzaDo= yubikey-5-nfc"
   ];
 
   # disable sleep
