@@ -71,3 +71,7 @@ cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 " ctrl bksp del word
 inoremap <C-H> <C-w>
+" close
+nnoremap <C-w> :bd<CR>
+vnoremap <C-w> <Esc>:bd<CR>
+inoremap <C-w> <Esc>:bd<CR>

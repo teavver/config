@@ -62,6 +62,9 @@ in
       nodejs_24
       bun
       basedpyright
+      typescript-language-server
+      marksman
+      zls
       # xorg
       xrandr
       xclip
@@ -79,7 +82,7 @@ in
       xwininfo
       xdg-utils
       xkb-switch-i3
-      # i3 
+      # i3
       i3-volume
       playerctl
       mictray
@@ -88,11 +91,10 @@ in
       maim
       gnome-themes-extra
       networkmanagerapplet
-      gxkb #kb applet
+      gxkb # kb applet
       caffeine-ng # sleep
       pasystray # audio
       # gui
-      # discord
       element-desktop
       virt-manager
       zed-editor-fhs
@@ -111,8 +113,6 @@ in
       s-tui # stresstest
       # misc
       yubioath-flutter
-      # pam_u2f # yubikey
-      # yubico-pam # yubikey
       voxinput # claude
       ydotool # voxinput
       gnome.gvfs # samba
@@ -139,24 +139,24 @@ in
     ".vimrc".source = dotfiles/vimrc;
     ".config/i3/config".source = dotfiles/i3config;
     ".config/ghostty/config".source = dotfiles/ghostty;
-    ".config/nvim/init.lua".text = ''vim.cmd("source ~/.vimrc")'';
+    ".config/nvim/init.lua".source = dotfiles/nvim.lua;
     ".obsidian.vimrc".source = dotfiles/obsidian;
   };
 
-  home.activation.obsidianVaultLink = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.obsidianVaultLink = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
       ~/.obsidian.vimrc \
       /mnt/sn5000/obsidian/remote/.obsidian.vimrc
   '';
 
-  home.activation.steamPermFix = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.steamPermFix = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     # /etc/sudoers.d/10-steam-perm-fix
     # teaver ALL=(root) NOPASSWD: /usr/bin/chown -R teaver\:teaver /mnt/su800/win/steam
     /usr/bin/sudo /usr/bin/chown -R teaver:teaver /mnt/su800/win/steam
   '';
 
   home.sessionVariables = {
-    BROWSER="zen-twilight"; # ulauncher
+    BROWSER = "zen-twilight"; # ulauncher
     DXVK_FRAME_RATE = "150";
   };
 
@@ -169,9 +169,9 @@ in
       enable = true;
       defaultApplications = {
         "text/html" = "zen-twilight.desktop";
-        "x-scheme-handler/http"   = "zen-twilight.desktop";
-        "x-scheme-handler/https"  = "zen-twilight.desktop";
-        "x-scheme-handler/about"  = "zen-twilight.desktop";
+        "x-scheme-handler/http" = "zen-twilight.desktop";
+        "x-scheme-handler/https" = "zen-twilight.desktop";
+        "x-scheme-handler/about" = "zen-twilight.desktop";
         "x-scheme-handler/unknown" = "zen-twilight.desktop";
         "application/pdf" = "zen-twilight.desktop";
         "inode/directory" = "thunar.desktop";

@@ -21,6 +21,7 @@ with pkgs;
   zoxide
   dust
   fzf
+  fd
   age
   avahi
   tldr
