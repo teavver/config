@@ -17,3 +17,4 @@ Host m700
     IdentityFile ~/.ssh/id_ed25519_sk
     IdentityFile ~/.ssh/id_ed25519
     IdentitiesOnly yes
+

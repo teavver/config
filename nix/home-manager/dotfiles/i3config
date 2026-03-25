@@ -67,11 +67,9 @@ workspace_layout tabbed
 show_marks yes
 
 floating_modifier $mod
-tiling_drag modifier titlebar
-
 floating_minimum_size 60 x 30
 force_display_urgency_hint 100 ms
-popup_during_fullscreen all
+popup_during_fullscreen smart
 
 # defaults
 set $term ghostty
@@ -83,7 +81,7 @@ set $notes_app obsidian
 assign [class="zen"] 1
 assign [class="firefox"] 1
 assign [class="twilight"] 1
-assign [class="chromium"] 1
+assign [class="*chrom*"] 1
 
 assign [class="vlc"] 2
 assign [class="obsidian"] 2
@@ -100,7 +98,6 @@ assign [class="steam"] 5
 assign [class="steamwebhelper"] 5
 assign [class="sioyek"] 5
 assign [class="heroic"] 5
-assign [class="sc2_x64.exe"] 6
 
 # focus
 focus_on_window_activation smart

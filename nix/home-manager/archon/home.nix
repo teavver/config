@@ -62,7 +62,6 @@ in
       nodejs_24
       bun
       basedpyright
-      duckdb
       # xorg
       xrandr
       xclip
@@ -97,7 +96,6 @@ in
       element-desktop
       virt-manager
       zed-editor-fhs
-      chromium
       ghostty
       obsidian
       transmission_4-qt

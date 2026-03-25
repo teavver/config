@@ -25,6 +25,8 @@
       clip = "xclip -selection clipboard";
       python = "python3";
       conf = "vim ~/.config/home-manager/home.nix";
+      zed = "editor zeditor";
+      code = "editor code";
     };
 
     history = {
@@ -88,11 +90,13 @@
         alias cd='z'
       fi
 
-      code() {
+      editor() {
+        local cmd="$1"
+        shift
         if [ $# -eq 0 ]; then
-          command code .
+          command "$cmd" .
         else
-          command code "$1"
+          command "$cmd" "$@"
         fi
       }
 
