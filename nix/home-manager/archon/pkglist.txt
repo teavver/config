@@ -54,7 +54,6 @@ f2fs-tools
 firefox
 flite
 garcon
-ghostty
 git
 github-cli
 gnome-disk-utility

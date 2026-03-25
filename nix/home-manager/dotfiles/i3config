@@ -8,15 +8,16 @@ exec_always --no-startup-id setxkbmap -layout us,pl
 bindsym $mod+Shift+grave exec "xkb-switch -n && notify-send -t 3000 \\"kb layout: $(xkb-switch -p)\\""
 
 # applets / notifications
+exec --no-startup-id gxkb
 exec --no-startup-id dunst
 exec --no-startup-id mictray
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
-exec --no-startup-id gxkb
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id thunar --daemon
 exec --no-startup-id caffeine start --activate --pulseaudio --fullscreen # prevent sleep
 exec --no-startup-id opensnitch-ui --background
+exec --no-startup-id tailscale-systray
 exec --no-startup-id element-desktop
 
 # Bobby

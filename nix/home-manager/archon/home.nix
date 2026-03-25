@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: ghostty, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
+# pkgmanager: thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -58,6 +58,7 @@ in
   home.packages =
     systemPackages
     ++ (with pkgs; [
+      ghostty
       just
       uv
       ruff
@@ -98,6 +99,7 @@ in
       maim
       gnome-themes-extra
       networkmanagerapplet
+      tailscale-systray
       gxkb # kb applet
       caffeine-ng # sleep
       pasystray # audio
@@ -125,7 +127,11 @@ in
       steamtinkerlaunch
       yad # steamtinkerlaunch
       # heroic # 3-17 broken
+      inter
       jetbrains-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
     ]);
 
   home.file = {
@@ -188,6 +194,40 @@ in
     };
   };
 
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-icon-theme;
+    };
+
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+
+    gtk3.extraConfig = {
+      gtk-enable-event-sounds = false;
+      gtk-enable-input-feedback-sounds = false;
+    };
+  };
+
+  fonts.fontconfig = {
+    enable = true;
+    antialiasing = true;
+    hinting = "slight";
+    subpixelRendering = "none";
+  };
+
+  xresources.properties = {
+    "Xft.antialias" = 1;
+    "Xft.hinting" = 1;
+    "Xft.hintstyle" = "hintslight";
+    "Xft.rgba" = "none";
+    "Xft.lcdfilter" = "lcddefault";
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -201,6 +241,8 @@ in
     enableZshIntegration = true;
     git = true;
   };
+
+  targets.genericLinux.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.nvidia.acceptLicense = true;
