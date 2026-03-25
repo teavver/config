@@ -197,12 +197,13 @@ in
     git = true;
   };
 
+  # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-gpu-sudo
   targets.genericLinux = {
     enable = true;
     gpu.nvidia = {
       enable = true;
-      version = "595.45.04";
-      sha256 = "sha256-zUllSSRsuio7dSkcbBTuxF+dN12d6jEPE0WgGvVOj14=";
+      version = "595.58.03";
+      sha256 = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
     };
   };
 

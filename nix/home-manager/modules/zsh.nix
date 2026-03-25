@@ -27,6 +27,7 @@
       conf = "vim ~/.config/home-manager/home.nix";
       zed = "editor zeditor";
       code = "editor code";
+      copy = "xclip -selection clipboard";
     };
 
     history = {
@@ -98,6 +99,16 @@
         else
           command "$cmd" "$@"
         fi
+      }
+
+      zenmode() {
+        local config="$HOME/.config/ghostty/config"
+        if grep -q 'window-padding-x = 220' "$config"; then
+          sed -i 's/window-padding-x = 220/window-padding-x = 0/' "$config"
+        else
+          sed -i 's/window-padding-x = 0/window-padding-x = 220/' "$config"
+        fi
+        pkill -USR2 ghostty
       }
 
       zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
