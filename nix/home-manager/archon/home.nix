@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: i3lock, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic, libfido2
+# pkgmanager: ghostty, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -18,6 +18,13 @@ in
 
   home.enableNixpkgsReleaseCheck = false;
   home.stateVersion = "25.11";
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    x11.enable = true;
+    size = 16;
+  };
 
   programs.i3status = {
     enable = true;
@@ -98,10 +105,10 @@ in
       element-desktop
       virt-manager
       zed-editor-fhs
-      ghostty
+      # ghostty
       obsidian
       transmission_4-qt
-      vlc
+      # vlc
       engrampa # archiver
       pavucontrol
       lxappearance
@@ -115,12 +122,10 @@ in
       yubioath-flutter
       voxinput # claude
       ydotool # voxinput
-      gnome.gvfs # samba
-      bore-cli # tunnel
-      jetbrains-mono
       steamtinkerlaunch
       yad # steamtinkerlaunch
       # heroic # 3-17 broken
+      jetbrains-mono
     ]);
 
   home.file = {
@@ -195,16 +200,6 @@ in
     enable = true;
     enableZshIntegration = true;
     git = true;
-  };
-
-  # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-gpu-sudo
-  targets.genericLinux = {
-    enable = true;
-    gpu.nvidia = {
-      enable = true;
-      version = "595.58.03";
-      sha256 = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
-    };
   };
 
   nixpkgs.config.allowUnfree = true;

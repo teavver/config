@@ -54,6 +54,7 @@ f2fs-tools
 firefox
 flite
 garcon
+ghostty
 git
 github-cli
 gnome-disk-utility
@@ -79,6 +80,7 @@ lib32-opencl-nvidia
 lib32-vulkan-icd-loader
 libfido2
 libva-nvidia-driver
+libva-utils
 lightdm
 lightdm-gtk-greeter
 limine
@@ -167,6 +169,9 @@ upower
 usb_modeswitch
 usbutils
 vim
+vlc-plugin-ffmpeg
+vlc-plugin-x264
+vlc-plugin-x265
 voxtype-bin
 vulkan-icd-loader
 which
