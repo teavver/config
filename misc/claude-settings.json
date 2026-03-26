@@ -1,0 +1,16 @@
+{
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\033Ptmux;\\033\\033]9;Claude @ %s\\007\\033\\\\\\a' \"$(basename $PWD)\" > /dev/tty"
+          }
+        ]
+      }
+    ]
+  }
+}

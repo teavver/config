@@ -8,6 +8,7 @@ exec_always --no-startup-id setxkbmap -layout us,pl
 bindsym $mod+Shift+grave exec "xkb-switch -n && notify-send -t 3000 \\"kb layout: $(xkb-switch -p)\\""
 
 # applets / notifications
+exec --no-startup-id xcompmgr
 exec --no-startup-id gxkb
 exec --no-startup-id dunst
 exec --no-startup-id mictray

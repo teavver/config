@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-# pkgmanager: thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
+# pkgmanager: ghostty, vlc, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
 let
@@ -58,7 +58,6 @@ in
   home.packages =
     systemPackages
     ++ (with pkgs; [
-      ghostty
       just
       uv
       ruff
@@ -91,6 +90,7 @@ in
       xdg-utils
       xkb-switch-i3
       # i3
+      xcompmgr # transparency
       i3-volume
       playerctl
       mictray
@@ -107,10 +107,8 @@ in
       element-desktop
       virt-manager
       zed-editor-fhs
-      # ghostty
       obsidian
       transmission_4-qt
-      # vlc
       engrampa # archiver
       pavucontrol
       lxappearance

@@ -78,10 +78,10 @@ vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true })
 -- quit: ask for confirmation when last buffer
 vim.keymap.set("n", "<leader>q", function()
   if #vim.fn.getbufinfo({ buflisted = 1 }) <= 1 then
-    vim.api.nvim_echo({ { "Quit? [q] yes  [n/Esc] cancel", "WarningMsg" } }, false, {})
+    vim.api.nvim_echo({ { "Quit? [q/Enter] yes  [n/Esc] cancel", "WarningMsg" } }, false, {})
     local char = vim.fn.getcharstr()
     vim.cmd("echo ''")
-    if char == "q" then vim.cmd("q") end
+    if char == "q" or char == "\r" then vim.cmd("q") end
   else
     vim.cmd("bd")
   end
