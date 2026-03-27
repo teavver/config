@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 # pkgmanager: ghostty, vlc, thunar (plugins), opensnitch*, obs-studio, tailscale, docker, sioyek*, heroic*, libfido2
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
@@ -119,7 +123,6 @@ in
       claude-code
       s-tui # stresstest
       # misc
-      yubioath-flutter
       voxinput # claude
       ydotool # voxinput
       steamtinkerlaunch

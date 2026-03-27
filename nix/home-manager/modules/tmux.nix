@@ -30,7 +30,7 @@
       set -g window-status-current-style "bold"
       set -g status-style bg=default
       set -g mode-style "fg=colour250,bg=colour236"
-      set -g allow-passthrough on
+      set -g allow-passthrough all
       # splits
       bind -n C-M-h split-window -hb
       bind -n C-M-l split-window -h

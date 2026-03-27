@@ -74,9 +74,17 @@
         clip=$(xsel --clipboard --output 2>/dev/null || echo -n "")
         LBUFFER="$LBUFFER$clip"
       }
-
       zle -N x-paste
       bindkey '^V' x-paste
+
+      x-cut-line() {
+        echo -n "$BUFFER" | clipcopy
+        BUFFER=""
+        CURSOR=0
+      }
+      zle -N x-cut-line
+      bindkey '^U' x-cut-line
+
       bindkey '^Z' undo
       bindkey '^Y' redo
 

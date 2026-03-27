@@ -12,6 +12,7 @@ bluez-libs
 bluez-obex
 bluez-utils
 btop
+btrbk
 btrfs-assistant
 btrfs-progs
 btrfsmaintenance
@@ -69,6 +70,7 @@ hwdetect
 i3-wm
 i3lock
 i3status
+iftop
 inetutils
 iptables-nft
 iwd
@@ -100,6 +102,7 @@ ly
 man-db
 man-pages
 mangohud
+mbuffer
 mdadm
 mesa-utils
 mkinitcpio
@@ -124,6 +127,7 @@ opensnitch
 openssl-1.1
 os-prober
 pacman-contrib
+pam-u2f
 paru
 pavucontrol
 perl
@@ -193,5 +197,6 @@ xorg-server
 xorg-server-xvfb
 xorg-xinit
 xorg-xrandr
+yubico-authenticator-bin
 zen-twilight-bin
 zsh

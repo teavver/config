@@ -1,16 +1,21 @@
 { pkgs, ... }:
 
 {
+  # archon bak
   fileSystems."/data" = {
-    device = "/dev/disk/by-label/lexar";
-    fsType = "ext4";
+    device = "/dev/disk/by-label/archon-backups";
+    fsType = "btrfs";
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
 
   # folder sync
   services.syncthing = {
     enable = true;
     user = "m700";
-    dataDir = "/data";
+    dataDir = "/data/syncthing";
     guiAddress = "0.0.0.0:8384";
   };
 

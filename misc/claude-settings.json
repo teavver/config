@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\033Ptmux;\\033\\033]9;Claude @ %s\\007\\033\\\\\\a' \"$(basename $PWD)\" > /dev/tty"
+            "command": "printf '\\a' > /dev/pts/0; printf '\\ePtmux;\\e\\e]9;Claude finished\\a\\e\\\\' > /dev/pts/0"
           }
         ]
       }

@@ -72,6 +72,10 @@ in
     ++ (with pkgs; [
       neovim
       btop
+
+      busybox
+      btrfs-progs
+      btrbk
     ]);
 
   # services
