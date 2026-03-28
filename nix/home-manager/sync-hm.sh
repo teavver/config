@@ -2,7 +2,7 @@
 set -e
 
 SRC="$HOME/.config/home-manager"
-DEST="$HOME/dev/config/nix/home-manager"
+DEST="$HOME/code/config/nix/home-manager"
 
 [[ ! -d "$SRC" ]] && echo "Error: $SRC not found" && exit 1
 

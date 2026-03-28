@@ -191,6 +191,11 @@ in
         "application/json" = "nvim.desktop";
         "audio/*" = "vlc.desktop";
         "video/*" = "vlc.desktop";
+        "application/zip" = "engrampa.desktop";
+        "application/gzip" = "engrampa.desktop";
+        "application/x-tar" = "engrampa.desktop";
+        "application/x-compressed-tar" = "engrampa.desktop";
+        "application/x-7z-compressed" = "engrampa.desktop";
       };
     };
   };

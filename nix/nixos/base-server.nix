@@ -1,4 +1,5 @@
 { user }:
+{ pkgs, ... }:
 
 # base config for nixos servers
 {
@@ -16,6 +17,7 @@
 
   # programs
   programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   programs.tmux = {
     enable = true;
     baseIndex = 1;

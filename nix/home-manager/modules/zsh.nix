@@ -50,23 +50,19 @@
         source <(fzf --zsh)
       fi
 
-      # gitea setup
-      gitea-setup() {
+      forgejo-setup() {
         local repo_name=$(basename $(git remote get-url origin) .git)
         local user=$(git remote get-url origin | sed -n 's|.*github.com[:/]\([^/]*\)/.*|\1|p')
-        local gitea_url="ssh://gitea@t520-nixos:2222/''${user}/''${repo_name}.git"
+        local forgejo_url="ssh://forgejo@t520-nixos:2222/''${user}/''${repo_name}.git"
         local origin_url=$(git remote get-url origin)
-
-        if ! git remote | grep -qx gitea; then
-          git remote add gitea "$gitea_url"
+        if ! git remote | grep -qx forgejo; then
+          git remote add forgejo "$forgejo_url"
         else
-          git remote set-url gitea "$gitea_url"
+          git remote set-url forgejo "$forgejo_url"
         fi
-
         git remote set-url --push origin "$origin_url"
-        git remote set-url --add --push origin "$gitea_url"
-
-        echo "gitea enabled for ''${repo_name}"
+        git remote set-url --add --push origin "$forgejo_url"
+        echo "forgejo enabled for ''${repo_name}"
       }
 
       x-paste() {

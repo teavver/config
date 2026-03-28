@@ -11,7 +11,7 @@ in
   imports = [
     (import ./config/nix/nixos/base-server.nix { user = "t520"; })
     <home-manager/nixos>
-    ./gitea.nix
+    ./forgejo.nix
     ./privatebin.nix
     ./vaultwarden.nix
     ./hardware-configuration.nix

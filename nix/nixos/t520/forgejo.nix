@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  services.gitea = {
+  services.forgejo = {
     enable = true;
     settings = {
       server = {
