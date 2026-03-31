@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 
@@ -63,6 +64,7 @@ in
     systemPackages
     ++ (with pkgs; [
       just
+      just-lsp
       uv
       ruff
       pyright
@@ -110,7 +112,6 @@ in
       # gui
       element-desktop
       virt-manager
-      zed-editor-fhs
       obsidian
       transmission_4-qt
       engrampa # archiver
@@ -123,16 +124,17 @@ in
       claude-code
       s-tui # stresstest
       # misc
+      smug # tmux presets
+      tmux-sessionizer
       voxinput # claude
       ydotool # voxinput
       steamtinkerlaunch
       yad # steamtinkerlaunch
       # heroic # 3-17 broken
-      inter
-      jetbrains-mono
+      # fonts
       noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
+      nerd-fonts.meslo-lg
+      nerd-fonts.jetbrains-mono
     ]);
 
   home.file = {
@@ -147,6 +149,9 @@ in
     ".config/ulauncher/settings.json".text = builtins.toJSON {
       hotkey-show-app = "<Primary><Alt><Shift>bracketright";
     };
+    ".config/tms/config.toml".text = ''
+      search_paths = ["${config.home.homeDirectory}/code"]
+    '';
     ".ssh/config".source = dotfiles/ssh;
     ".vimrc".source = dotfiles/vimrc;
     ".config/i3/config".source = dotfiles/i3config;
@@ -224,6 +229,11 @@ in
     antialiasing = true;
     hinting = "slight";
     subpixelRendering = "none";
+    defaultFonts = {
+      sansSerif = [ "Noto Sans" ];
+      serif = [ "Noto Serif" ];
+      monospace = [ "MesloLGS Nerd Font" ];
+    };
   };
 
   xresources.properties = {

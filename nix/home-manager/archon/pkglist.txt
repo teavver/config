@@ -113,10 +113,6 @@ networkmanager
 networkmanager-openvpn
 nfs-utils
 nilfs-utils
-noto-fonts
-noto-fonts-cjk
-noto-fonts-emoji
-noto-fonts-extra
 nss-mdns
 nvidia-settings
 nvidia-utils
@@ -159,11 +155,7 @@ thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-shares-plugin
 thunar-volman
-ttf-dejavu
-ttf-jetbrains-mono-nerd
 ttf-liberation
-ttf-meslo
-ttf-meslo-nerd
 tumbler
 ufw
 unrar
@@ -198,5 +190,6 @@ xorg-server-xvfb
 xorg-xinit
 xorg-xrandr
 yubico-authenticator-bin
+zed
 zen-twilight-bin
 zsh

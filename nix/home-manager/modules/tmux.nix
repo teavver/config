@@ -21,6 +21,8 @@
       set-option -g renumber-windows on
       set-option -g focus-events on
       set-option -g default-terminal "screen-256color"
+      set -g escape-time 0
+      set -g status-keys emacs
       set -g status-position top
       set -g status-left "[#{session_name}] "
       set -g status-right ""
@@ -31,6 +33,12 @@
       set -g status-style bg=default
       set -g mode-style "fg=colour250,bg=colour236"
       set -g allow-passthrough all
+      set -g allow-rename on
+      setw -g automatic-rename on
+      # plug
+      bind g display-popup -E "tms"
+      bind -n C-g display-popup -E "tms switch"
+      bind -n C-n command-prompt -p "smug start:" "send-keys 'smug start %% -a' Enter"
       # splits
       bind -n C-M-h split-window -hb
       bind -n C-M-l split-window -h

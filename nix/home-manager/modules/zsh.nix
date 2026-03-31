@@ -41,7 +41,11 @@
     initContent = ''
       if command -v tmux &> /dev/null; then
         if [ -z "$TMUX" ]; then
-          tmux new-session -A -s 1
+          if command -v smug &> /dev/null && [ -f ~/.config/smug/main.yml ]; then
+            smug start main -a
+          else
+            tmux new-session -A -s 1
+          fi
         fi
       fi
 

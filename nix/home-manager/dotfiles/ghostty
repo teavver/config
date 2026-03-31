@@ -1,8 +1,9 @@
-font-size=14.25
 shell-integration=zsh
 theme=Nvim Dark
-clipboard-trim-trailing-spaces=true
+font-size=14
+font-family="Meslo LG S"
 font-feature=-calt,-liga,-dlig
+clipboard-trim-trailing-spaces=true
 bell-features=no-audio
 window-decoration=server
 window-vsync=false

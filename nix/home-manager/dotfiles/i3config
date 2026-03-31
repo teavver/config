@@ -100,7 +100,8 @@ assign [class="steam"] 5
 assign [class="steamwebhelper"] 5
 assign [class="sioyek"] 5
 assign [class="heroic"] 5
-
+for_window [title="StarCraft II"] move to workspace 5
+ 
 # focus
 focus_on_window_activation smart
 
