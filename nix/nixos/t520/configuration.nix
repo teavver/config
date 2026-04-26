@@ -12,7 +12,7 @@ in
     (import ./config/nix/nixos/base-server.nix { user = "t520"; })
     <home-manager/nixos>
     ./forgejo.nix
-    ./privatebin.nix
+    ./microbin.nix
     ./vaultwarden.nix
     ./hardware-configuration.nix
   ];

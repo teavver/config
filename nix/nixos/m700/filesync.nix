@@ -17,6 +17,10 @@
     user = "m700";
     dataDir = "/data/syncthing";
     guiAddress = "0.0.0.0:8384";
+    settings = {
+      gui.useTLS = true;
+      options.urAccepted = -1;
+    };
   };
 
   # sync webui

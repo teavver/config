@@ -19,7 +19,8 @@
 
     shellAliases = {
       t = "thunar";
-      s = "home-manager switch -b backup";
+      oldsw = "home-manager switch -b backup";
+      s = "home-manager switch --flake ~/.config/home-manager -b backup";
       sw = "s";
       u = "paru -Syu --noconfirm --skipreview && sudo pacman -Syu --noconfirm";
       clip = "xclip -selection clipboard";
@@ -87,6 +88,9 @@
 
       bindkey '^Z' undo
       bindkey '^Y' redo
+
+      bindkey '^F' forward-word
+      ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word)
 
       bindkey '^H' backward-kill-word
       bindkey '^[[A' history-beginning-search-backward

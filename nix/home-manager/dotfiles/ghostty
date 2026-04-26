@@ -1,6 +1,8 @@
 shell-integration=zsh
 theme=Nvim Dark
-font-size=14
+# fix black comments
+palette = 0=#7f7f7f
+font-size=13
 font-family="Meslo LG S"
 font-feature=-calt,-liga,-dlig
 clipboard-trim-trailing-spaces=true
@@ -10,9 +12,9 @@ window-vsync=false
 window-save-state=always
 
 # zen
-window-padding-x = 220
+window-padding-x=240
 window-padding-balance=true
-window-padding-color=extend
+window-padding-color=background
 
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+enter=unbind

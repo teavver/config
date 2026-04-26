@@ -17,16 +17,19 @@
       }
     ];
     extraConfig = ''
+      set -g extended-keys on
       set-option -g pane-base-index 1
       set-option -g renumber-windows on
       set-option -g focus-events on
-      set-option -g default-terminal "screen-256color"
+      set-option -g default-terminal "tmux-256color"
+      set-option -sa terminal-overrides ",ghostty:Tc,tmux-256color:Tc"
       set -g escape-time 0
       set -g status-keys emacs
       set -g status-position top
       set -g status-left "[#{session_name}] "
       set -g status-right ""
       set -g bell-action any
+      set -g monitor-bell on
       set -g pane-border-lines heavy
       set -g status-fg colour12
       set -g window-status-current-style "bold"
