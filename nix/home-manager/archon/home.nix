@@ -6,7 +6,7 @@
   ...
 }:
 
-# pkgmanager: tailscale, docker, libfido2
+# pkgmanager: tailscale, docker, libfido2, ydotool
 # sudo pacman -Rns $(pacman -Qdtq)
 # paru hotfix: sudo find /var/lib/pacman/local/ -type f -name "desc" -exec sed -i '/^%INSTALLED_DB%$/,+2d' {} \;
 
@@ -128,7 +128,7 @@ in
     enable = true;
     settings = {
       global = {
-        timeout = 30;
+        timeout = 10;
         idle_threshold = 120;
       };
       urgency_low = {
@@ -194,7 +194,7 @@ in
       lua-language-server
       stylua
       yaml-language-server
-      taplo
+      taplo # toml
       bash-language-server
       dockerfile-language-server
       clang-tools
@@ -245,6 +245,7 @@ in
       # cli
       s-tui # stresstest
       # misc
+      # discord
       systemd-manager-tui
       redshift # nightlight
       libqalculate # rofi
@@ -252,13 +253,6 @@ in
       smug # tmux
       tmux-sessionizer
       voxinput # VTT llm
-      ydotool # voxinput
-      # runs
-      heroic
-      bolt-launcher
-      retroarch
-      retroarch-assets
-      libretro.snes9x
       # flake pkgs
       flake-pkgs.llm-agents.opencode
       flake-pkgs.llm-agents.claude-code
@@ -298,7 +292,11 @@ in
       search_paths = ["${config.home.homeDirectory}/code"]
     '';
     "i3/config".source = dotfiles/i3config;
-    "ghostty/config".source = dotfiles/ghostty;
+    "ghostty/config" = {
+      source = dotfiles/ghostty;
+      force = true;
+    };
+    "zsh/.p10k.zsh".source = dotfiles/p10k.zsh;
   };
 
   home.activation.SN5000symlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -315,6 +313,10 @@ in
     # /etc/sudoers.d/10-steam-perm-fix
     # teaver ALL=(root) NOPASSWD: /usr/bin/chown -R teaver\:teaver /mnt/su800/win/steam
     /usr/bin/sudo /usr/bin/chown -R teaver:teaver /mnt/su800/win/steam
+  '';
+
+  home.activation.screenshots = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run mkdir -p "$HOME/Pictures/Screenshots"
   '';
 
   home.sessionVariables = {
@@ -355,6 +357,10 @@ in
         "application/x-7z-compressed" = "engrampa.desktop";
       };
     };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
   };
 
   gtk = {
@@ -368,10 +374,22 @@ in
       package = pkgs.adwaita-icon-theme;
     };
     gtk3.extraConfig = {
+      gtk-enable-animations = false;
       gtk-enable-event-sounds = false;
       gtk-enable-input-feedback-sounds = false;
     };
+    gtk4.extraConfig = {
+      gtk-enable-animations = false;
+    };
     gtk4.theme = null;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita-dark";
+      enable-animations = false;
+    };
   };
 
   fonts.fontconfig = {
@@ -453,12 +471,6 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     initLua = builtins.readFile ./dotfiles/nvim.lua;
-  };
-
-  programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-    git = true;
   };
 
   targets.genericLinux.enable = true;

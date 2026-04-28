@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.zsh = {
@@ -10,6 +10,7 @@
 
     oh-my-zsh = {
       enable = true;
+      theme = "";
       plugins = [
         "git"
         "sudo"
@@ -17,13 +18,25 @@
       ];
     };
 
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+    ];
+
     shellAliases = {
       t = "thunar";
       oldsw = "home-manager switch -b backup";
-      s = "home-manager switch --flake ~/.config/home-manager -b backup";
+      s = "home-manager switch --flake ~/.config/home-manager";
       sw = "s";
       u = "paru -Syu --noconfirm --skipreview && sudo pacman -Syu --noconfirm";
-      clip = "xclip -selection clipboard";
       python = "python3";
       conf = "vim ~/.config/home-manager/home.nix";
       zed = "editor zeditor";
@@ -40,6 +53,8 @@
     };
 
     initContent = ''
+      [[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh
+
       if command -v tmux &> /dev/null; then
         if [ -z "$TMUX" ]; then
           if command -v smug &> /dev/null && [ -f ~/.config/smug/main.yml ]; then
@@ -48,11 +63,6 @@
             tmux new-session -A -s 1
           fi
         fi
-      fi
-
-      # fzf key bindings for Ctrl-R history search
-      if command -v fzf &> /dev/null; then
-        source <(fzf --zsh)
       fi
 
       forgejo-setup() {
@@ -98,11 +108,6 @@
       bindkey '^[[B' history-beginning-search-forward
       bindkey '^J' history-beginning-search-forward
 
-      if command -v zoxide &> /dev/null; then
-        eval "$(zoxide init zsh)"
-        alias cd='z'
-      fi
-
       editor() {
         local cmd="$1"
         shift
@@ -115,19 +120,44 @@
 
       zenmode() {
         local config="$HOME/.config/ghostty/config"
-        if grep -q 'window-padding-x = 220' "$config"; then
-          sed -i 's/window-padding-x = 220/window-padding-x = 0/' "$config"
+        if grep -q 'window-padding-x\s*=\s*240' "$config"; then
+          sed -i 's/window-padding-x\s*=\s*240/window-padding-x=0/' "$config"
         else
-          sed -i 's/window-padding-x = 0/window-padding-x = 220/' "$config"
+          sed -i '/^window-padding-x/s/=.*/=240/' "$config"
         fi
         pkill -USR2 ghostty
       }
 
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-      zstyle ':completion:*' list-colors ""
+      zstyle ':fzf-tab:*' fzf-bindings 'j:down' 'k:up'
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
       unsetopt BEEP
-      PROMPT='%F{green}%n@%m%f:%F{cyan}%3~%f $(git_prompt_info)%(?:%F{green}> :%F{red}> )%f'
+      setopt globdots
+
+      POWERLEVEL9K_VIRTUALENV_LEFT_DELIMITER='('
+      POWERLEVEL9K_VIRTUALENV_RIGHT_DELIMITER=')'
     '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    git = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [ "--cmd cd" ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }

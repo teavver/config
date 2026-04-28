@@ -190,7 +190,7 @@ bindsym $mod+Shift+e exec --no-startup-id "killall i3-nagbar; i3-nagbar -t warni
 bindsym $mod+Shift+s exec --no-startup-id "killall i3-nagbar; i3-nagbar -t warning -m 'suspend?' -B 'Yes, suspend' 'systemctl suspend'"
 
 # claude
-bindsym $mod+apostrophe exec voxtype record toggle && notify-send -t 2000 "STT toggle"
+bindsym $mod+apostrophe exec voxtype record toggle && notify-send -u low -t 2000 "STT toggle"
 
 # music
 bindsym $mod+bracketleft exec playerctl previous

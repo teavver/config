@@ -10,6 +10,8 @@
       };
       diff.renames = "copies";
       push.default = "current";
+      rerere.enabled = true;
+      pull.rebase = true;
       http = {
         postBuffer = 524288000;
         lowSpeedLimit = 0;
